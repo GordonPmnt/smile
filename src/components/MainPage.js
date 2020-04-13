@@ -3,7 +3,9 @@ import React from 'react';
 export default function MainPage() {
   const styles = {
     container: {
-      backgroundColor: 'yellow'
+      backgroundColor: 'yellow',
+      width : '100%',
+      height: '100vh'
     },
   }
 
