@@ -13,7 +13,6 @@ export default function MainPage() {
     title: {
       color: 'red',
       marginLeft: '40%',
-      paddingTop: '10%',
       fontSize: '80px'
     },
 
