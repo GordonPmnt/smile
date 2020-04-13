@@ -5,8 +5,9 @@ export default function SideBar() {
         sideContainer: {
             backgroundColor: 'blue',
             height: '100vh',
-            width: '38%',
+            width: '30%',
             margin: '0px',
+            display: 'flex',
         },
     }
     return (
