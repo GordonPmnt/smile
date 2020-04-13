@@ -1,4 +1,6 @@
 import React from "react";
+import LiveChat from "./LiveChat";
+import ChatInput from "./ChatInput";
 
 export default function ChatConversation() {
     const styles = {
@@ -11,6 +13,8 @@ export default function ChatConversation() {
     }
     return (
         <div style={styles.chatBox}>
+            <LiveChat />
+            <ChatInput />
         </div>
     );
 }
