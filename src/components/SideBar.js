@@ -1,4 +1,5 @@
 import React from "react";
+import ChatConversation from "./ChatConversation"
 
 export default function SideBar() {
     const styles = {
@@ -12,6 +13,7 @@ export default function SideBar() {
     }
     return (
         <div style={styles.sideContainer}>
+            <ChatConversation />
         </div>
     );
 }
