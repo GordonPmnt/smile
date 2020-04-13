@@ -1,11 +1,15 @@
 import React from 'react';
+ 
+export default function MainPage() {
+  const styles = {
+    container: {
+      backgroundColor: 'yellow'
+    },
+  }
 
-function MainPage() {
   return (
-    <>
-      <p >MainPage</p>
-    </>
+  <div style={styles.container}>
+    <p >MainPage</p>
+  </div>
   );
 }
-
-export default MainPage;
