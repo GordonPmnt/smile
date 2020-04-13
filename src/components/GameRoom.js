@@ -1,8 +1,6 @@
 import React from "react";
 import SideBar from "./SideBar";
 import OpponentCam from "./OpponentCam";
-import { findByLabelText } from "@testing-library/react";
-import { findRenderedComponentWithType } from "react-dom/test-utils";
 
 
 export default function GameRoom() {
