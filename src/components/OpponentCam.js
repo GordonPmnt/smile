@@ -10,7 +10,6 @@ export default function OpponentCam() {
         },
     }
     return (
-        <div style={styles.opponentCamBox}>
-        </div>
+        <img src="https://image.freepik.com/free-photo/young-bearded-crazy-man-laughing-looking-happy-positive-surprised-realizing-great-idea-pointing-lateral-copyspace-against-flat-color_1194-35140.jpg" style={styles.opponentCamBox} />
     );
 }
