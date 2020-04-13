@@ -1,11 +1,11 @@
 import React from 'react';
-import MainPage from './components/MainPage';
+import GameRoom from './components/GameRoom';
 
 
 function App() {
   return (
     <>
-      <MainPage />
+      <GameRoom />
     </>
   );
 }
