@@ -12,6 +12,7 @@ export default function MainPage() {
   return (
   <div style={styles.container}>
     <p >MainPage</p>
+    <button>start</button>
   </div>
   );
 }
