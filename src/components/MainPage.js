@@ -1,5 +1,7 @@
 import React from 'react';
+import { Link } from "react-router-dom";
  
+
 export default function MainPage() {
   const styles = {
     container: {
@@ -32,7 +34,7 @@ export default function MainPage() {
   return (
   <div style={styles.container}>
     <h1 style={styles.title}>Party time !</h1>
-    <button style={styles.start}>start</button>
+    <Link to="/GameRoom" style={styles.start}>start</Link>
   </div>
   );
 }
