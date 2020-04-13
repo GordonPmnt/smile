@@ -1,5 +1,6 @@
 import React from "react";
 import ChatConversation from "./ChatConversation"
+import MyCam from './MyCam';
 
 export default function SideBar() {
     const styles = {
@@ -8,11 +9,11 @@ export default function SideBar() {
             height: '100vh',
             width: '30%',
             margin: '0px',
-            display: 'flex',
         },
     }
     return (
         <div style={styles.sideContainer}>
+            <MyCam mirrored={true} />
             <ChatConversation />
         </div>
     );

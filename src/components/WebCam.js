@@ -1,10 +1,10 @@
 import React from "react";
 import Webcam from "react-webcam";
  
-const WebCam = ({ mirrored }) => {
+const MyCam = ({ mirrored }) => {
     return (
         <Webcam mirrored={mirrored} />
     )
 };
 
-export default WebCam;
+export default MyCam;
