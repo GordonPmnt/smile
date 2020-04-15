@@ -1,20 +1,20 @@
 import React from "react";
-import ScreenShot from './ScreenShot';
 
-function Gallery() {
+function ScreenShot() {
     const styles = {
     listBox: {
-    width: '100%',
+    width: '30%',
     paddingTop : '30px',
-    backgroundColor: 'green',
+    backgroundColor: 'yellow',
+    display: 'inline-block',
     textAlign: 'center',
     },
 }
 return (
     <div style={styles.listBox}>
-        <ScreenShot/>
+        <p>ScreenShot</p>
     </div>
     );
 }
 
-export default Gallery;
+export default ScreenShot;
