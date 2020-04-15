@@ -1,6 +1,7 @@
 import React from "react";
 import ChatConversation from "./ChatConversation"
 import MyCam from './MyCam';
+import DecksList from './DecksList';
 
 export default function SideBar() {
     const styles = {
@@ -13,6 +14,7 @@ export default function SideBar() {
     }
     return (
         <div style={styles.sideContainer}>
+            <DecksList/>
             <MyCam mirrored={true} />
             <ChatConversation />
         </div>
