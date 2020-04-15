@@ -1,11 +1,21 @@
 import React from 'react';
+import MainPage from './components/MainPage'
+import GameRoom from './components/GameRoom';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 
 function App() {
   return (
-    <>
-      <h1>Pouet</h1>
-    </>
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <MainPage />
+        </Route>
+        <Route path="/GameRoom">
+          <GameRoom />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
