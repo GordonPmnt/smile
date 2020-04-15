@@ -1,18 +1,19 @@
 import React from "react";
+import Deck from './Deck';
 
 function DecksList() {
     const styles = {
     listBox: {
     width: '100%',
-    paddingTop : '30px',
+    paddingTop : '3px',
     backgroundColor: 'red',
     display: 'inline-block',
-    textAlign: 'center',
     },
 }
 return (
     <div style={styles.listBox}>
         <p>Decks List</p>
+        <Deck/>
     </div>
     );
 }

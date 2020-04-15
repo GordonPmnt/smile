@@ -5,13 +5,13 @@ function Gallery() {
     const styles = {
     listBox: {
     width: '100%',
-    paddingTop : '30px',
+    paddingTop : '3px',
     backgroundColor: 'green',
-    textAlign: 'center',
     },
 }
 return (
     <div style={styles.listBox}>
+        <p>Gallery</p>
         <ScreenShot/>
     </div>
     );
