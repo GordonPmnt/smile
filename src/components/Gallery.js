@@ -1,21 +1,20 @@
 import React from "react";
-import Deck from './Deck';
+import ScreenShot from './ScreenShot';
 
-function DecksList() {
+function Gallery() {
     const styles = {
     listBox: {
     width: '100%',
     paddingTop : '3px',
-    backgroundColor: 'red',
-    display: 'inline-block',
+    backgroundColor: 'green',
     },
 }
 return (
     <div style={styles.listBox}>
-        <p>Decks List</p>
-        <Deck/>
+        <p>Gallery</p>
+        <ScreenShot/>
     </div>
     );
 }
 
-export default DecksList;
+export default Gallery;
