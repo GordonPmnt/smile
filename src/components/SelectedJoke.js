@@ -3,21 +3,26 @@ import React from "react";
 export default function SelectedJoke() {
     const styles = {
         jokeBox: {
-            width: '80%',
+            width: '100%',
             heigth: '10%',
             position: 'absolute',
             zIndex: '1',
-            backgroundColor: 'yellow',
             top: '1em',
-            display: 'inline-block',
+            display: 'flex',
+            justifyContent: 'center',
             textAlign: 'center',
-            marginLeft: '80px',
         },
+        littleJokeBox: {
+            width: '70%',
+            backgroundColor: 'white',
+        }
     }
     return (
         <div style={styles.jokeBox}>
-            <p>Qu’est-ce qui court et qui se jette ?</p>
-            <p>Une courgette</p>
+            <div style={styles.littleJokeBox}>
+                <p>Qu’est-ce qui court et qui se jette ?</p>
+                <p>Une courgette</p>
+            </div>
         </div>
     );
 }
