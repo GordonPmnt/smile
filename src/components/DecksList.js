@@ -5,14 +5,18 @@ function DecksList() {
     const styles = {
     listBox: {
     width: '100%',
-    paddingTop : '3px',
     backgroundColor: 'red',
-    display: 'inline-block',
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    
     },
 }
 return (
     <div style={styles.listBox}>
-        <p>Decks List</p>
+        <Deck/>
+        <Deck/>
+        <Deck/>
         <Deck/>
     </div>
     );

@@ -5,7 +5,6 @@ function Gallery() {
     const styles = {
     listBox: {
     width: '100%',
-    paddingTop : '3px',
     backgroundColor: 'green',
     },
 }
