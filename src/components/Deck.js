@@ -3,10 +3,10 @@ import React from "react";
 function Deck() {
     const styles = {
     listBox: {
-    width: '15%',
-    height: '15vh',
-    backgroundColor: 'yellow',
-    textAlign: 'center',
+        width: '15%',
+        height: '15vh',
+        backgroundColor: 'yellow',
+        textAlign: 'center',
     },
 }
 return (
