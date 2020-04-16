@@ -4,15 +4,14 @@ import OpponentCam from "./OpponentCam";
 
 class GameRoom extends React.Component {
     state = {
-        isActive: false
+        userIsActive: false
     };
 
     toggleActivity = () => {
         this.setState( prevState => ({
-            isActive : !prevState.isActive
+            userIsActive : !prevState.userIsActive
         }))
     };
-
     styles = {
         container: {
             display: 'flex',
@@ -25,8 +24,8 @@ class GameRoom extends React.Component {
     render() {
        // console.log("What is the state now ?", this.state.isActive)
         return (
-                <div className={GameRoom} style={GameRoom.container} >
-                    <button onClick={this.toggleActivity}>{this.state.isActive ? 'ACTIF' : 'INACTIF'}</button>
+                <div style={this.styles.container} >
+                    <button onClick={this.toggleActivity}>{this.state.userIsActive ? 'ACTIF' : 'INACTIF'}</button>
                     <OpponentCam />
                     <SideBar />
                 </div>
