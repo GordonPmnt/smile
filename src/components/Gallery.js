@@ -3,9 +3,9 @@ import ScreenShot from './ScreenShot';
 
 function Gallery() {
     const styles = {
-    listBox: {
-    width: '100%',
-    backgroundColor: 'green',
+        listBox: {
+        width: '100%',
+        backgroundColor: 'green',
     },
 }
 return (
