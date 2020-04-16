@@ -2,10 +2,18 @@ import React from "react";
 import SideBar from "./SideBar";
 import OpponentCam from "./OpponentCam";
 
+class GameRoom extends React.Component {
+    state = {
+        isActive: false
+    };
 
+    toggleActivity = () => {
+        this.setState( prevState => ({
+            isActive : !prevState.isActive
+        }))
+    };
 
-export default function GameRoom() {
-    const styles = {
+    styles = {
         container: {
             display: 'flex',
             backgroundColor: 'grey',
@@ -14,11 +22,16 @@ export default function GameRoom() {
             margin: '0px',
         },
     }
-    return (
-        <div style={styles.container}  >
-            <OpponentCam />
-            <SideBar />
-        </div>
-    );
+    render() {
+       // console.log("What is the state now ?", this.state.isActive)
+        return (
+                <div className={GameRoom} style={GameRoom.container} >
+                    <button onClick={this.toggleActivity}>{this.state.isActive ? 'ACTIF' : 'INACTIF'}</button>
+                    <OpponentCam />
+                    <SideBar />
+                </div>
+        )
+    }
 }
 
+export default GameRoom;
