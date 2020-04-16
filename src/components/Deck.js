@@ -2,7 +2,7 @@ import React from "react";
 
 function Deck() {
     const styles = {
-        listBox: {
+        card: {
             width: '15%',
             height: '15vh',
             backgroundColor: 'yellow',
@@ -11,7 +11,7 @@ function Deck() {
     }
 
     return (
-        <div style={styles.listBox}>
+        <div style={styles.card}>
             <p>Deck</p>
         </div>
     );
