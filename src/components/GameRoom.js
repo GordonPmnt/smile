@@ -21,6 +21,7 @@ class GameRoom extends React.Component {
             margin: '0px',
         },
     }
+    
     render() {
         return (
                 <div style={this.styles.container} >
