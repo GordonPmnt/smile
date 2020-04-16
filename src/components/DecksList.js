@@ -3,7 +3,7 @@ import Deck from './Deck';
 
 function DecksList() {
     const styles = {
-        listBox: {
+        container: {
             width: '100%',
             backgroundColor: 'red',
             display: 'flex',
@@ -13,7 +13,7 @@ function DecksList() {
     }
 
     return (
-        <div style={styles.listBox}>
+        <div style={styles.container}>
             <Deck/>
             <Deck/>
             <Deck/>
