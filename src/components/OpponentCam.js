@@ -1,7 +1,7 @@
 import React from "react";
 import SelectedJoke from "./SelectedJoke";
 
-export default function OpponentCam() {
+export default function OpponentCam({ toggleActivity }) {
     const styles = {
         opponentCamBox: {
             height: '100vh',
@@ -15,7 +15,7 @@ export default function OpponentCam() {
     const picture = require('../img/fakecam.png')
     return (
         <div  style={styles.opponentCamBox}>
-            <SelectedJoke />
+            <SelectedJoke toggleActivity={toggleActivity} />
             <img
                 src={picture}
                 alt="fake webcam"
