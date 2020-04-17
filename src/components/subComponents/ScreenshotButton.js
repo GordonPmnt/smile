@@ -15,6 +15,7 @@ const ScreenshotButton = ({ toggleActivity }) => {
             boxShadow: '0px 10px 10px rgba(0, 0, 0, 0.50)'
         }
     }
+    
     return (
         <div style={styles.container}>
             <img 
