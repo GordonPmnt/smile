@@ -1,5 +1,7 @@
 import React from "react";
 import SelectedJoke from "./SelectedJoke";
+import ScreenshotButton from './subComponents/ScreenshotButton';
+
 
 export default function OpponentCam({ toggleActivity }) {
     const styles = {
@@ -24,6 +26,7 @@ export default function OpponentCam({ toggleActivity }) {
                 src={picture}
                 alt="fake webcam"
             />
+            <ScreenshotButton toggleActivity={toggleActivity} />
         </div>
     );
 }
