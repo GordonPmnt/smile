@@ -1,23 +1,33 @@
 import React from "react";
+import NextButton from './subComponents/NextButton';
 
-export default function SelectedJoke() {
+export default function SelectedJoke({ toggleActivity }) {
     const styles = {
         jokeBox: {
-            width: '80%',
+            width: '100%',
             heigth: '10%',
             position: 'absolute',
             zIndex: '1',
-            backgroundColor: 'yellow',
             top: '1em',
-            display: 'inline-block',
+            display: 'flex',
+            justifyContent: 'center',
             textAlign: 'center',
-            marginLeft: '80px',
         },
+        littleJokeBox: {
+            backgroundColor: 'white',
+            width: '70%',
+        }
     }
     return (
         <div style={styles.jokeBox}>
-            <p>Qu’est-ce qui court et qui se jette ?</p>
-            <p>Une courgette</p>
+            <div style={styles.littleJokeBox}>
+                <p>Qu’est-ce qui court et qui se jette ?</p>
+                <p>Une courgette</p>
+            </div>
+            <NextButton 
+                toggleActivity={toggleActivity}
+                deckLogo={require('../img/mexicano-transparent.png')} // Should be linked to Deck Choice
+            />
         </div>
     );
 }
