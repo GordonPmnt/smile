@@ -10,6 +10,9 @@ export default function OpponentCam({ toggleActivity }) {
             position: 'relative',
             zIndex: '2',
         },
+        WebCam: {
+            height: '100%',
+        }
 
     }
     const picture = require('../img/fakecam.png')
@@ -17,6 +20,7 @@ export default function OpponentCam({ toggleActivity }) {
         <div  style={styles.opponentCamBox}>
             <SelectedJoke toggleActivity={toggleActivity} />
             <img
+                style={styles.WebCam}
                 src={picture}
                 alt="fake webcam"
             />
