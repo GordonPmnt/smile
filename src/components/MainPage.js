@@ -1,5 +1,15 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import axios from 'axios';
+
+axios
+      .get('/api/joke/1', {
+          method: 'get',
+          headers: { Authorization: 'wNCRy1cy4Uu.sPBmUEFcY5g991jBK7TD-OzSO.83-iar0fDBIYBKG6qFe-N.wH2W' }
+      })
+      .then(res => {
+          console.log(res.data)
+      });
  
 
 export default function MainPage() {
@@ -7,13 +17,13 @@ export default function MainPage() {
     container: {
       backgroundColor: 'yellow',
       width : '100%',
-      height: '100vh'
+      height: '100vh',
     },
 
     title: {
       color: 'red',
       marginLeft: '40%',
-      fontSize: '80px'
+      fontSize: '80px',
     },
 
     start: {
@@ -25,7 +35,7 @@ export default function MainPage() {
       padding: '15px 32px',
       textAlign: 'center',
       textDecoration: 'none',
-      fontSize: '16px'
+      fontSize: '16px',
     },
 
   }
