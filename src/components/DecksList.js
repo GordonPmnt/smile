@@ -1,15 +1,11 @@
 import React, {Component} from "react";
-import Deck from './Deck';
-import axios from 'axios';
+import RandomDeck from './decks/RandomDeck';
+import DarkDeck from './decks/DarkDeck';
+import ChuckDeck from './decks/ChuckDeck';
+import SexDeck from './decks/SexDeck';
 
 
  class DecksList extends Component {
-    state = {
-        joke:'',
-        answer:'',
-        category:'',
-    }
-
     styles = {
         container: {
             width: '100%',
@@ -24,44 +20,21 @@ import axios from 'axios';
         decks: {
             display: 'flex',
             justifyContent: 'space-evenly',
-        }
-    }
+        },
 
-    componentDidMount() {
-        axios
-
-        .get('/api/joke/random', {
-            method: 'get',
-            headers: { 
-                Authorization: 'FW6CstM9yETDGYTEqdL-R.4fNoGEUCRHW0SvHOGXo2YpK2j-4th5JY3pTT_qDtWX' 
-            }
-        })
-
-        .then(response => {
-            const { joke } = response.data;
-            this.setState({ joke : joke.question });
-            this.setState({ answer : joke.answer });
-            this.setState({ category : 'random' });
-        })
-    
-        .catch(err => {
-            console.log(err.message)
-        })
-    }
-
-    handleClick = () => {
-        return this.state.joke
     }
     
-    render(){
+    render() {
         return (
             <div style={this.styles.container}>
                 <h2 style={this.styles.label}>CHOOSE YOUR DADDY JOKER</h2>
-                <div style={this.styles.decks}>
-                    <Deck onClick={this.handleClick} />
-                    <Deck onClick={this.handleClick} />
-                    <Deck onClick={this.handleClick} />
-                    <Deck onClick={this.handleClick} />
+                <div 
+                    style={this.styles.decks}
+                >
+                    <RandomDeck getRandomJoke={this.props.getRandomJoke} />
+                    <DarkDeck />
+                    <ChuckDeck />
+                    <SexDeck />
                 </div>
             </div>
         );
