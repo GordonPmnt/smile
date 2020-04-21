@@ -5,24 +5,25 @@ import ScreenshotButton from './subComponents/ScreenshotButton';
 
 export default function OpponentCam({ toggleActivity }) {
     const styles = {
-        opponentCamBox: {
-            height: '100vh',
+        container: {
+            height: '94vh',
             width: '70vw',
-            margin: '0px',
-            position: 'relative',
-            zIndex: '2',
+            margin: '0',
+            display: 'flex',
+            justifyContent: 'center'
         },
-        WebCam: {
+        webCam: {
+            margin: '3vh',
             height: '100%',
         }
 
     }
     const picture = require('../img/fakecam.png')
     return (
-        <div  style={styles.opponentCamBox}>
+        <div  style={styles.container}>
             <SelectedJoke toggleActivity={toggleActivity} />
             <img
-                style={styles.WebCam}
+                style={styles.webCam}
                 src={picture}
                 alt="fake webcam"
             />
