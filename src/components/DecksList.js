@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import Deck from './Deck';
 import axios from 'axios';
 
+
 const styles = {
     container: {
         width: '100%',
@@ -19,13 +20,13 @@ const styles = {
         axios
       .get('/api/joke/1', {
           method: 'get',
-          headers: { Authorization: 'wNCRy1cy4Uu.sPBmUEFcY5g991jBK7TD-OzSO.83-iar0fDBIYBKG6qFe-N.wH2W' }
+          headers: { Authorization: 'FW6CstM9yETDGYTEqdL-R.4fNoGEUCRHW0SvHOGXo2YpK2j-4th5JY3pTT_qDtWX' }
       })
       .then(res => {
           console.log(res.data)
       });
 }
-    
+
     
     render(){
         return (
