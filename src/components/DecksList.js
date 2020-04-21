@@ -38,7 +38,7 @@ import axios from 'axios';
             }
         })
 
-        .then(response => { console.log(response)
+        .then(response => {
             const { joke } = response.data;
             this.setState({ joke : joke.question });
             this.setState({ answer : joke.answer });
