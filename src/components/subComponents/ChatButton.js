@@ -11,7 +11,8 @@ const ChatButton = () => {
             heigth: '5%'
         },
         button: {
-            width: '50%'
+            width: '50%',
+            cursor: 'pointer',
         }
     }
 

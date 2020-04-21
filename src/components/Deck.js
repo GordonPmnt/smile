@@ -13,6 +13,7 @@ const Deck = () => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            cursor: 'pointer',
         },
         label: {
             fontSize: '0.8rem',

@@ -3,13 +3,14 @@ import React from 'react';
 
 const NextButton = ({ toggleActivity, daddy }) => {
     const styles = {
-        container: {
+        button: {
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
             position: 'absolute',
             right: '15px',
             bottom: '5px',
+            cursor: 'pointer',
         },
         logo: {
             height: "2em",
@@ -21,7 +22,7 @@ const NextButton = ({ toggleActivity, daddy }) => {
     }
 
     return (
-        <div style={styles.container} onClick={() => toggleActivity()}>
+        <div style={styles.button} onClick={() => toggleActivity()}>
             <img 
                 src={daddy} 
                 alt="Next Logo" 
