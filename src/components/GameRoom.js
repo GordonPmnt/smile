@@ -25,7 +25,6 @@ class GameRoom extends React.Component {
     render() {
         return (
                 <div style={this.styles.container} >
-                    <button onClick={this.toggleActivity}>{this.state.userIsActive ? 'ACTIF' : 'INACTIF'}</button>
                     <OpponentCam toggleActivity={this.toggleActivity} />
                     <SideBar />
                 </div>
