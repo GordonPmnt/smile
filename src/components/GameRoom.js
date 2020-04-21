@@ -4,7 +4,12 @@ import OpponentCam from "./OpponentCam";
 
 class GameRoom extends React.Component {
     state = {
-        userIsActive: false
+        userIsActive: false,
+        activeJoke: {
+            joke: '',
+            answer: '',
+            category: 'none',
+        },
     };
 
     styles = {
