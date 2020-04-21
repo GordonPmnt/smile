@@ -3,8 +3,13 @@ import MyCam from './MyCam';
 import DecksList from './DecksList';
 import Gallery from './Gallery';
 import LiveChat from "./LiveChat";
+import ChatButton from './subComponents/ChatButton';
 
 class SideBar extends React.Component {
+    state = {
+        chatEnabled: false
+    }
+
     styles = {
         container: {
             height: '100vh',
@@ -14,12 +19,17 @@ class SideBar extends React.Component {
     }
 
     render() {
+        const { chatEnabled } = this.state;
+
         return (
             <div style={this.styles.container}>
                 <DecksList/>
                 <Gallery/>
                 <MyCam mirrored={true} />
-                <LiveChat />
+                {chatEnabled
+                    ? <LiveChat />
+                    : <ChatButton />
+                }
             </div>
         )
     }
