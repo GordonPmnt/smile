@@ -8,16 +8,16 @@ export default function OpponentCam({ toggleActivity }) {
     const styles = {
         container: {
             border: `solid ${theme.colors.yellow} 5px`, // This should come from selectedJoke
-            margin: '3vh',
-            height: '94vh',
+            margin: '5vh 3vh 5vh 3vh',
+            height: '90vh',
             width: '64vw',
             display: 'flex',
             justifyContent: 'center',
         },
         OpponentInterface: {
             position: 'absolute',
-            height: '97%',
-            top: '3%',
+            height: '96%',
+            top: '4%',
             display: 'flex',
             flexDirection: 'column',
         },
