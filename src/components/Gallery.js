@@ -5,8 +5,8 @@ function Gallery() {
     const styles = {
         container: {
             display: 'flex',
-            width: '100%',
-            heigth: '25%',
+            height: '25%',
+            width: 'auto',
             alignItems: 'center',
             flexDirection: 'column'
         },
