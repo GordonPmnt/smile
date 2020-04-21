@@ -17,8 +17,6 @@ export default function MainPage() {
     start: {
       marginTop : '5%',
       marginLeft : '50%',
-      border: 'none',
-      color: 'white',
       padding: '15px 32px',
       textAlign: 'center',
       textDecoration: 'none',
@@ -30,7 +28,7 @@ export default function MainPage() {
   return (
     <div style={styles.container}>
       <h1 style={styles.title}>Party time !</h1>
-      <Link to="/GameRoom" style={styles.start}>start</Link>
+      <Link to="/GameRoom" style={styles.start}>Start</Link>
     </div>
   );
 }

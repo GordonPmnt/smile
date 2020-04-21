@@ -1,17 +1,22 @@
 import React from "react";
+import ChatConversations from "./ChatConversations";
+import ChatInput from "./ChatInput";
 
-export default function LiveChat() {
+const LiveChat = () => {
     const styles = {
-        liveChatBox: {
-            height: '80%',
+        container: {
+            backgroundColor: '#59BBF3',
+            height: '30vh',
             width: '100%',
             margin: '0px',
         },
     }
     return (
-        <div style={styles.liveChatBox}>
-            Salut
-            ca va bien ? Ceci est le LiveChat component
+        <div style={styles.container}>
+            <ChatConversations />
+            <ChatInput />
         </div>
     );
 }
+
+export default LiveChat;

@@ -1,8 +1,8 @@
 import React from "react";
-import ChatConversation from "./ChatConversation"
 import MyCam from './MyCam';
 import DecksList from './DecksList';
 import Gallery from './Gallery';
+import LiveChat from "./LiveChat";
 
 export default function SideBar() {
     const styles = {
@@ -17,7 +17,7 @@ export default function SideBar() {
             <DecksList/>
             <Gallery/>
             <MyCam mirrored={true} />
-            <ChatConversation />
+            <LiveChat />
         </div>
     );
 }
