@@ -7,31 +7,31 @@ import theme from './utils/theme';
 export default function OpponentCam({ toggleActivity }) {
     const styles = {
         container: {
+            border: `solid ${theme.colors.yellow} 5px`, // This should come from selectedJoke
+            margin: '3vh',
             height: '94vh',
-            width: '70vw',
-            margin: '0',
+            width: '64vw',
             display: 'flex',
             justifyContent: 'center',
         },
         OpponentInterface: {
-            margin: '3vh',
-            height: '100%',
-            width: '100%',
-            border: `solid ${theme.colors.yellow} 5px`, // This should come from selectedJoke
+            position: 'absolute',
+            height: '97%',
+            top: '3%',
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
         },
         webcam: {
             height: '100%',
-            width: '100%'
+            width: '100%',
         }
     }
     const picture = require('../img/fakewebcamGP.png')
+
     return (
         <div  style={styles.container}>
+            <img src={picture} alt="fake webcam" style={styles.webcam}/>
             <div style={styles.OpponentInterface}>
-                <img src={picture} alt="fake webcam" style={styles.webcam}/>
                 <SelectedJoke toggleActivity={toggleActivity} />
                 <ScreenshotButton toggleActivity={toggleActivity} />
             </div>
