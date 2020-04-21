@@ -55,12 +55,10 @@ import axios from 'axios';
             <div style={this.styles.container}>
                 <h2 style={this.styles.label}>CHOOSE YOUR DADDY JOKER</h2>
                 <div style={this.styles.decks}>
-                    <button onClick={this.componentDidMount}>{this.state.joke}
-                        <Deck />
-                        <Deck />
-                        <Deck />
-                        <Deck />
-                    </button>
+                    <Deck />
+                    <Deck />
+                    <Deck />
+                    <Deck />
                 </div>
             </div>
         );
