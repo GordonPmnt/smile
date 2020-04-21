@@ -1,6 +1,7 @@
 import React from "react";
 import SideBar from "./SideBar";
 import OpponentCam from "./OpponentCam";
+import axios from 'axios';
 
 class GameRoom extends React.Component {
     state = {
@@ -26,12 +27,32 @@ class GameRoom extends React.Component {
             userIsActive : !prevState.userIsActive
         }))
     };
+
+    getRandomJoke = () => {
+        axios
+        .get('/api/joke/random', {
+            method: 'get',
+            headers: { 
+                Authorization: 'FW6CstM9yETDGYTEqdL-R.4fNoGEUCRHW0SvHOGXo2YpK2j-4th5JY3pTT_qDtWX' 
+            }
+        })
+        .then(response => {
+            const { joke } = response.data
+            console.log(joke)
+        })
+        .catch(err => {
+            console.log(err.message)
+        })
+    }
     
     render() {
         return (
             <div style={this.styles.container} >
                 <OpponentCam toggleActivity={this.toggleActivity} />
-                <SideBar />
+                <SideBar 
+                    userIsActive={this.state.userIsActive}
+                    getRandomJoke={this.getRandomJoke}
+                />
             </div>
         )
     }
