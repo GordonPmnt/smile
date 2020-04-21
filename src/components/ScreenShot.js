@@ -5,7 +5,6 @@ function ScreenShot() {
     listBox: {
     width: '30%',
     paddingTop : '30px',
-    backgroundColor: 'yellow',
     display: 'inline-block',
     textAlign: 'center',
     },

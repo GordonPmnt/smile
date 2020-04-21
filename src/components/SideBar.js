@@ -7,7 +7,6 @@ import Gallery from './Gallery';
 export default function SideBar() {
     const styles = {
         sideContainer: {
-            backgroundColor: 'blue',
             height: '100vh',
             width: '30%',
             margin: '0px',

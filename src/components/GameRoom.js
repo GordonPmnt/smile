@@ -7,20 +7,20 @@ class GameRoom extends React.Component {
         userIsActive: false
     };
 
-    toggleActivity = () => {
-        this.setState( prevState => ({
-            userIsActive : !prevState.userIsActive
-        }))
-    };
     styles = {
         container: {
             display: 'flex',
-            backgroundColor: 'grey',
             height: '100vh',
             width: '100%',
             margin: '0px',
         },
     }
+
+    toggleActivity = () => {
+        this.setState( prevState => ({
+            userIsActive : !prevState.userIsActive
+        }))
+    };
     
     render() {
         return (

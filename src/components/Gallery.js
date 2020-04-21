@@ -5,7 +5,6 @@ function Gallery() {
     const styles = {
         container: {
             width: '100%',
-            backgroundColor: 'green',
         },
     }
 
