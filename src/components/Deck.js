@@ -1,17 +1,37 @@
 import React from "react";
+import theme from './utils/theme';
 
 
 const Deck = () => {
     const styles = {
         card: {
-            width: '15%',
-            height: '15vh',
+            borderRadius: '5px',
+            border: `${theme.colors.yellow} 10px solid`,
+            height: '8.5rem',
+            width: '5rem',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+        },
+        label: {
+            fontSize: '0.8rem',
             textAlign: 'center',
         },
+        daddy: {
+            width: '2.3em',
+        }
     }
+    const daddy = require('../img/mexicano-transparent.png')
 
     return (
-        <div style={styles.card}></div>
+        <div style={styles.card}>
+            <p style={styles.label}>RANDOM JOKE</p>
+            <img 
+                src={daddy} 
+                alt="random joke daddy" 
+                style={styles.daddy}
+            />
+        </div>
     );
 }
 

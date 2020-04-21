@@ -11,7 +11,7 @@ const ScreenshotButton = ({ toggleActivity }) => {
             borderRadius: '100%',
             position: 'absolute',
             bottom: '10%',
-            height: '7em',
+            height: '5em',
             boxShadow: '0px 10px 10px rgba(0, 0, 0, 0.50)'
         }
     }
