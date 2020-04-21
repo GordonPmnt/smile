@@ -17,7 +17,6 @@ import axios from 'axios';
         },
         decks: {
             display: 'flex',
-            flexWrap: 'wrap',
             justifyContent: 'space-evenly',
         }
     }

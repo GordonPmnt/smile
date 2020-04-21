@@ -3,17 +3,19 @@ import Webcam from "react-webcam";
  
 const MyCam = ({ mirrored }) => {
     const styles = {
-        container: {
-            heigth: '40%'
+        cam: {
+            display: 'flex',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            width: '80%',
+            borderRadius: '10px',
         }
     }
     
     return (
         <Webcam 
-            style={styles.container}
-            mirrored={mirrored} 
-            height={250}
-            width={470}
+            style={styles.cam}
+            mirrored={mirrored}
         />
     )
 };
