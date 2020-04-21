@@ -11,9 +11,7 @@ const Deck = () => {
     }
 
     return (
-        <div style={styles.card}>
-            <p>Deck</p>
-        </div>
+        <div style={styles.card}></div>
     );
 }
 

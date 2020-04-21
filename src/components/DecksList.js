@@ -7,11 +7,19 @@ import axios from 'axios';
     styles = {
         container: {
             width: '100%',
-            height: '30%',
+            height: '25%',
+            margin: '0'
+        },
+        label: {
+            textAlign: 'center',
+            marginTop: '5%',
+            fontWeight: 'normal',
+        },
+        decks: {
             display: 'flex',
             flexWrap: 'wrap',
             justifyContent: 'space-around',
-        },
+        }
     }
 
     componentDidMount(){
@@ -33,10 +41,13 @@ import axios from 'axios';
     render(){
         return (
             <div style={this.styles.container}>
-                <Deck />
-                <Deck />
-                <Deck />
-                <Deck />
+                <h2 style={this.styles.label}>CHOOSE YOUR DADDY JOKER</h2>
+                <div style={this.styles.decks}>
+                    <Deck />
+                    <Deck />
+                    <Deck />
+                    <Deck />
+                </div>
             </div>
         );
     }
