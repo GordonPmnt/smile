@@ -24,10 +24,10 @@ class GameRoom extends React.Component {
     
     render() {
         return (
-                <div style={this.styles.container} >
-                    <OpponentCam toggleActivity={this.toggleActivity} />
-                    <SideBar />
-                </div>
+            <div style={this.styles.container} >
+                <OpponentCam toggleActivity={this.toggleActivity} />
+                <SideBar />
+            </div>
         )
     }
 }
