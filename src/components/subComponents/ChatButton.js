@@ -8,6 +8,7 @@ const ChatButton = () => {
             position: 'absolute',
             top: '90vh',
             right: 0,
+            heigth: '5%'
         },
         button: {
             width: '50%'

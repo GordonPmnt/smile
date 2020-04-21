@@ -5,6 +5,7 @@ function Gallery() {
     const styles = {
         container: {
             width: '100%',
+            heigth: '25%',
         },
     }
 

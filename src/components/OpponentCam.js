@@ -7,7 +7,7 @@ export default function OpponentCam({ toggleActivity }) {
     const styles = {
         opponentCamBox: {
             height: '100vh',
-            width: '70%',
+            width: '70vw',
             margin: '0px',
             position: 'relative',
             zIndex: '2',

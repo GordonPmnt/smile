@@ -13,7 +13,7 @@ class SideBar extends React.Component {
     styles = {
         container: {
             height: '100vh',
-            width: '30%',
+            width: '30vw',
             margin: '0px',
         },
     }
@@ -23,8 +23,8 @@ class SideBar extends React.Component {
 
         return (
             <div style={this.styles.container}>
-                <DecksList/>
-                <Gallery/>
+                <DecksList />
+                <Gallery />
                 <MyCam mirrored={true} />
                 {chatEnabled
                     ? <LiveChat />
