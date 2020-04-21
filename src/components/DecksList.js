@@ -32,13 +32,18 @@ import axios from 'axios';
     render(){
         return (
             <div style={this.styles.container}>
-                <Deck />
-                <Deck />
-                <Deck />
-                <Deck />
+
+                <h2 style={this.styles.label}>CHOOSE YOUR DADDY JOKER</h2>
+                <div style={this.styles.decks}>
+                    <Deck />
+                    <Deck />
+                    <Deck />
+                    <Deck />
+                </div>
             </div>
         );
     }
 }
 
 export default DecksList;
+
