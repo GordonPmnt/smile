@@ -1,5 +1,6 @@
 import React from "react";
 
+
 function ScreenShot() {
     const styles = {
         container: {
@@ -11,9 +12,7 @@ function ScreenShot() {
     }
 
     return (
-        <div style={styles.container}>
-            <p>ScreenShot</p>
-        </div>
+        <div style={styles.container}></div>
         );
 }
 
