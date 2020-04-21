@@ -3,7 +3,7 @@ import theme from './utils/theme';
 import { Link } from "react-router-dom";
 
 
-export default function MainPage() {
+const MainPage = () => {
   const styles = {
     container: {
       display: 'flex',
@@ -11,37 +11,40 @@ export default function MainPage() {
       height: '100vh',
       flexDirection: 'column',
       justifyContent: 'center',
-      alignItems: 'center',
-      justifyItems: 'center',
-      alignContent: 'center',
+      fontFamily: "Righteous, cursive",
     },
-
     title: {
+      fontSize: '4rem',
       textAlign: 'center',
       color: theme.colors.pink,
     },
-
     start: {
-      display: 'flex',
-      marginTop : '5%',
-      marginLeft : '50%',
-      padding: '15px 32px',
       textAlign: 'center',
       textDecoration: 'none',
-      fontSize: '16px',
+      border: `solid 1px ${theme.colors.pink}`,
+      margin: '0 40%',
+      padding: '0.5%',
     },
-
+    gentleman: {
+      display: 'block',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      width: '8rem',
+      opacity: '0.8',
+    }
   }
+
+  const gentleman = require('../img/gentleman-transparent.png')
 
   return (
     <div style={styles.container}>
-      <h1 style={styles.title}>Party time !</h1>
-      <Link 
-        to="/GameRoom" 
-        style={styles.start}
-      >
-        Start
+      <img src={gentleman} alt='gentleman' style={styles.gentleman} />
+      <h1 style={styles.title}>DADLAB !</h1>
+      <Link style={styles.start} to="/GameRoom">
+        Generate room
       </Link>
     </div>
   );
 }
+
+export default MainPage;
