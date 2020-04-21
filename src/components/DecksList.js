@@ -27,7 +27,7 @@ import axios from 'axios';
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         axios
 
         .get('/api/joke/random', {
@@ -38,15 +38,19 @@ import axios from 'axios';
         })
 
         .then(response => { console.log(response)
-            const {joke} = response.data;
-            this.setState( {joke : joke.question} );
-            this.setState( {answer : joke.answer} );
-            this.setState( {category : 'random'})
+            const { joke } = response.data;
+            this.setState({ joke : joke.question });
+            this.setState({ answer : joke.answer });
+            this.setState({ category : 'random' });
         })
     
         .catch(err => {
             console.log(err.message)
         })
+    }
+
+    handleClick = () => {
+        return this.state.joke
     }
     
     render(){
@@ -54,10 +58,10 @@ import axios from 'axios';
             <div style={this.styles.container}>
                 <h2 style={this.styles.label}>CHOOSE YOUR DADDY JOKER</h2>
                 <div style={this.styles.decks}>
-                    <Deck />
-                    <Deck />
-                    <Deck />
-                    <Deck />
+                    <Deck onClick={this.handleClick} />
+                    <Deck onClick={this.handleClick} />
+                    <Deck onClick={this.handleClick} />
+                    <Deck onClick={this.handleClick} />
                 </div>
             </div>
         );
