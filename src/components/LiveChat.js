@@ -1,8 +1,11 @@
 import React from "react";
 import ChatConversations from "./ChatConversations";
 import ChatInput from "./ChatInput";
+import ChatButton from './subComponents/ChatButton';
+
 
 const LiveChat = () => {
+
     const styles = {
         container: {
             backgroundColor: '#59BBF3',
@@ -15,6 +18,7 @@ const LiveChat = () => {
         <div style={styles.container}>
             <ChatConversations />
             <ChatInput />
+            <ChatButton />
         </div>
     );
 }
