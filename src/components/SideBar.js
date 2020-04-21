@@ -4,20 +4,25 @@ import DecksList from './DecksList';
 import Gallery from './Gallery';
 import LiveChat from "./LiveChat";
 
-export default function SideBar() {
-    const styles = {
+class SideBar extends React.Component {
+    styles = {
         container: {
             height: '100vh',
             width: '30%',
             margin: '0px',
         },
     }
-    return (
-        <div style={styles.container}>
-            <DecksList/>
-            <Gallery/>
-            <MyCam mirrored={true} />
-            <LiveChat />
-        </div>
-    );
+
+    render() {
+        return (
+            <div style={this.styles.container}>
+                <DecksList/>
+                <Gallery/>
+                <MyCam mirrored={true} />
+                <LiveChat />
+            </div>
+        )
+    }
 }
+
+export default SideBar;
