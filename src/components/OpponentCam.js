@@ -18,8 +18,10 @@ export default function OpponentCam({ toggleActivity }) {
             position: 'absolute',
             height: '96%',
             top: '4%',
+            left: 'auto',
             display: 'flex',
             flexDirection: 'column',
+            alignItems: 'center',
         },
         webcam: {
             height: '100%',

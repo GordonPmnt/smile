@@ -8,7 +8,8 @@ const theme = {
         lightCyan: '#BFFAFE',
         pink: '#DA4CB0',
         lightPink: '#F2E4EF',
-        green: '#5FCE43'
+        green: 'rgba(85, 185, 64)',
+        whiteTransparent: 'rgba(255, 255, 255, 0.8)',
     }
 }
 

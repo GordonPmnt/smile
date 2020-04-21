@@ -7,6 +7,7 @@ const Deck = () => {
         card: {
             borderRadius: '5px',
             border: `${theme.colors.yellow} 10px solid`,
+            backgroundColor: theme.colors.lightYellow,
             height: '8.5rem',
             width: '5rem',
             display: 'flex',

@@ -1,36 +1,45 @@
 import React from "react";
 import NextButton from './subComponents/NextButton';
+import theme from "./utils/theme";
 
 export default function SelectedJoke({ toggleActivity }) {
     const styles = {
         container: {
             top: '5%',
-            width: '100%',
-            heigth: '10%',
             position: 'relative',
             display: 'flex',
             justifyContent: 'center',
+            backgroundColor: 'white',
+            border: `${theme.colors.yellow} 5px solid`,
+            borderRadius: '10px',
+            boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+            opacity: '0.6',
+            width: '45em',
         },
         text: {
-            backgroundColor: 'white',
-            width: '70%',
+            display: 'flex',
+            flexDirection: 'column',
             textAlign: 'center',
         },
-        button: {
-            position: 'relative'
+        joke: {
+            fontSize: '1.2em'
+        },
+        answer: {
+            fontSize: '1.2em',
+            color: theme.colors.green,
         }
     }
 
     return (
         <div style={styles.container}>
             <div style={styles.text}>
-                <p>Qu’est-ce qui court et qui se jette ?</p>
-                <p>Une courgette</p>
+                <p style={styles.joke}>Qu’est-ce qui court et qui se jette ?</p>
+                <p style={styles.answer}>Une courgette</p>
             </div>
             <NextButton 
                 style={styles.button}
                 toggleActivity={toggleActivity}
-                deckLogo={require('../img/mexicano-transparent.png')} // Should be linked to Deck Choice
+                daddy={require('../img/mexicano-transparent.png')} // Should be linked to Deck Choice
             />
         </div>
     );
