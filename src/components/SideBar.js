@@ -15,7 +15,7 @@ export default function SideBar() {
     }
     return (
         <div style={styles.sideContainer}>
-            <DecksList/>
+            <DecksList />
             <Gallery/>
             <MyCam mirrored={true} />
             <ChatConversation />
