@@ -68,3 +68,21 @@ import axios from 'axios';
 }
 
 export default DecksList;
+
+
+/*
+Object = {
+    statut: 
+    response: 
+    error: 
+    jokes: {
+        question:
+        answer:
+        id: 
+    }  
+}
+
+jokes.id{1}
+jokes.id{2}
+jokes.id{3}
+jokes.id{4}*/
