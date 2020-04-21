@@ -1,17 +1,23 @@
 import React from "react";
-import ScreenShot from './ScreenShot';
+import ScreenShot from './subComponents/ScreenShot';
 
 function Gallery() {
     const styles = {
         container: {
-            width: '100%',
-            backgroundColor: 'green',
+            display: 'flex',
+            height: '25%',
+            width: 'auto',
+            alignItems: 'center',
+            flexDirection: 'column',
         },
+        label: {
+            fontWeight: 'normal'
+        }
     }
 
     return (
         <div style={styles.container}>
-            <p>Gallery</p>
+            <h2 style={styles.label}>MY GALLERY</h2>
             <ScreenShot/>
         </div>
     );

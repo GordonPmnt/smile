@@ -1,24 +1,38 @@
 import React from "react";
-import ChatConversation from "./ChatConversation"
 import MyCam from './MyCam';
 import DecksList from './DecksList';
 import Gallery from './Gallery';
+import LiveChat from "./LiveChat";
+import ChatButton from './subComponents/ChatButton';
 
-export default function SideBar() {
-    const styles = {
-        sideContainer: {
-            backgroundColor: 'blue',
+class SideBar extends React.Component {
+    state = {
+        chatEnabled: false
+    }
+
+    styles = {
+        container: {
             height: '100vh',
-            width: '30%',
+            width: '30vw',
             margin: '0px',
         },
     }
-    return (
-        <div style={styles.sideContainer}>
-            <DecksList/>
-            <Gallery/>
-            <MyCam mirrored={true} />
-            <ChatConversation />
-        </div>
-    );
+
+    render() {
+        const { chatEnabled } = this.state;
+
+        return (
+            <div style={this.styles.container}>
+                <DecksList />
+                <Gallery />
+                <MyCam mirrored={true} />
+                {chatEnabled
+                    ? <LiveChat />
+                    : <ChatButton />
+                }
+            </div>
+        )
+    }
 }
+
+export default SideBar;

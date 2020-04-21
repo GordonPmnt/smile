@@ -1,39 +1,47 @@
 import React from 'react';
+import theme from './utils/theme';
 import { Link } from "react-router-dom";
- 
+
 
 export default function MainPage() {
   const styles = {
     container: {
-      backgroundColor: 'yellow',
-      width : '100%',
-      height: '100vh'
+      display: 'flex',
+      width : '100vw',
+      height: '100vh',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      justifyItems: 'center',
+      alignContent: 'center',
     },
 
     title: {
-      color: 'red',
-      marginLeft: '40%',
-      fontSize: '80px'
+      textAlign: 'center',
+      color: theme.colors.pink,
     },
 
     start: {
+      display: 'flex',
       marginTop : '5%',
       marginLeft : '50%',
-      backgroundColor: '#008CBA',
-      border: 'none',
-      color: 'white',
       padding: '15px 32px',
       textAlign: 'center',
       textDecoration: 'none',
-      fontSize: '16px'
+      fontSize: '16px',
     },
 
   }
 
   return (
-  <div style={styles.container}>
-    <h1 style={styles.title}>Party time !</h1>
-    <Link to="/GameRoom" style={styles.start}>start</Link>
-  </div>
+    <div style={styles.container}>
+      <h1 style={styles.title}>Party time !</h1>
+      <Link 
+        to="/GameRoom" 
+        style={styles.start}
+      >
+        Start
+      </Link>
+    </div>
   );
 }
