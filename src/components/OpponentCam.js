@@ -27,7 +27,7 @@ export default function OpponentCam({ toggleActivity }) {
             width: '100%'
         }
     }
-    const picture = require('../img/fakecam.png')
+    const picture = require('../img/fakeGP.png')
     return (
         <div  style={styles.container}>
             <div style={styles.OpponentInterface}>
