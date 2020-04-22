@@ -32,7 +32,7 @@ export default function OpponentCam({ toggleActivity }) {
 
     return (
         <div  style={styles.container}>
-            <img src={picture} alt="fake webcam" style={styles.webcam}/>
+            <img src={picture} alt="fake webcam" style={styles.webcam} />
             <div style={styles.OpponentInterface}>
                 <SelectedJoke toggleActivity={toggleActivity} />
                 <ScreenshotButton toggleActivity={toggleActivity} />

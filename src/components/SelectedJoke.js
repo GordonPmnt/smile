@@ -30,10 +30,12 @@ export default function SelectedJoke({ toggleActivity }) {
         }
     }
 
+    //console.log(activeJoke.joke)
+
     return (
         <div style={styles.container}>
             <div style={styles.text}>
-                <p style={styles.joke}>Qu’est-ce qui court et qui se jette ?</p>
+                <p style={styles.joke}>Qu'est ce qui court et qui se jette ?</p>
                 <p style={styles.answer}>Une courgette</p>
             </div>
             <NextButton 
