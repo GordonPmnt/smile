@@ -1,13 +1,12 @@
 import React from "react";
-import theme from '../styles/theme';
-
+import { colors } from '../styles/ThemeContext';
 
 const ChuckDeck = ({ getChuckJoke }) => {
     const styles = {
         card: {
             borderRadius: '5px',
-            border: `${theme.colors.cyan} 10px solid`,
-            backgroundColor: theme.colors.lightCyan,
+            border: `${colors.blue} 10px solid`,
+            backgroundColor: colors.lightBlue,
             height: '8.5rem',
             width: '5rem',
             display: 'flex',

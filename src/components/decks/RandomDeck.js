@@ -1,13 +1,13 @@
 import React from "react";
-import theme from '../styles/theme';
+import { colors } from '../styles/ThemeContext';
 
 
 const RandomDeck = ({ getRandomJoke }) => {
     const styles = {
         card: {
             borderRadius: '5px',
-            border: `${theme.colors.yellow} 10px solid`,
-            backgroundColor: theme.colors.lightYellow,
+            border: `${colors.yellow} 10px solid`,
+            backgroundColor: colors.lightYellow,
             height: '8.5rem',
             width: '5rem',
             display: 'flex',

@@ -1,13 +1,13 @@
 import React from "react";
-import theme from '../styles/theme';
+import { colors } from '../styles/ThemeContext';
 
 
 const SexDeck = ({ getSexJoke }) => {
     const styles = {
         card: {
             borderRadius: '5px',
-            border: `${theme.colors.pink} 10px solid`,
-            backgroundColor: theme.colors.lightPink,
+            border: `${colors.pink} 10px solid`,
+            backgroundColor: colors.lightPink,
             height: '8.5rem',
             width: '5rem',
             display: 'flex',

@@ -1,13 +1,13 @@
 import React from "react";
-import theme from '../styles/theme';
+import { colors } from '../styles/ThemeContext';
 
 
 const DarkDeck = ({ getDarkJoke }) => {
     const styles = {
         card: {
             borderRadius: '5px',
-            border: `${theme.colors.red} 10px solid`,
-            backgroundColor: theme.colors.lightRed,
+            border: `${colors.red} 10px solid`,
+            backgroundColor: colors.lightRed,
             height: '8.5rem',
             width: '5rem',
             display: 'flex',

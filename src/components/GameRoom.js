@@ -13,7 +13,7 @@ class GameRoom extends React.Component {
             answer: '',
             category: 'none',
         },
-        theme: 'random',
+        theme: 'none',
     };
 
     styles = {

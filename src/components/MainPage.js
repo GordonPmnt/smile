@@ -1,5 +1,5 @@
 import React from 'react';
-import theme from './styles/theme';
+import { colors } from './styles/ThemeContext';
 import { Link } from "react-router-dom";
 
 
@@ -16,12 +16,12 @@ const MainPage = () => {
     title: {
       fontSize: '4rem',
       textAlign: 'center',
-      color: theme.colors.pink,
+      color: colors.pink,
     },
     start: {
       textAlign: 'center',
       textDecoration: 'none',
-      border: `solid 1px ${theme.colors.pink}`,
+      border: `solid 1px ${colors.pink}`,
       margin: '0 40%',
       padding: '0.5%',
     },
