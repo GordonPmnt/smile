@@ -11,7 +11,6 @@ class GameRoom extends React.Component {
         activeJoke: {
             joke: '',
             answer: '',
-            category: 'none',
             isActive: false,
         },
         theme: 'none',
@@ -30,6 +29,8 @@ class GameRoom extends React.Component {
         this.setState( prevState => ({
             userIsActive : !prevState.userIsActive
         }))
+        this.setState({ activeJoke: { isActive: false } })
+        this.setState({ theme: 'none' })
     };
 
     getRandomJoke = () => {
