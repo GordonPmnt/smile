@@ -38,32 +38,28 @@ class GameRoom extends React.Component {
         this.setState({ activeJoke: { isActive: true } })
 
         axios
-        .get('/randomapi/joke/random', {
-            method: 'get',
-            headers: { 
-                Authorization: 'FW6CstM9yETDGYTEqdL-R.4fNoGEUCRHW0SvHOGXo2YpK2j-4th5JY3pTT_qDtWX' 
-            }
-        })
-        .then(response => {
-            console.log(response)
-            const { joke } = response.data;
-            this.setState({ joke : joke.question });
-            this.setState({ answer : joke.answer });
-            this.setState({ category : 'random' });
-            //console.log(joke)
-            ;
-        })
-        .catch(err => {
-            console.log(err.message)
-        })
+          .get('/api/joke/random', {
+              method: 'get',
+              headers: {
+                  Authorization: 'FW6CstM9yETDGYTEqdL-R.4fNoGEUCRHW0SvHOGXo2YpK2j-4th5JY3pTT_qDtWX'
+              }
+          })
+          .then(response => {
+              console.log(response.data)
+              ;
+          })
+          .catch(err => {
+              console.log(err.message)
+          })
     }
 
     getChuckJoke = () => {
+
         this.setState({ theme : 'chuck' })
         this.setState({ activeJoke: { isActive: true } })
 
         axios
-        .get('/chuck/get', {
+        .get('/chuckapi', {
             method: 'get',
             params: { 
                 hello: 'world' 
