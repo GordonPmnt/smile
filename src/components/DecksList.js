@@ -40,7 +40,7 @@ import SexDeck from './decks/SexDeck';
                 <div 
                     style={userIsActive 
                         ? this.styles.decks 
-                        : {...this.styles.decks, opacity: '0.4'}
+                        : {...this.styles.decks, filter: 'grayscale(100%)'}
                     }
                 >
                     <RandomDeck 

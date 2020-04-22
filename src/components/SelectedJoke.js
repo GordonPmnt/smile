@@ -2,6 +2,7 @@ import React from "react";
 import NextButton from './subComponents/NextButton';
 import { ThemeContext, colors } from "./styles/ThemeContext";
 
+
 const SelectedJoke = ({ toggleActivity }) => {
     const styles = {
         container: {
