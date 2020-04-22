@@ -1,8 +1,8 @@
 import React from "react";
 import NextButton from './subComponents/NextButton';
-import theme from "./utils/theme";
+import theme from "./styles/theme";
 
-export default function SelectedJoke({ toggleActivity }) {
+const SelectedJoke = ({ toggleActivity }) => {
     const styles = {
         container: {
             top: '5%',
@@ -44,3 +44,5 @@ export default function SelectedJoke({ toggleActivity }) {
         </div>
     );
 }
+
+export default SelectedJoke;
