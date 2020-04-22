@@ -6,6 +6,14 @@ import { ThemeContext } from './styles/ThemeContext'
 
 const OpponentCam = ({ toggleActivity }) => {
     const styles = {
+        container: {
+            margin: '5vh 3vh 5vh 3vh',
+            height: '90vh',
+            width: '64vw',
+            display: 'flex',
+            justifyContent: 'center',
+            border: `solid 5px`,
+            },
         OpponentInterface: {
             position: 'absolute',
             height: '96%',
@@ -25,7 +33,7 @@ const OpponentCam = ({ toggleActivity }) => {
     return (
         <ThemeContext.Consumer>
         {theme => 
-            <div  style={{...theme.border}}>
+            <div  style={{...styles.container, ...theme.borderColor}}>
                 <img src={picture} alt="fake webcam" style={styles.webcam}/>
                 <div style={styles.OpponentInterface}>
                     <SelectedJoke 

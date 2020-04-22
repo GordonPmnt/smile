@@ -14,46 +14,31 @@ export const colors = {
     none: 'rgba(255, 255, 255, 0.8)',
 };
 
-const camContainer = {
-    margin: '5vh 3vh 5vh 3vh',
-    height: '90vh',
-    width: '64vw',
-    display: 'flex',
-    justifyContent: 'center',
-    border: `solid 5px`,
-};
-
 export const themes = {
     none: {
-        border: {
-            ...camContainer,
+        borderColor: {
             borderColor: colors.none,
         }
     },
     random: {
-        border: {
-            ...camContainer,
+        borderColor: {
             borderColor: colors.yellow,
         }
     },
     dark: {
-        border: {
-            ...camContainer,
-            borderColor: colors.red,
-        }
+        borderColor:
+        {borderColor: colors.red,}
     },
     sex: {
-        border: {
-            ...camContainer,
+        borderColor: {
             borderColor: colors.pink,
         }
     },
     chuck: {
-        border: {
-            ...camContainer,
+        borderColor: {
             borderColor: colors.blue,
         }
     },
-  };
+};
   
 export const ThemeContext = React.createContext();
