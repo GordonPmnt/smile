@@ -33,7 +33,7 @@ class GameRoom extends React.Component {
 
     getRandomJoke = () => {
         this.setState({ theme : 'random' })
-        
+
         axios
         .get('/api/joke/random', {
             method: 'get',
@@ -63,8 +63,10 @@ class GameRoom extends React.Component {
     }
     
     render() {
+        const { theme, userIsActive } = this.state;
+
         return (
-            <ThemeContext.Provider value={themes[this.state.theme]}>
+            <ThemeContext.Provider value={themes[theme]}>
                 <div style={this.styles.container} >
                     <OpponentCam 
                         toggleActivity={this.toggleActivity}
@@ -74,7 +76,7 @@ class GameRoom extends React.Component {
                         getDarkJoke={this.getDarkJoke}
                         getRandomJoke={this.getRandomJoke}
                         getSexJoke={this.getSexJoke}
-                        userIsActive={this.state.userIsActive}
+                        userIsActive={userIsActive}
                     />
                 </div>
             </ThemeContext.Provider>
