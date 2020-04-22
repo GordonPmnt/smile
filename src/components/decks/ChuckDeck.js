@@ -6,12 +6,13 @@ const ChuckDeck = ({ getChuckJoke }) => {
     const styles = {
         card: {
             borderRadius: '5px',
-            border: `${theme.colors.yellow} 10px solid`,
-            backgroundColor: theme.colors.lightYellow,
+            border: `${theme.colors.cyan} 10px solid`,
+            backgroundColor: theme.colors.lightCyan,
             height: '8.5rem',
             width: '5rem',
             display: 'flex',
             flexDirection: 'column',
+            justifyContent: 'space-between',
             alignItems: 'center',
             cursor: 'pointer',
         },
@@ -21,13 +22,14 @@ const ChuckDeck = ({ getChuckJoke }) => {
         },
         daddy: {
             width: '2.3em',
+            marginBottom: '10px',
         }
     }
-    const daddy = require('../../img/mexicano-transparent.png')
+    const daddy = require('../../img/cop-transparent.png')
 
     return (
         <div style={styles.card} onClick={() => getChuckJoke && getChuckJoke()}>
-            <p style={styles.label}>RANDOM JOKE</p>
+            <p style={styles.label}>CHUCK NORRIS</p>
             <img 
                 src={daddy} 
                 alt="random joke daddy" 

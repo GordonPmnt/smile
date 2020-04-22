@@ -6,12 +6,13 @@ const SexDeck = ({ getSexJoke }) => {
     const styles = {
         card: {
             borderRadius: '5px',
-            border: `${theme.colors.yellow} 10px solid`,
-            backgroundColor: theme.colors.lightYellow,
+            border: `${theme.colors.pink} 10px solid`,
+            backgroundColor: theme.colors.lightPink,
             height: '8.5rem',
             width: '5rem',
             display: 'flex',
             flexDirection: 'column',
+            justifyContent: 'space-between',
             alignItems: 'center',
             cursor: 'pointer',
         },
@@ -21,13 +22,14 @@ const SexDeck = ({ getSexJoke }) => {
         },
         daddy: {
             width: '2.3em',
+            marginBottom: '10px',
         }
     }
-    const daddy = require('../../img/mexicano-transparent.png')
+    const daddy = require('../../img/sex-moustache-trans.png')
 
     return (
         <div style={styles.card} onClick={() => getSexJoke && getSexJoke()}>
-            <p style={styles.label}>RANDOM JOKE</p>
+            <p style={styles.label}>SEX JOKE</p>
             <img 
                 src={daddy} 
                 alt="random joke daddy" 
