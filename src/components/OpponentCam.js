@@ -37,7 +37,7 @@ const OpponentCam = ({ toggleActivity }) => {
                 <img src={picture} alt="fake webcam" style={styles.webcam}/>
                 <div style={styles.OpponentInterface}>
                     <SelectedJoke 
-                        toggleActivity={toggleActivity} 
+                        toggleActivity={toggleActivity}
                     />
                     <ScreenshotButton 
                         toggleActivity={toggleActivity} 

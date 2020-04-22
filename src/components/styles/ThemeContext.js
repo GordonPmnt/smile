@@ -26,8 +26,9 @@ export const themes = {
         }
     },
     dark: {
-        borderColor:
-        {borderColor: colors.red,}
+        borderColor: {
+            borderColor: colors.red,
+        }
     },
     sex: {
         borderColor: {
