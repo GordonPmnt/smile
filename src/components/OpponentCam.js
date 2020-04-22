@@ -42,7 +42,8 @@ const OpponentCam = ({ toggleActivity, activeJoke }) => {
                         />
                     }
                         <ScreenshotButton 
-                            toggleActivity={toggleActivity} 
+                            toggleActivity={toggleActivity}
+                            theme={theme}
                         />
                 </div>
             </div>

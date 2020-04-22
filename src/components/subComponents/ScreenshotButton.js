@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const ScreenshotButton = ({ toggleActivity }) => {
+const ScreenshotButton = ({ toggleActivity, theme }) => {
     const styles = {
         container: {
             display: 'flex',
@@ -14,6 +14,7 @@ const ScreenshotButton = ({ toggleActivity }) => {
             height: '5em',
             boxShadow: '0px 10px 10px rgba(0, 0, 0, 0.50)',
             cursor: 'pointer',
+            border: 'solid 3px',
         }
     }
     
@@ -23,7 +24,7 @@ const ScreenshotButton = ({ toggleActivity }) => {
                 src={require('../../img/cam-moustache.png')}
                 alt="Screenshot button"
                 onClick={() => toggleActivity()}
-                style={styles.button}
+                style={{...styles.button, ...theme.borderColor}}
             />
         </div>
     )
