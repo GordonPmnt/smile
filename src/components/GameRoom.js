@@ -38,15 +38,20 @@ class GameRoom extends React.Component {
         this.setState({ activeJoke: { isActive: true } })
 
         axios
-        .get('/api/joke/random', {
+        .get('/randomapi/joke/random', {
             method: 'get',
             headers: { 
                 Authorization: 'FW6CstM9yETDGYTEqdL-R.4fNoGEUCRHW0SvHOGXo2YpK2j-4th5JY3pTT_qDtWX' 
             }
         })
         .then(response => {
-            const { joke } = response.data
-            console.log(joke)
+            console.log(response)
+            const { joke } = response.data;
+            this.setState({ joke : joke.question });
+            this.setState({ answer : joke.answer });
+            this.setState({ category : 'random' });
+            //console.log(joke)
+            ;
         })
         .catch(err => {
             console.log(err.message)
@@ -56,6 +61,20 @@ class GameRoom extends React.Component {
     getChuckJoke = () => {
         this.setState({ theme : 'chuck' })
         this.setState({ activeJoke: { isActive: true } })
+
+        axios
+        .get('/chuck/get', {
+            method: 'get',
+            params: { 
+                hello: 'world' 
+            }
+        })
+        .then(res => 
+            console.log(res.data[0])
+        )
+        .catch(err => 
+            console.log(err.message)
+        )
     }
 
     getSexJoke = () => {

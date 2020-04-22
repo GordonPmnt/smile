@@ -31,6 +31,8 @@ const SelectedJoke = ({ toggleActivity }) => {
         }
     }
 
+    //console.log(activeJoke.joke)
+
     return (
         <ThemeContext.Consumer>
             {theme =>
