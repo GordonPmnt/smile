@@ -32,6 +32,8 @@ class GameRoom extends React.Component {
     };
 
     getRandomJoke = () => {
+        this.setState({ theme : 'random' })
+        
         axios
         .get('/api/joke/random', {
             method: 'get',
@@ -49,15 +51,15 @@ class GameRoom extends React.Component {
     }
 
     getChuckJoke = () => {
-        console.log('chuck')
+        this.setState({ theme : 'chuck' })
     }
 
     getSexJoke = () => {
-        console.log('sex')
+        this.setState({ theme : 'sex' })
     }
 
     getDarkJoke = () => {
-        console.log('dark')
+        this.setState({ theme : 'dark' })
     }
     
     render() {
