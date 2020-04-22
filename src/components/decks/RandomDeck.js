@@ -12,6 +12,7 @@ const RandomDeck = ({ getRandomJoke }) => {
             width: '5rem',
             display: 'flex',
             flexDirection: 'column',
+            justifyContent: 'space-between',
             alignItems: 'center',
             cursor: 'pointer',
         },
@@ -21,6 +22,7 @@ const RandomDeck = ({ getRandomJoke }) => {
         },
         daddy: {
             width: '2.3em',
+            marginBottom: '10px',
         }
     }
     const daddy = require('../../img/mexicano-transparent.png')
