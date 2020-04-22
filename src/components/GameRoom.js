@@ -30,55 +30,50 @@ class GameRoom extends React.Component {
 
     getRandomJoke = () => {
         axios
-        .get('/randomapi/joke/random', {
-            method: 'get',
-            headers: { 
-                Authorization: 'FW6CstM9yETDGYTEqdL-R.4fNoGEUCRHW0SvHOGXo2YpK2j-4th5JY3pTT_qDtWX' 
-            }
-        })
-        .then(response => {
-            console.log(response)
-            const { joke } = response.data;
-            this.setState({ joke : joke.question });
-            this.setState({ answer : joke.answer });
-            this.setState({ category : 'random' });
-            //console.log(joke)
-            ;
-        })
-        .catch(err => {
-            console.log(err.message)
-        })
+          .get('/api/joke/random', {
+              method: 'get',
+              headers: {
+                  Authorization: 'FW6CstM9yETDGYTEqdL-R.4fNoGEUCRHW0SvHOGXo2YpK2j-4th5JY3pTT_qDtWX'
+              }
+          })
+          .then(response => {
+              console.log(response.data)
+              ;
+          })
+          .catch(err => {
+              console.log(err.message)
+          })
     }
 
-    fetchChuck = () => {
-        console.log("enter chuck");
+    getChuckJoke = () => {
         axios
-        .get('/chuck/get', {
-            method: 'get',
-            params: { hello: 'world' }
-        })
-        .then(res => 
-            console.log(res.data[0])
-        )
-        .catch(err => 
-            console.log(err.message)
-        )
+          .get('/chuckapi', {
+              method: 'get',
+              params: { hello: 'world' }
+          })
+          .then(res =>
+              console.log(res.data[0])
+          )
+          .catch(err =>
+              console.log(err.message)
+          )
     }
 
     componentDidMount = () => {
-        this.fetchChuck()
-    } 
+        this.getChuckJoke()
+        this.getRandomJoke()
+    }
 
-    
+
     render = () => {
         return (
             <div style={this.styles.container} >
-                <OpponentCam 
+                <OpponentCam
                     toggleActivity={this.toggleActivity}
-                    activeJoke={this.state.activeJoke} 
+                    activeJoke={this.state.activeJoke}
 
                 />
-                <SideBar 
+                <SideBar
                     userIsActive={this.state.userIsActive}
                     getRandomJoke={this.getRandomJoke}
                 />
