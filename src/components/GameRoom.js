@@ -1,7 +1,9 @@
 import React from "react";
 import SideBar from "./SideBar";
 import OpponentCam from "./OpponentCam";
+import { ThemeContext, themes } from './styles/ThemeContext';
 import axios from 'axios';
+
 
 class GameRoom extends React.Component {
     state = {
@@ -11,6 +13,7 @@ class GameRoom extends React.Component {
             answer: '',
             category: 'none',
         },
+        theme: 'random',
     };
 
     styles = {
@@ -47,13 +50,17 @@ class GameRoom extends React.Component {
     
     render() {
         return (
-            <div style={this.styles.container} >
-                <OpponentCam toggleActivity={this.toggleActivity} />
-                <SideBar 
-                    userIsActive={this.state.userIsActive}
-                    getRandomJoke={this.getRandomJoke}
-                />
-            </div>
+            <ThemeContext.Provider value={themes[this.state.theme]}>
+                <div style={this.styles.container} >
+                    <OpponentCam 
+                        toggleActivity={this.toggleActivity}
+                    />
+                    <SideBar 
+                        userIsActive={this.state.userIsActive}
+                        getRandomJoke={this.getRandomJoke}
+                    />
+                </div>
+            </ThemeContext.Provider>
         )
     }
 }
