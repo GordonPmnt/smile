@@ -25,7 +25,10 @@ import SexDeck from './decks/SexDeck';
     }
     
     render() {
-        console.log(this.props)
+        const { 
+            getRandomJoke, getDarkJoke, getChuckJoke, getSexJoke 
+        } = this.props
+
         return (
             <div style={this.styles.container}>
                 <h2 style={this.styles.label}>CHOOSE YOUR DADDY JOKER</h2>
@@ -33,13 +36,13 @@ import SexDeck from './decks/SexDeck';
                     style={this.styles.decks}
                 >
                     <RandomDeck 
-                        getRandomJoke={this.props.getRandomJoke} />
+                        getRandomJoke={getRandomJoke} />
                     <DarkDeck 
-                        getDarkJoke={this.props.getDarkJoke} />
+                        getDarkJoke={getDarkJoke} />
                     <ChuckDeck 
-                        getChuckJoke={this.props.getChuckJoke} />
+                        getChuckJoke={getChuckJoke} />
                     <SexDeck 
-                        getSexJoke={this.props.getSexJoke} />
+                        getSexJoke={getSexJoke} />
                 </div>
             </div>
         );
