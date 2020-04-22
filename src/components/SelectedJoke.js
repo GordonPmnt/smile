@@ -1,8 +1,9 @@
 import React from "react";
 import NextButton from './subComponents/NextButton';
-import theme from "./utils/theme";
+import { ThemeContext, colors } from "./styles/ThemeContext";
 
-export default function SelectedJoke({ toggleActivity }) {
+
+const SelectedJoke = ({ toggleActivity }) => {
     const styles = {
         container: {
             top: '5%',
@@ -10,7 +11,7 @@ export default function SelectedJoke({ toggleActivity }) {
             display: 'flex',
             justifyContent: 'center',
             backgroundColor: 'white',
-            border: `${theme.colors.yellow} 5px solid`,
+            border: `solid 5px`,
             borderRadius: '10px',
             boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
             opacity: '0.6',
@@ -26,21 +27,27 @@ export default function SelectedJoke({ toggleActivity }) {
         },
         answer: {
             fontSize: '1.2em',
-            color: theme.colors.green,
+            color: colors.green,
         }
     }
 
     return (
-        <div style={styles.container}>
-            <div style={styles.text}>
-                <p style={styles.joke}>Qu’est-ce qui court et qui se jette ?</p>
-                <p style={styles.answer}>Une courgette</p>
-            </div>
-            <NextButton 
-                style={styles.button}
-                toggleActivity={toggleActivity}
-                daddy={require('../img/mexicano-transparent.png')} // Should be linked to Deck Choice
-            />
-        </div>
+        <ThemeContext>
+            {theme =>
+                <div style={{...styles.container, ...theme.borderColor}}>
+                    <div style={styles.text}>
+                        <p style={styles.joke}>Qu’est-ce qui court et qui se jette ?</p>
+                        <p style={styles.answer}>Une courgette</p>
+                    </div>
+                    <NextButton 
+                        style={styles.button}
+                        toggleActivity={toggleActivity}
+                        daddy={theme.logo}
+                    />
+                </div>
+            }
+        </ThemeContext>
     );
 }
+
+export default SelectedJoke;
