@@ -18,27 +18,32 @@ export const themes = {
     none: {
         borderColor: {
             borderColor: colors.none,
-        }
+        },
+        logo: require('../../img/gentleman-transparent.png')
     },
     random: {
         borderColor: {
             borderColor: colors.yellow,
-        }
+        },
+        logo: require('../../img/mexicano-transparent.png')
     },
     dark: {
         borderColor: {
             borderColor: colors.red,
-        }
+        },
+        logo: require('../../img/evil-transparent.png')
     },
     sex: {
         borderColor: {
             borderColor: colors.pink,
-        }
+        },
+        logo: require('../../img/sex-moustache-trans.png')
     },
     chuck: {
         borderColor: {
             borderColor: colors.blue,
-        }
+        },
+        logo: require('../../img/cop-transparent.png')
     },
 };
   

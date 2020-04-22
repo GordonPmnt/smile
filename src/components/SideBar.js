@@ -16,11 +16,11 @@ class SideBar extends React.Component {
             width: '30vw',
             margin: '0px',
         },
-    }
+    };
 
     render() {
         const { chatEnabled } = this.state;
-        console.log(this.props)
+
         return (
             <div style={this.styles.container}>
                 <DecksList {...this.props} />

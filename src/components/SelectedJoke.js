@@ -41,7 +41,7 @@ const SelectedJoke = ({ toggleActivity }) => {
                     <NextButton 
                         style={styles.button}
                         toggleActivity={toggleActivity}
-                        daddy={require('../img/mexicano-transparent.png')} // Should be linked to Deck Choice
+                        daddy={theme.logo}
                     />
                 </div>
             }
