@@ -22,6 +22,7 @@ const ChuckDeck = ({ getChuckJoke }) => {
         daddy: {
             width: '2.3em',
             marginBottom: '10px',
+            opacity: '0.7',
         }
     }
     const daddy = require('../../img/cop-transparent.png')

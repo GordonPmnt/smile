@@ -23,6 +23,7 @@ const SexDeck = ({ getSexJoke }) => {
         daddy: {
             width: '2.3em',
             marginBottom: '10px',
+            opacity: '0.7',
         }
     }
     const daddy = require('../../img/sex-moustache-trans.png')

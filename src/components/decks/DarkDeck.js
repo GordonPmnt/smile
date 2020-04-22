@@ -23,6 +23,7 @@ const DarkDeck = ({ getDarkJoke }) => {
         daddy: {
             width: '1.8em',
             marginBottom: '10px',
+            opacity: '0.7',
         }
     }
     const daddy = require('../../img/evil-transparent.png')
