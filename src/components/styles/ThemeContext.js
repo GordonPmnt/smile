@@ -7,7 +7,7 @@ export const colors = {
     red: '#EF4141',
     lightRed: '#E5B2B2',
     blue: '#42B1EF',
-    lightblue: '#BFDCEC',
+    lightBlue: '#BFDCEC',
     pink: '#DA4CB0',
     lightPink: '#F2E4EF',
     green: 'rgba(85, 185, 64)',

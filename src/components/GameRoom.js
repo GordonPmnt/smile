@@ -47,6 +47,18 @@ class GameRoom extends React.Component {
             console.log(err.message)
         })
     }
+
+    getChuckJoke = () => {
+        console.log('chuck')
+    }
+
+    getSexJoke = () => {
+        console.log('sex')
+    }
+
+    getDarkJoke = () => {
+        console.log('dark')
+    }
     
     render() {
         return (
@@ -56,8 +68,11 @@ class GameRoom extends React.Component {
                         toggleActivity={this.toggleActivity}
                     />
                     <SideBar 
-                        userIsActive={this.state.userIsActive}
+                        getChuckJoke={this.getChuckJoke}
+                        getDarkJoke={this.getDarkJoke}
                         getRandomJoke={this.getRandomJoke}
+                        getSexJoke={this.getSexJoke}
+                        userIsActive={this.state.userIsActive}
                     />
                 </div>
             </ThemeContext.Provider>

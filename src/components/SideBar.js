@@ -20,6 +20,7 @@ class SideBar extends React.Component {
 
     render() {
         const { chatEnabled } = this.state;
+        console.log(this.props)
         return (
             <div style={this.styles.container}>
                 <DecksList {...this.props} />
