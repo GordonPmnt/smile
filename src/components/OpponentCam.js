@@ -13,6 +13,7 @@ const OpponentCam = ({ toggleActivity, activeJoke }) => {
             display: 'flex',
             justifyContent: 'center',
             border: `solid 5px`,
+            borderRadius: '5px',
             },
         OpponentInterface: {
             position: 'absolute',
