@@ -10,7 +10,7 @@ import SexDeck from './decks/SexDeck';
         container: {
             width: '100%',
             height: '25%',
-            margin: '0'
+            margin: '0',
         },
         label: {
             textAlign: 'center',

@@ -4,7 +4,7 @@ import ScreenshotButton from './subComponents/ScreenshotButton';
 import { ThemeContext } from './styles/ThemeContext'
 
 
-const OpponentCam = ({ toggleActivity }) => {
+const OpponentCam = ({ toggleActivity, activeJoke }) => {
     const styles = {
         container: {
             margin: '5vh 3vh 5vh 3vh',
@@ -36,12 +36,14 @@ const OpponentCam = ({ toggleActivity }) => {
             <div  style={{...styles.container, ...theme.borderColor}}>
                 <img src={picture} alt="fake webcam" style={styles.webcam}/>
                 <div style={styles.OpponentInterface}>
-                    <SelectedJoke 
-                        toggleActivity={toggleActivity}
-                    />
-                    <ScreenshotButton 
-                        toggleActivity={toggleActivity} 
-                    />
+                    {activeJoke.isActive &&
+                        <SelectedJoke 
+                            toggleActivity={toggleActivity}
+                        />
+                    }
+                        <ScreenshotButton 
+                            toggleActivity={toggleActivity} 
+                        />
                 </div>
             </div>
         }
