@@ -7,7 +7,7 @@ import axios from 'axios';
 
 class GameRoom extends React.Component {
     state = {
-        userIsActive: false,
+        userIsActive: true,
         activeJoke: {
             joke: '',
             answer: '',
@@ -84,6 +84,7 @@ class GameRoom extends React.Component {
                         getRandomJoke={this.getRandomJoke}
                         getSexJoke={this.getSexJoke}
                         userIsActive={userIsActive}
+                        activeJoke={activeJoke}
                     />
                 </div>
             </ThemeContext.Provider>

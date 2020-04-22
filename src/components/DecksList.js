@@ -26,23 +26,47 @@ import SexDeck from './decks/SexDeck';
     
     render() {
         const { 
-            getRandomJoke, getDarkJoke, getChuckJoke, getSexJoke 
+            getRandomJoke, 
+            getDarkJoke, 
+            getChuckJoke, 
+            getSexJoke, 
+            activeJoke, 
+            userIsActive,
         } = this.props
 
         return (
             <div style={this.styles.container}>
                 <h2 style={this.styles.label}>CHOOSE YOUR DADDY JOKER</h2>
                 <div 
-                    style={this.styles.decks}
+                    style={userIsActive 
+                        ? this.styles.decks 
+                        : {...this.styles.decks, opacity: '0.4'}
+                    }
                 >
                     <RandomDeck 
-                        getRandomJoke={getRandomJoke} />
+                        getRandomJoke={!activeJoke.isActive && userIsActive 
+                            ? getRandomJoke 
+                            : undefined
+                        } 
+                    />
                     <DarkDeck 
-                        getDarkJoke={getDarkJoke} />
+                        getDarkJoke={!activeJoke.isActive && userIsActive 
+                            ? getDarkJoke 
+                            : undefined
+                        } 
+                    />
                     <ChuckDeck 
-                        getChuckJoke={getChuckJoke} />
+                        getChuckJoke={!activeJoke.isActive && userIsActive 
+                            ? getChuckJoke 
+                            : undefined
+                        } 
+                    />
                     <SexDeck 
-                        getSexJoke={getSexJoke} />
+                        getSexJoke={!activeJoke.isActive && userIsActive 
+                            ? getSexJoke 
+                            : undefined
+                        } 
+                    />
                 </div>
             </div>
         );
