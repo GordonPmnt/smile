@@ -32,7 +32,7 @@ const SelectedJoke = ({ toggleActivity }) => {
     }
 
     return (
-        <ThemeContext>
+        <ThemeContext.Consumer>
             {theme =>
                 <div style={{...styles.container, ...theme.borderColor}}>
                     <div style={styles.text}>
@@ -46,7 +46,7 @@ const SelectedJoke = ({ toggleActivity }) => {
                     />
                 </div>
             }
-        </ThemeContext>
+        </ThemeContext.Consumer>
     );
 }
 
