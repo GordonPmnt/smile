@@ -35,7 +35,6 @@ class GameRoom extends React.Component {
 
     getRandomJoke = () => {
         this.setState({ theme : 'random' })
-        this.setState({ activeJoke: { isActive: true } })
 
         axios
           .get('/api/joke/random', {
@@ -45,8 +44,13 @@ class GameRoom extends React.Component {
               }
           })
           .then(response => {
-              console.log(response.data)
-              ;
+            this.setState({activeJoke: {
+                joke : response.data.joke.question,
+                answer: response.data.joke.answer,
+                isActive: true,
+            } });
+            
+
           })
           .catch(err => {
               console.log(err.message)
@@ -82,9 +86,12 @@ class GameRoom extends React.Component {
         this.setState({ theme : 'dark' })
         this.setState({ activeJoke: { isActive: true } })
     }
+   
     
     render() {
         const { theme, userIsActive, activeJoke } = this.state;
+
+//console.log(this.state.activeJoke)
 
         return (
             <ThemeContext.Provider value={themes[theme]}>
