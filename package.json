@@ -7,6 +7,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
     "install": "^0.13.0",
     "npm": "^6.14.4",
     "react": "^16.13.1",
@@ -16,6 +17,7 @@
     "react-test-renderer": "^16.13.1",
     "react-webcam": "^5.0.1"
   },
+  "proxy": "http://localhost:8080",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
