@@ -3,8 +3,6 @@ const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const fs = require('fs');
 
-const category = "blagues-courtes/blagues-de-beauf/"
-const pages = 35
 
 const scrapper = async (category, pages) => {
     let data = [];
@@ -59,7 +57,7 @@ const scrapper = async (category, pages) => {
     return data;
 };
 
-scrapper(category, pages).then(
+scrapper("blagues-courtes/blagues-de-beauf/", 35).then(
     data => {
         fs.writeFileSync(
             './src/back/data/redneckJokes.json', 
@@ -70,3 +68,13 @@ scrapper(category, pages).then(
     }
 );
 
+scrapper("/blagues-courtes/blagues-courtes-et-nulles-droles/", 35).then(
+    data => {
+        fs.writeFileSync(
+            './src/back/data/sillyJokes.json', 
+            JSON.stringify(data), 
+            err => { if (err) throw err }
+        )
+        console.log('Silly jokes generated')
+    }
+);
