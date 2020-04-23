@@ -30,7 +30,7 @@ const SexDeck = ({ getSexJoke }) => {
 
     return (
         <div style={styles.card} onClick={() => getSexJoke && getSexJoke()}>
-            <p style={styles.label}>SEX JOKE</p>
+            <p style={styles.label}>MELON {'&'} MELECHE</p>
             <img 
                 src={daddy} 
                 alt="random joke daddy" 

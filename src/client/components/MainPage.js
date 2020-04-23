@@ -41,7 +41,7 @@ const MainPage = () => {
       <img src={gentleman} alt='gentleman' style={styles.gentleman} />
       <h1 style={styles.title}>DADLAB !</h1>
       <Link style={styles.start} to="/GameRoom">
-        Generate room
+        Jouer !
       </Link>
     </div>
   );

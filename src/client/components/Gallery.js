@@ -17,7 +17,7 @@ function Gallery() {
 
     return (
         <div style={styles.container}>
-            <h2 style={styles.label}>MY GALLERY</h2>
+            <h2 style={styles.label}>MES SCREENSHOTS</h2>
             <ScreenShot/>
         </div>
     );

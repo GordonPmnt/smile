@@ -30,7 +30,7 @@ const DarkDeck = ({ getDarkJoke }) => {
 
     return (
         <div style={styles.card} onClick={() => getDarkJoke && getDarkJoke()}>
-            <p style={styles.label}>DARK HUMOR</p>
+            <p style={styles.label}>HUMOUR NOIR...</p>
             <img 
                 src={daddy} 
                 alt="random joke daddy" 

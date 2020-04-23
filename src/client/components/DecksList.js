@@ -36,7 +36,7 @@ import SexDeck from './decks/SexDeck';
 
         return (
             <div style={this.styles.container}>
-                <h2 style={this.styles.label}>CHOOSE YOUR DADDY JOKER</h2>
+                <h2 style={this.styles.label}>CHOISIS UNE JOKE DE PAPA</h2>
                 <div 
                     style={userIsActive 
                         ? this.styles.decks 
