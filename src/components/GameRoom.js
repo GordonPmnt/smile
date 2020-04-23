@@ -35,27 +35,46 @@ class GameRoom extends React.Component {
 
     getRandomJoke = () => {
         this.setState({ theme : 'random' })
-        this.setState({ activeJoke: { isActive: true } })
 
         axios
-        .get('/api/joke/random', {
-            method: 'get',
-            headers: { 
-                Authorization: 'FW6CstM9yETDGYTEqdL-R.4fNoGEUCRHW0SvHOGXo2YpK2j-4th5JY3pTT_qDtWX' 
-            }
-        })
-        .then(response => {
-            const { joke } = response.data
-            console.log(joke)
-        })
-        .catch(err => {
-            console.log(err.message)
-        })
+          .get('/api/joke/random', {
+              method: 'get',
+              headers: {
+                  Authorization: 'FW6CstM9yETDGYTEqdL-R.4fNoGEUCRHW0SvHOGXo2YpK2j-4th5JY3pTT_qDtWX'
+              }
+          })
+          .then(response => {
+            this.setState({
+                activeJoke: {
+                    joke : response.data.joke.question,
+                    answer: response.data.joke.answer,
+                    isActive: true,
+                } 
+            });
+          })
+          .catch(err => {
+              console.log(err.message)
+          })
     }
 
     getChuckJoke = () => {
+
         this.setState({ theme : 'chuck' })
         this.setState({ activeJoke: { isActive: true } })
+
+        axios
+        .get('/chuckapi', {
+            method: 'get',
+            params: { 
+                hello: 'world' 
+            }
+        })
+        .then(res => 
+            console.log(res.data[0])
+        )
+        .catch(err => 
+            console.log(err.message)
+        )
     }
 
     getSexJoke = () => {
@@ -67,9 +86,12 @@ class GameRoom extends React.Component {
         this.setState({ theme : 'dark' })
         this.setState({ activeJoke: { isActive: true } })
     }
+   
     
     render() {
         const { theme, userIsActive, activeJoke } = this.state;
+
+//console.log(this.state.activeJoke)
 
         return (
             <ThemeContext.Provider value={themes[theme]}>

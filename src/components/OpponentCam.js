@@ -40,6 +40,7 @@ const OpponentCam = ({ toggleActivity, activeJoke }) => {
                     {activeJoke.isActive &&
                         <SelectedJoke 
                             toggleActivity={toggleActivity}
+                            activeJoke={activeJoke}
                         />
                     }
                         <ScreenshotButton 

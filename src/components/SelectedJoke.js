@@ -3,7 +3,7 @@ import NextButton from './subComponents/NextButton';
 import { ThemeContext, colors } from "./styles/ThemeContext";
 
 
-const SelectedJoke = ({ toggleActivity }) => {
+const SelectedJoke = ({ toggleActivity, activeJoke }) => {
     const styles = {
         container: {
             top: '5%',
@@ -36,8 +36,8 @@ const SelectedJoke = ({ toggleActivity }) => {
             {theme =>
                 <div style={{...styles.container, ...theme.borderColor}}>
                     <div style={styles.text}>
-                        <p style={styles.joke}>Qu’est-ce qui court et qui se jette ?</p>
-                        <p style={styles.answer}>Une courgette</p>
+                        <p style={styles.joke}>{activeJoke.joke}</p>
+                        <p style={styles.answer}>{activeJoke.answer}</p>
                     </div>
                     <NextButton 
                         style={styles.button}
