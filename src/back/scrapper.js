@@ -4,7 +4,7 @@ const { JSDOM } = jsdom;
 const fs = require('fs');
 
 
-const scrapper = async (category, pages) => {
+const scrapper = async (category, pages, exclude) => {
     let data = [];
     let id = 0;
 
@@ -20,6 +20,9 @@ const scrapper = async (category, pages) => {
                     )
                     .filter(
                         quote => quote.slice(0, 19) !== 'Vous aimez les jeux'
+                    )
+                    .filter(
+                        quote => !quote.includes(exclude)
                     )
                     .map(
                         quote => {
@@ -68,7 +71,7 @@ scrapper("/blagues-courtes/blagues-melon-et-meleche/", 4).then(
     }
 );
 
-scrapper("/blagues-courtes/blagues-courtes-et-nulles-droles/", 35).then(
+scrapper("/blagues-courtes/blagues-courtes-et-nulles-droles/", 35, 'Melon').then(
     data => {
         fs.writeFileSync(
             './src/back/data/sillyJokes.json', 
@@ -79,3 +82,13 @@ scrapper("/blagues-courtes/blagues-courtes-et-nulles-droles/", 35).then(
     }
 );
 
+scrapper("/blagues-courtes/blague-chuck-norris/", 7).then(
+    data => {
+        fs.writeFileSync(
+            './src/back/data/chuckJokes.json', 
+            JSON.stringify(data), 
+            err => { if (err) throw err }
+        )
+        console.log('Chuck facts generated')
+    }
+);
