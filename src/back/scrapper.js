@@ -71,14 +71,14 @@ scrapper("/blagues-courtes/blagues-melon-et-meleche/", 4).then(
     }
 );
 
-scrapper("/blagues-courtes/blagues-courtes-et-nulles-droles/", 35, 'Melon').then(
+scrapper("/blagues-courtes/blagues-racistes-et-humour-noir/", 7, 'noir').then(
     data => {
         fs.writeFileSync(
-            './src/back/data/sillyJokes.json', 
+            './src/back/data/darkJokes.json', 
             JSON.stringify(data), 
             err => { if (err) throw err }
         )
-        console.log('Silly jokes generated')
+        console.log('Dark jokes generated')
     }
 );
 
