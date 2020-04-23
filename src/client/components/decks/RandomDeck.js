@@ -30,7 +30,7 @@ const RandomDeck = ({ getRandomJoke }) => {
 
     return (
         <div style={styles.card} onClick={() => getRandomJoke && getRandomJoke()}>
-            <p style={styles.label}>DEVINE?</p>
+            <p style={styles.label}>DEVINE !</p>
             <img 
                 src={daddy} 
                 alt="random joke daddy" 
