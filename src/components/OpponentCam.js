@@ -1,6 +1,7 @@
 import React from "react";
 import SelectedJoke from "./SelectedJoke";
 import ScreenshotButton from './subComponents/ScreenshotButton';
+import CamButton from './subComponents/CamButton';
 import theme from './utils/theme';
 
 
@@ -36,6 +37,7 @@ export default function OpponentCam({ toggleActivity }) {
             <div style={styles.OpponentInterface}>
                 <SelectedJoke toggleActivity={toggleActivity} />
                 <ScreenshotButton toggleActivity={toggleActivity} />
+                <CamButton/>
             </div>
         </div>
     );
