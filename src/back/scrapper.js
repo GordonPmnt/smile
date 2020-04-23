@@ -57,14 +57,14 @@ const scrapper = async (category, pages) => {
     return data;
 };
 
-scrapper("blagues-courtes/blagues-de-beauf/", 35).then(
+scrapper("/blagues-courtes/blagues-melon-et-meleche/", 4).then(
     data => {
         fs.writeFileSync(
-            './src/back/data/redneckJokes.json', 
+            './src/back/data/sexJokes.json', 
             JSON.stringify(data), 
             err => { if (err) throw err }
         )
-        console.log('Redneck jokes generated')
+        console.log('Sex jokes generated')
     }
 );
 
@@ -78,3 +78,4 @@ scrapper("/blagues-courtes/blagues-courtes-et-nulles-droles/", 35).then(
         console.log('Silly jokes generated')
     }
 );
+
