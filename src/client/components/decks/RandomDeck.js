@@ -2,12 +2,12 @@ import React from "react";
 import { colors } from '../styles/ThemeContext';
 
 
-const SexDeck = ({ getSexJoke }) => {
+const RandomDeck = ({ getRandomJoke }) => {
     const styles = {
         card: {
             borderRadius: '5px',
-            border: `${colors.pink} 10px solid`,
-            backgroundColor: colors.lightPink,
+            border: `${colors.yellow} 10px solid`,
+            backgroundColor: colors.lightYellow,
             height: '8.5rem',
             width: '5rem',
             display: 'flex',
@@ -26,11 +26,11 @@ const SexDeck = ({ getSexJoke }) => {
             opacity: '0.7',
         }
     }
-    const daddy = require('../../img/sex-moustache-trans.png')
+    const daddy = require('../../img/mexicano-transparent.png')
 
     return (
-        <div style={styles.card} onClick={() => getSexJoke && getSexJoke()}>
-            <p style={styles.label}>SEX JOKE</p>
+        <div style={styles.card} onClick={() => getRandomJoke && getRandomJoke()}>
+            <p style={styles.label}>DEVINE !</p>
             <img 
                 src={daddy} 
                 alt="random joke daddy" 
@@ -40,7 +40,7 @@ const SexDeck = ({ getSexJoke }) => {
     );
 }
 
-export default SexDeck;
+export default RandomDeck;
 
 
 
