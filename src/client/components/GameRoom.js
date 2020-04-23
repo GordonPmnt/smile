@@ -58,33 +58,39 @@ class GameRoom extends React.Component {
     }
 
     getChuckJoke = () => {
-
         this.setState({ theme : 'chuck' })
-        this.setState({ activeJoke: { isActive: true } })
-
-        axios
-        .get('/chuckapi', {
-            method: 'get',
-            params: { 
-                hello: 'world' 
-            }
+        let jokes = require('../../back/data/chuckJokes.json')
+        let { joke } = jokes[Math.floor(Math.random() * jokes.length)]
+        this.setState({ 
+            activeJoke: {
+                joke,
+                isActive: true 
+            } 
         })
-        .then(res => 
-            console.log(res.data[0])
-        )
-        .catch(err => 
-            console.log(err.message)
-        )
     }
 
     getSexJoke = () => {
         this.setState({ theme : 'sex' })
-        this.setState({ activeJoke: { isActive: true } })
+        let jokes = require('../../back/data/sexJokes.json')
+        let { joke } = jokes[Math.floor(Math.random() * jokes.length)]
+        this.setState({ 
+            activeJoke: {
+                joke,
+                isActive: true 
+            } 
+        })
     }
 
     getDarkJoke = () => {
         this.setState({ theme : 'dark' })
-        this.setState({ activeJoke: { isActive: true } })
+        let jokes = require('../../back/data/sillyJokes.json')
+        let { joke } = jokes[Math.floor(Math.random() * jokes.length)]
+        this.setState({ 
+            activeJoke: {
+                joke,
+                isActive: true 
+            } 
+        })
     }
    
     
