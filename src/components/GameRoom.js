@@ -44,13 +44,13 @@ class GameRoom extends React.Component {
               }
           })
           .then(response => {
-            this.setState({activeJoke: {
-                joke : response.data.joke.question,
-                answer: response.data.joke.answer,
-                isActive: true,
-            } });
-            
-
+            this.setState({
+                activeJoke: {
+                    joke : response.data.joke.question,
+                    answer: response.data.joke.answer,
+                    isActive: true,
+                } 
+            });
           })
           .catch(err => {
               console.log(err.message)
