@@ -83,7 +83,7 @@ class GameRoom extends React.Component {
 
     getDarkJoke = () => {
         this.setState({ theme : 'dark' })
-        let jokes = require('../../back/data/sillyJokes.json')
+        let jokes = require('../../back/data/darkJokes.json')
         let { joke } = jokes[Math.floor(Math.random() * jokes.length)]
         this.setState({ 
             activeJoke: {
