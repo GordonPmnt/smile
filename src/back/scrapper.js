@@ -1,3 +1,4 @@
+/* eslint-disable no-loop-func */
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const fs = require('fs');
