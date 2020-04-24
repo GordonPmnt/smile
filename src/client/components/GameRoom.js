@@ -98,8 +98,6 @@ class GameRoom extends React.Component {
     render() {
         const { theme, userIsActive, activeJoke } = this.state;
 
-//console.log(this.state.activeJoke)
-
         return (
             <ThemeContext.Provider value={themes[theme]}>
                 <div style={this.styles.container} >
