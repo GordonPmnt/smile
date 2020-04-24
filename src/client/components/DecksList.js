@@ -41,7 +41,7 @@ import SexDeck from './decks/SexDeck';
                         !userIsActive 
                             ? "NE RIS PAS!" 
                             : activeJoke.isActive 
-                                ? "A TOI DE LIRE LA JOKE" 
+                                ? "LIS LA JOKE A L'AUTRE JOUEUR..." 
                                 : "CHOISIS UNE JOKE DE PAPA"
                     }
                 </h2>
