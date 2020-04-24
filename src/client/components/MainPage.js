@@ -1,5 +1,5 @@
 import React from 'react';
-import theme from './utils/theme';
+import { colors } from './styles/ThemeContext';
 import { Link } from "react-router-dom";
 
 
@@ -16,12 +16,12 @@ const MainPage = () => {
     title: {
       fontSize: '4rem',
       textAlign: 'center',
-      color: theme.colors.pink,
+      color: colors.pink,
     },
     start: {
       textAlign: 'center',
       textDecoration: 'none',
-      border: `solid 1px ${theme.colors.pink}`,
+      border: `solid 1px ${colors.pink}`,
       margin: '0 40%',
       padding: '0.5%',
     },
@@ -41,7 +41,7 @@ const MainPage = () => {
       <img src={gentleman} alt='gentleman' style={styles.gentleman} />
       <h1 style={styles.title}>DADLAB !</h1>
       <Link style={styles.start} to="/GameRoom">
-        Generate room
+        Jouer !
       </Link>
     </div>
   );
