@@ -59,38 +59,59 @@ class GameRoom extends React.Component {
 
     getChuckJoke = () => {
         this.setState({ theme : 'chuck' })
-        let jokes = require('../../back/data/chuckJokes.json')
-        let { joke } = jokes[Math.floor(Math.random() * jokes.length)]
-        this.setState({ 
-            activeJoke: {
-                joke,
-                isActive: true 
-            } 
+
+        axios
+        .get('/api/chuck/random')
+        .then(response => {
+            console.log(response)
+            this.setState({
+                activeJoke: {
+                    joke: response.data.joke,
+                    isActive: true,
+                } 
+            })
+        })
+        .catch(err => {
+            console.log(err.message)
         })
     }
 
     getSexJoke = () => {
         this.setState({ theme : 'sex' })
-        let jokes = require('../../back/data/sexJokes.json')
-        let { joke } = jokes[Math.floor(Math.random() * jokes.length)]
-        this.setState({ 
-            activeJoke: {
-                joke,
-                isActive: true 
-            } 
+
+        axios
+        .get('/api/sex/random')
+        .then(response => {
+            console.log(response)
+            this.setState({
+                activeJoke: {
+                    joke: response.data.joke,
+                    isActive: true,
+                } 
+            })
+        })
+        .catch(err => {
+            console.log(err.message)
         })
     }
 
     getDarkJoke = () => {
         this.setState({ theme : 'dark' })
-        let jokes = require('../../back/data/darkJokes.json')
-        let { joke, answer } = jokes[Math.floor(Math.random() * jokes.length)]
-        this.setState({ 
-            activeJoke: {
-                joke,
-                answer,
-                isActive: true 
-            } 
+
+        axios
+        .get('/api/dark/random')
+        .then(response => {
+            console.log(response)
+            this.setState({
+                activeJoke: {
+                    joke: response.data.joke,
+                    answer: response.data.answer,
+                    isActive: true,
+                } 
+            })
+        })
+        .catch(err => {
+            console.log(err.message)
         })
     }
    
