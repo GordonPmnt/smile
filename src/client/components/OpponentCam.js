@@ -1,20 +1,20 @@
 import React from "react";
 import SelectedJoke from "./SelectedJoke";
 import ScreenshotButton from './subComponents/ScreenshotButton';
-import { ThemeContext } from './styles/ThemeContext'
+import CamButton from './subComponents/CamButton';
+import theme from './utils/theme';
 
 
-const OpponentCam = ({ toggleActivity, activeJoke }) => {
+export default function OpponentCam({ toggleActivity }) {
     const styles = {
         container: {
+            border: `solid ${theme.colors.yellow} 5px`, // This should come from selectedJoke
             margin: '5vh 3vh 5vh 3vh',
             height: '90vh',
             width: '64vw',
             display: 'flex',
             justifyContent: 'center',
-            border: `solid 5px`,
-            borderRadius: '5px',
-            },
+        },
         OpponentInterface: {
             position: 'absolute',
             height: '96%',
@@ -27,31 +27,18 @@ const OpponentCam = ({ toggleActivity, activeJoke }) => {
         webcam: {
             height: '100%',
             width: '100%',
-        },
-    };
+        }
+    }
     const picture = require('../img/fakewebcamGP.png')
 
     return (
-        <ThemeContext.Consumer>
-        {theme => 
-            <div  style={{...styles.container, ...theme.borderColor}}>
-                <img src={picture} alt="fake webcam" style={styles.webcam}/>
-                <div style={styles.OpponentInterface}>
-                    {activeJoke.isActive &&
-                        <SelectedJoke 
-                            toggleActivity={toggleActivity}
-                            activeJoke={activeJoke}
-                        />
-                    }
-                        <ScreenshotButton 
-                            toggleActivity={toggleActivity}
-                            theme={theme}
-                        />
-                </div>
+        <div  style={styles.container}>
+            <img src={picture} alt="fake webcam" style={styles.webcam}/>
+            <div style={styles.OpponentInterface}>
+                <SelectedJoke toggleActivity={toggleActivity} />
+                <ScreenshotButton toggleActivity={toggleActivity} />
+                <CamButton/>
             </div>
-        }
-        </ThemeContext.Consumer>
+        </div>
     );
 }
-
-export default OpponentCam;
