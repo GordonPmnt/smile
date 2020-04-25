@@ -37,7 +37,7 @@ class GameRoom extends React.Component {
         this.setState({ theme : 'random' })
 
         axios
-          .get('/api/joke/random', {
+          .get('/joke/random', {
               method: 'get',
               headers: {
                   Authorization: 'FW6CstM9yETDGYTEqdL-R.4fNoGEUCRHW0SvHOGXo2YpK2j-4th5JY3pTT_qDtWX'
@@ -61,7 +61,7 @@ class GameRoom extends React.Component {
         this.setState({ theme : 'chuck' })
 
         axios
-        .get('/api/chuck/random')
+        .get('/chuck/random')
         .then(response => {
             console.log(response)
             this.setState({
@@ -80,7 +80,7 @@ class GameRoom extends React.Component {
         this.setState({ theme : 'sex' })
 
         axios
-        .get('/api/sex/random')
+        .get('/sex/random')
         .then(response => {
             console.log(response)
             this.setState({
@@ -99,7 +99,7 @@ class GameRoom extends React.Component {
         this.setState({ theme : 'dark' })
 
         axios
-        .get('/api/dark/random')
+        .get('/dark/random')
         .then(response => {
             console.log(response)
             this.setState({
