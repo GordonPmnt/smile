@@ -12,6 +12,7 @@ const LiveChat = () => {
             marginRight: 'auto',
             width: '80%',
             borderRadius: '10px',
+            flexDirection: 'column',
         },
     }
 
@@ -21,7 +22,7 @@ const LiveChat = () => {
     return (
         <div style={styles.container}>
             <ChatConversations />
-            <ChatInput />
+            <ChatInput player={player} />
         </div>
     );
 }

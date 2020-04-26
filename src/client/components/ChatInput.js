@@ -1,7 +1,7 @@
 import React from "react";
 
 
-const ChatInput = () => {
+const ChatInput = ({ player }) => {
     const styles = {
         chatInputBox: {
             height: '20%',

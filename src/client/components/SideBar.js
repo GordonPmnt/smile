@@ -27,13 +27,14 @@ class SideBar extends React.Component {
 
     render() {
         const { chatEnabled } = this.state;
+        const { player } = this.props;
 
         return (
             <div style={this.styles.container}>
                 <DecksList {...this.props} />
                 <Gallery />
                 {chatEnabled 
-                    ? <LiveChat />
+                    ? <LiveChat player={player} />
                     : <MyCam mirrored={true} />
                 }
                 <ChatButton handleChatDisplay={this.handleChatDisplay} />

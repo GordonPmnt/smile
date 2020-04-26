@@ -118,6 +118,7 @@ class GameRoom extends React.Component {
     
     render() {
         const { theme, userIsActive, activeJoke } = this.state;
+        const { player } = this.props;
 
         return (
             <ThemeContext.Provider value={themes[theme]}>
@@ -133,6 +134,7 @@ class GameRoom extends React.Component {
                         getSexJoke={this.getSexJoke}
                         userIsActive={userIsActive}
                         activeJoke={activeJoke}
+                        player={player}
                     />
                 </div>
             </ThemeContext.Provider>
