@@ -3,7 +3,6 @@ import SideBar from "./SideBar";
 import OpponentCam from "./OpponentCam";
 import { ThemeContext, themes } from './styles/ThemeContext';
 import axios from 'axios';
-import socketIOClient from 'socket.io-client'
 
 
 class GameRoom extends React.Component {
@@ -16,7 +15,6 @@ class GameRoom extends React.Component {
         },
         theme: 'none',
     };
-    endpoint = "http://127.0.0.1:8080";
 
     styles = {
         container: {
@@ -26,8 +24,6 @@ class GameRoom extends React.Component {
             margin: '0px',
         },
     }
-
-    socket = socketIOClient(this.endpoint)
 
     toggleActivity = () => {
         this.setState( prevState => ({

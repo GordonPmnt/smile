@@ -3,7 +3,7 @@ import { colors } from './styles/ThemeContext';
 import socketIOClient from 'socket.io-client'
 
 
-const MainPage = ({ history }) => {
+const MainPage = ({ history, handlePlayerInput }) => {
   const styles = {
     container: {
       display: 'flex',
@@ -18,25 +18,24 @@ const MainPage = ({ history }) => {
       textAlign: 'center',
       color: colors.pink,
     },
-    start: {
-      textAlign: 'center',
-      textDecoration: 'none',
-      border: `solid 1px ${colors.pink}`,
-      margin: '0 40%',
-      padding: '0.5%',
-    },
     gentleman: {
       display: 'block',
       marginLeft: 'auto',
       marginRight: 'auto',
       width: '8rem',
       opacity: '0.8',
+    },
+    form: {
+      display: 'flex',
+      flexDirection: 'column',
+      border: `solid 1px ${colors.pink}`,
+      margin: '0 40%',
+      padding: '0.5%',
     }
   }
 
-  const handlesubmit = (event) => {
-    event.preventDefault();
-    history.push('/Gameroom')
+  const handleSubmit = () => {
+    history.push('/Gameroom');
   }
 
   const backend = "http://127.0.0.1:8080";
@@ -48,9 +47,11 @@ const MainPage = ({ history }) => {
     <div style={styles.container}>
       <img src={gentleman} alt='gentleman' style={styles.gentleman} />
       <h1 style={styles.title}>DADLAB !</h1>
-      <form onSubmit={handlesubmit}>
-        <label htmlFor="player">Joueur :<input type="text" name="player" /></label>
-        <label htmlFor="room">Room :<input type="text" name="room" /></label>
+      <form onSubmit={handleSubmit} style={styles.form}>
+        <label htmlFor="player">
+          Joueur: 
+          <input type="text" name="player" onChange={handlePlayerInput} />
+        </label>
         <input type="submit" value="Jouer"/>
       </form>
     </div>
