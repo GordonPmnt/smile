@@ -1,10 +1,9 @@
 import React from "react";
 import ChatConversations from "./ChatConversations";
 import ChatInput from "./ChatInput";
-import socketIOClient from 'socket.io-client'
 
 
-const LiveChat = () => {
+const LiveChat = ({ player }) => {
     const styles = {
         container: {
             display: 'flex',
@@ -15,9 +14,6 @@ const LiveChat = () => {
             flexDirection: 'column',
         },
     }
-
-    const backend = "http://127.0.0.1:8080?name=Gordon";
-    const socket = socketIOClient(backend)
 
     return (
         <div style={styles.container}>

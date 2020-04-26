@@ -9,6 +9,9 @@ const io = socketIo(server)
 io.on('connection', (socket) => {
     let player = socket.request._query.name
     console.log(`${player}'s client connected`);
+    socket.on('chat message', (msg) => {
+        console.log('message: ' + msg);
+    });
     socket.on("disconnect", () => {
         console.log(`${player}'s client disconnected`);
     });
