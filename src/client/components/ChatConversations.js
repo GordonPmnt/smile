@@ -2,14 +2,6 @@ import React from "react";
 
 
 class ChatConversations extends React.Component {
-    state = {
-        messages: [
-            'Hey',
-            'Ca va ?',
-            'Prêt à jouer ???'
-        ]
-    }
-
     styles = {
         container: {
             height: '80%',
@@ -19,11 +11,11 @@ class ChatConversations extends React.Component {
     }
 
     render() {
-        const { messages } = this.state
+        const { historyMsg } = this.props;
         
         return (
             <div style={this.styles.container}>
-                {messages.map(message =>
+                {historyMsg.map(message =>
                     <p key={message}>{message}</p>
                 )}
             </div>
