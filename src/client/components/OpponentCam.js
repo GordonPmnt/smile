@@ -1,7 +1,8 @@
 import React from "react";
 import SelectedJoke from "./SelectedJoke";
 import ScreenshotButton from './subComponents/ScreenshotButton';
-import { ThemeContext } from './styles/ThemeContext'
+import { ThemeContext } from './styles/ThemeContext';
+import RTCMesh from 'react-rtc-real';
 
 
 const OpponentCam = ({ toggleActivity, activeJoke }) => {
@@ -29,13 +30,12 @@ const OpponentCam = ({ toggleActivity, activeJoke }) => {
             width: '100%',
         },
     };
-    const picture = require('../img/fakewebcamGP.png')
 
     return (
         <ThemeContext.Consumer>
         {theme => 
             <div  style={{...styles.container, ...theme.borderColor}}>
-                <img src={picture} alt="fake webcam" style={styles.webcam}/>
+                <RTCMesh URL="wss://7ab5c00a.ngrok.io" style={styles.webcam} />
                 <div style={styles.OpponentInterface}>
                     {activeJoke.isActive &&
                         <SelectedJoke 
