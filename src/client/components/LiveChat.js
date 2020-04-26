@@ -7,9 +7,11 @@ import socketIOClient from 'socket.io-client'
 const LiveChat = () => {
     const styles = {
         container: {
-            height: '30vh',
-            width: '100%',
-            margin: '0px',
+            display: 'flex',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            width: '80%',
+            borderRadius: '10px',
         },
     }
 
