@@ -13,7 +13,6 @@ module.exports = function(app) {
     createProxyMiddleware({
       target: 'http://localhost:8080/api',
       changeOrigin: true,
-      logLevel: 'debug',
     })
   );
   app.use(
@@ -21,7 +20,6 @@ module.exports = function(app) {
     createProxyMiddleware({
       target: 'http://localhost:8080/api',
       changeOrigin: true,
-      logLevel: 'debug',
     })
   );
   app.use(
@@ -29,7 +27,6 @@ module.exports = function(app) {
     createProxyMiddleware({
       target: 'http://localhost:8080/api',
       changeOrigin: true,
-      logLevel: 'debug',
     })
   );
 };

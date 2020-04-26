@@ -1,9 +1,8 @@
 import React from 'react';
 import { colors } from './styles/ThemeContext';
-import { Link } from "react-router-dom";
 
 
-const MainPage = () => {
+const MainPage = ({ history }) => {
   const styles = {
     container: {
       display: 'flex',
@@ -34,15 +33,22 @@ const MainPage = () => {
     }
   }
 
+  const handlesubmit = (event) => {
+    event.preventDefault();
+    history.push('/Gameroom')
+  }
+
   const gentleman = require('../img/gentleman-transparent.png')
 
   return (
     <div style={styles.container}>
       <img src={gentleman} alt='gentleman' style={styles.gentleman} />
       <h1 style={styles.title}>DADLAB !</h1>
-      <Link style={styles.start} to="/GameRoom">
-        Jouer !
-      </Link>
+      <form onSubmit={handlesubmit}>
+        <label htmlFor="player">Joueur :<input type="text" name="player" /></label>
+        <label htmlFor="room">Room :<input type="text" name="room" /></label>
+        <input type="submit" value="Jouer"/>
+      </form>
     </div>
   );
 }

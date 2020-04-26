@@ -1,14 +1,15 @@
-const express = require('express');
-const api = require('./routes');
+const http = require('http');
+const socketIo = require('socket.io');
+const app = require('./app')
+const config = require('./config')
 
-const app = express();
-const port = process.env.PORT || 8080; 
+const server = http.createServer(app);
+const io = socketIo(server)
 
-
-app.listen(port, (err) => {
-    if(err) {
-        throw new Error("Server couldn't run...");
-    }
-    console.log(`Server is listening on ${port}`);
+io.on('connection', (socket) => {
+    console.log('New client connected');
 });
-app.use('/api', api);
+
+server.listen(config.PORT, () => {
+    console.log(`Server Listening on port ${config.PORT}`)
+});
