@@ -15,8 +15,14 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" render={(props) => <MainPage {...props} handlePlayerInput={handlePlayerInput} />} />
-        <Route path="/GameRoom" render={() => <GameRoom player={player} />}/>
+        <Route 
+          exact path="/" 
+          render={props => <MainPage {...props} handlePlayerInput={handlePlayerInput} />} 
+        />
+        <Route 
+          path="/GameRoom" 
+          render={() => <GameRoom player={player} />}
+        />
       </Switch>
     </Router>
   );

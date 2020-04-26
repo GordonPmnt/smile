@@ -7,7 +7,11 @@ const server = http.createServer(app);
 const io = socketIo(server)
 
 io.on('connection', (socket) => {
-    console.log('New client connected');
+    let player = socket.request._query.name
+    console.log(`${player}'s client connected`);
+    socket.on("disconnect", () => {
+        console.log(`${player}'s client disconnected`);
+    });
 });
 
 server.listen(config.PORT, () => {

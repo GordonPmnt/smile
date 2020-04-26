@@ -5,6 +5,7 @@ import Gallery from './Gallery';
 import LiveChat from "./LiveChat";
 import ChatButton from './subComponents/ChatButton';
 
+
 class SideBar extends React.Component {
     state = {
         chatEnabled: false
@@ -18,6 +19,12 @@ class SideBar extends React.Component {
         },
     };
 
+    handleChatDisplay = () => {
+        this.setState(prevState => ({
+            chatEnabled: !prevState.chatEnabled
+        }))
+    };
+
     render() {
         const { chatEnabled } = this.state;
 
@@ -26,10 +33,10 @@ class SideBar extends React.Component {
                 <DecksList {...this.props} />
                 <Gallery />
                 <MyCam mirrored={true} />
-                {chatEnabled
-                    ? <LiveChat />
-                    : <ChatButton />
+                {chatEnabled &&
+                    <LiveChat />
                 }
+                <ChatButton handleChatDisplay={this.handleChatDisplay} />
             </div>
         )
     }

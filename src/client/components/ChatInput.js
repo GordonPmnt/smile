@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function ChatInput() {
+
+const ChatInput = () => {
     const styles = {
         chatInputBox: {
-            backgroundColor: 'grey',
             height: '20%',
             width: '100%',
             margin: '0px',
@@ -11,7 +11,9 @@ export default function ChatInput() {
     }
     return (
         <div style={styles.chatInputBox}>
-            -> .... chat input
+            <input type="text-area" name="player" />
         </div>
     );
 }
+
+export default ChatInput;
