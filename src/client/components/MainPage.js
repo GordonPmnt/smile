@@ -1,5 +1,6 @@
 import React from 'react';
 import { colors } from './styles/ThemeContext';
+import socketIOClient from 'socket.io-client'
 
 
 const MainPage = ({ history }) => {
@@ -37,6 +38,9 @@ const MainPage = ({ history }) => {
     event.preventDefault();
     history.push('/Gameroom')
   }
+
+  const backend = "http://127.0.0.1:8080";
+  const socket = socketIOClient(backend)
 
   const gentleman = require('../img/gentleman-transparent.png')
 
