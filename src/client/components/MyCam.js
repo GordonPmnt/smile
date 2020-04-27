@@ -25,20 +25,21 @@ class MyCam extends React.Component {
             {theme =>
                 <div>
                     <Webcam 
-                    style={{...styles.cam, ...theme.borderColor}}
+                    style={{...this.styles.cam, ...theme.borderColor}}
                     mirrored={mirrored}
                     />
                     <CamButton
-                        onclick={this.switchCam}
+                        // onclick={this.switchCam}
                     
                     />
                     <MicroButton
-                        //audioConstraints={audioConstraints}
+                        // onclick={this.}
                     />
                 </div>
             }
             </ThemeContext.Consumer>
         )
     };
+}
 
 export default MyCam;
