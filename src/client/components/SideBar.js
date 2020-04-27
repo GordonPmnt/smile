@@ -35,7 +35,10 @@ class SideBar extends React.Component {
         event.preventDefault();
         this.socket.emit(
             'chat message',
-            `${this.props.player}: ${this.state.message}`
+            { 
+                sender: this.props.player,
+                message: this.state.message,
+            }
         )
         this.setState({
             message: ''
@@ -51,7 +54,7 @@ class SideBar extends React.Component {
     componentDidMount = () => {
         this.socket.on(
             'chat message', 
-            (msg) => {
+            msg => {
                 this.setState({
                     chat: [...this.state.chat, msg]
                 })

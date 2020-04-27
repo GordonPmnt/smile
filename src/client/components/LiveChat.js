@@ -16,7 +16,12 @@ class LiveChat extends React.Component {
     }
 
     render() {
-        const { handleSubmit, chat, handleMessage, message } = this.props;
+        const { 
+            handleSubmit, 
+            handleMessage, 
+            chat, 
+            message 
+        } = this.props;
 
         return (
             <div style={this.styles.container}>

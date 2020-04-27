@@ -15,8 +15,11 @@ class ChatConversations extends React.Component {
         
         return (
             <div style={this.styles.container}>
-                {chat.map(message =>
-                    <p key={message}>{message}</p>
+                {chat.map(msg =>
+                    <div key={msg.id + msg.sender}>
+                        <p>{msg.sender}:</p>
+                        <p>{msg.message}</p> 
+                    </div>
                 )}
             </div>
         );
