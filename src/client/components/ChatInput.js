@@ -4,7 +4,9 @@ import React from "react";
 class ChatInput extends React.Component {
     styles = {
         input: {
-            width: '100%'
+            width: '100%',
+            border: 'solid 2px rgb(97, 109, 226)',
+            borderRadius: '5px'
         }
     }
 
@@ -13,10 +15,10 @@ class ChatInput extends React.Component {
 
         return (
             <form 
-                style={this.styles.input}
                 onSubmit={event => handleSubmit(event)}
             >
                 <input 
+                    style={this.styles.input}
                     type="text-area" 
                     name="message"
                     value={message}
