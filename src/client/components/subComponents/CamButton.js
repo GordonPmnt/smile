@@ -5,8 +5,7 @@ const CamButton = () => {
         button: {
             boxShadow: '0px 10px 10px rgba(0, 0, 0, 0.50)',
             position: 'absolute',
-            right: '-20%',
-            marginTop: '16px',
+            marginLeft: '20%',
             cursor: 'pointer',
             height: '3em',
             width: '3em',

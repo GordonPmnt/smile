@@ -1,10 +1,12 @@
 import React from "react";
 import Webcam from "react-webcam";
+import CamButton from './subComponents/CamButton';
+import MicroButton from './subComponents/MicroButton';
 import { ThemeContext } from './styles/ThemeContext';
-
  
-const MyCam = ({ mirrored }) => {
-    const styles = {
+    
+class MyCam extends React.Component {
+    styles = {
         cam: {
             display: 'flex',
             marginLeft: 'auto',
@@ -15,16 +17,28 @@ const MyCam = ({ mirrored }) => {
         }
     }
     
-    return (
-        <ThemeContext.Consumer>
-        {theme =>
-            <Webcam 
-                style={{...styles.cam, ...theme.borderColor}}
-                mirrored={mirrored}
-            />
-        }
-        </ThemeContext.Consumer>
-    )
-};
+    render() {
+        const { mirrored } = this.props;
+        
+        return (
+            <ThemeContext.Consumer>
+            {theme =>
+                <div>
+                    <Webcam 
+                    style={{...styles.cam, ...theme.borderColor}}
+                    mirrored={mirrored}
+                    />
+                    <CamButton
+                        onclick={this.switchCam}
+                    
+                    />
+                    <MicroButton
+                        //audioConstraints={audioConstraints}
+                    />
+                </div>
+            }
+            </ThemeContext.Consumer>
+        )
+    };
 
 export default MyCam;
