@@ -1,8 +1,8 @@
 import React from "react";
 
 
-class ChatConversations extends React.Component {
-    styles = {
+const ChatConversations = ({ chat }) => {
+    const styles = {
         container: {
             height: '32vh',
             width: '100%',
@@ -20,24 +20,20 @@ class ChatConversations extends React.Component {
             margin: '0 5px 0 0'
         }
     }
-
-    render() {
-        const { chat } = this.props;
-        
-        return (
-            <div style={this.styles.container}>
-                {chat.map(msg =>
-                    <div 
-                        key={msg.id + msg.sender}
-                        style={this.styles.chat}
-                    >
-                        <p style={this.styles.p}>{msg.sender}:</p>
-                        <p style={this.styles.p}>{msg.message}</p> 
-                    </div>
-                )}
-            </div>
-        );
-    }
-}
+    
+    return (
+        <div style={styles.container}>
+            {chat.map(msg =>
+                <div 
+                    key={msg.id + msg.sender}
+                    style={styles.chat}
+                >
+                    <p style={styles.p}>{msg.sender}:</p>
+                    <p style={styles.p}>{msg.message}</p> 
+                </div>
+            )}
+        </div>
+    );
+};
 
 export default ChatConversations;

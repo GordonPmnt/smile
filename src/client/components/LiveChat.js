@@ -3,8 +3,8 @@ import ChatConversations from "./ChatConversations";
 import ChatInput from "./ChatInput";
 
 
-class LiveChat extends React.Component {
-    styles = {
+const LiveChat = ({ handleSubmit, handleMessage, chat, message  }) => {
+    const styles = {
         container: {
             display: 'flex',
             marginLeft: 'auto',
@@ -15,27 +15,18 @@ class LiveChat extends React.Component {
         },
     }
 
-    render() {
-        const { 
-            handleSubmit, 
-            handleMessage, 
-            chat, 
-            message 
-        } = this.props;
-
-        return (
-            <div style={this.styles.container}>
-                <ChatConversations
-                    chat={chat}
-                />
-                <ChatInput 
-                    handleSubmit={handleSubmit}
-                    handleMessage={handleMessage}
-                    message={message}
-                />
-            </div>
-        );
-    }
-}
+    return (
+        <div style={styles.container}>
+            <ChatConversations
+                chat={chat}
+            />
+            <ChatInput 
+                handleSubmit={handleSubmit}
+                handleMessage={handleMessage}
+                message={message}
+            />
+        </div>
+    );
+};
 
 export default LiveChat;
