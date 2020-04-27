@@ -11,21 +11,21 @@ module.exports = function(app) {
   app.use(
     '/sex',
     createProxyMiddleware({
-      target: 'http://172.26.10.10:8080/api',
+      target: 'http://localhost:8080/api',
       changeOrigin: true,
     })
   );
   app.use(
     '/dark',
     createProxyMiddleware({
-      target: 'http://172.26.10.10:8080/api',
+      target: 'http://localhost:8080/api',
       changeOrigin: true,
     })
   );
   app.use(
     '/chuck',
     createProxyMiddleware({
-      target: 'http://172.26.10.10:8080/api',
+      target: 'http://localhost:8080/api',
       changeOrigin: true,
     })
   );
