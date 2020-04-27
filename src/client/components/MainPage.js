@@ -1,9 +1,8 @@
 import React from 'react';
-import theme from './utils/theme';
-import { Link } from "react-router-dom";
+import { colors } from './styles/ThemeContext';
 
 
-const MainPage = () => {
+const MainPage = ({ history, handlePlayerInput }) => {
   const styles = {
     container: {
       display: 'flex',
@@ -16,14 +15,7 @@ const MainPage = () => {
     title: {
       fontSize: '4rem',
       textAlign: 'center',
-      color: theme.colors.pink,
-    },
-    start: {
-      textAlign: 'center',
-      textDecoration: 'none',
-      border: `solid 1px ${theme.colors.pink}`,
-      margin: '0 40%',
-      padding: '0.5%',
+      color: colors.pink,
     },
     gentleman: {
       display: 'block',
@@ -31,7 +23,18 @@ const MainPage = () => {
       marginRight: 'auto',
       width: '8rem',
       opacity: '0.8',
+    },
+    form: {
+      display: 'flex',
+      flexDirection: 'column',
+      border: `solid 1px ${colors.pink}`,
+      margin: '0 40%',
+      padding: '0.5%',
     }
+  }
+
+  const handleSubmit = () => {
+    history.push('/Gameroom');
   }
 
   const gentleman = require('../img/gentleman-transparent.png')
@@ -40,9 +43,13 @@ const MainPage = () => {
     <div style={styles.container}>
       <img src={gentleman} alt='gentleman' style={styles.gentleman} />
       <h1 style={styles.title}>DADLAB !</h1>
-      <Link style={styles.start} to="/GameRoom">
-        Generate room
-      </Link>
+      <form onSubmit={handleSubmit} style={styles.form}>
+        <label htmlFor="player">
+          Joueur: 
+          <input type="text" name="player" onChange={handlePlayerInput} />
+        </label>
+        <input type="submit" value="Jouer"/>
+      </form>
     </div>
   );
 }

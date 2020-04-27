@@ -1,17 +1,18 @@
 import React from "react";
-import theme from './utils/theme';
+import { colors } from '../styles/ThemeContext';
 
 
-const Deck = () => {
+const DarkDeck = ({ getDarkJoke }) => {
     const styles = {
         card: {
             borderRadius: '5px',
-            border: `${theme.colors.yellow} 10px solid`,
-            backgroundColor: theme.colors.lightYellow,
+            border: `${colors.red} 10px solid`,
+            backgroundColor: colors.lightRed,
             height: '8.5rem',
             width: '5rem',
             display: 'flex',
             flexDirection: 'column',
+            justifyContent: 'space-between',
             alignItems: 'center',
             cursor: 'pointer',
         },
@@ -20,14 +21,16 @@ const Deck = () => {
             textAlign: 'center',
         },
         daddy: {
-            width: '2.3em',
+            width: '1.8em',
+            marginBottom: '10px',
+            opacity: '0.7',
         }
     }
-    const daddy = require('../img/mexicano-transparent.png')
+    const daddy = require('../../img/evil-transparent.png')
 
     return (
-        <div style={styles.card}>
-            <p style={styles.label}>RANDOM JOKE</p>
+        <div style={styles.card} onClick={() => getDarkJoke && getDarkJoke()}>
+            <p style={styles.label}>HUMOUR NOIR...</p>
             <img 
                 src={daddy} 
                 alt="random joke daddy" 
@@ -37,7 +40,7 @@ const Deck = () => {
     );
 }
 
-export default Deck;
+export default DarkDeck;
 
 
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const ChatButton = () => {
+const ChatButton = ({ handleChatDisplay }) => {
     const button = require("../../img/chat_moustache_trans.png");
     const styles = {
         container: {
@@ -22,6 +22,7 @@ const ChatButton = () => {
                 src={button} 
                 alt="chat moustache button"
                 style={styles.button}
+                onClick={() => handleChatDisplay()}
             />
         </div>
     )
