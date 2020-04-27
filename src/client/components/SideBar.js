@@ -48,12 +48,12 @@ class SideBar extends React.Component {
         })
     }
 
-    componentDidUpdate = () => {
+    componentDidMount = () => {
         this.socket.on(
             'chat message', 
-            msg => {
+            (msg) => {
                 this.setState({
-                    historyMsg: [ msg ]
+                    historyMsg: [...this.state.historyMsg, msg]
                 })
             }
         )
