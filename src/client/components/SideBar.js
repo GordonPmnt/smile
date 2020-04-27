@@ -10,8 +10,8 @@ import socketIOClient from 'socket.io-client';
 class SideBar extends React.Component {
     state = {
         chatEnabled: false,
-        historyMsg: [],
-        currentMsg: '',
+        chat: [],
+        message: '',
     };
 
     styles = {
@@ -35,16 +35,16 @@ class SideBar extends React.Component {
         event.preventDefault();
         this.socket.emit(
             'chat message',
-            `${this.props.player}: ${this.state.currentMsg}`
+            `${this.props.player}: ${this.state.message}`
         )
         this.setState({
-            currentMsg: ''
+            message: ''
         })
     }
 
     handleMessage = event => {
         this.setState({
-            currentMsg: event.target.value
+            message: event.target.value
         })
     }
 
@@ -53,14 +53,14 @@ class SideBar extends React.Component {
             'chat message', 
             (msg) => {
                 this.setState({
-                    historyMsg: [...this.state.historyMsg, msg]
+                    chat: [...this.state.chat, msg]
                 })
             }
         )
     }
 
     render() {
-        const { chatEnabled, historyMsg, currentMsg } = this.state;
+        const { chatEnabled, chat, message } = this.state;
         
         return (
             <div style={this.styles.container}>
@@ -71,8 +71,8 @@ class SideBar extends React.Component {
                         <LiveChat 
                             handleSubmit={this.handleSubmit} 
                             handleMessage={this.handleMessage}
-                            historyMsg={historyMsg} 
-                            currentMsg={currentMsg}
+                            chat={chat} 
+                            message={message}
                         />
                     : 
                         <MyCam mirrored={true} />

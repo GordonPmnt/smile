@@ -9,7 +9,7 @@ class ChatInput extends React.Component {
     }
 
     render() {
-        const { handleSubmit, handleMessage, currentMsg } = this.props
+        const { handleSubmit, handleMessage, message } = this.props
 
         return (
             <form 
@@ -19,7 +19,7 @@ class ChatInput extends React.Component {
                 <input 
                     type="text-area" 
                     name="message"
-                    value={currentMsg}
+                    value={message}
                     onChange={(event) => handleMessage(event)}
                 />
             </form>

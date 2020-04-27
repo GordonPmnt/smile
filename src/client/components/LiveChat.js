@@ -16,17 +16,17 @@ class LiveChat extends React.Component {
     }
 
     render() {
-        const { handleSubmit, historyMsg, handleMessage, currentMsg } = this.props;
+        const { handleSubmit, chat, handleMessage, message } = this.props;
 
         return (
             <div style={this.styles.container}>
                 <ChatConversations
-                    historyMsg={historyMsg}
+                    chat={chat}
                 />
                 <ChatInput 
                     handleSubmit={handleSubmit}
                     handleMessage={handleMessage}
-                    currentMsg={currentMsg}
+                    message={message}
                 />
             </div>
         );

@@ -11,11 +11,11 @@ class ChatConversations extends React.Component {
     }
 
     render() {
-        const { historyMsg } = this.props;
+        const { chat } = this.props;
         
         return (
             <div style={this.styles.container}>
-                {historyMsg.map(message =>
+                {chat.map(message =>
                     <p key={message}>{message}</p>
                 )}
             </div>
