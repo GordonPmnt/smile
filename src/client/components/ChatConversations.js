@@ -7,8 +7,6 @@ const ChatConversations = ({ chat }) => {
             height: '32vh',
             width: '100%',
             margin: '0px',
-            border: 'solid 2px rgb(97, 109, 226)',
-            borderRadius: '5px'
         },
         chat: {
             display: 'flex',
@@ -17,7 +15,7 @@ const ChatConversations = ({ chat }) => {
             fontSize: '0.8em',
         },
         p: {
-            margin: '0 5px 0 0'
+            margin: '0 5px 0 0',
         }
     }
     

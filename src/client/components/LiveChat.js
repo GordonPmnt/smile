@@ -10,7 +10,8 @@ const LiveChat = ({ handleSubmit, handleMessage, chat, message  }) => {
             marginLeft: 'auto',
             marginRight: 'auto',
             width: '80%',
-            borderRadius: '10px',
+            border: 'solid 2px rgb(97, 109, 226)',
+            borderRadius: '5px',
             flexDirection: 'column',
         },
     }

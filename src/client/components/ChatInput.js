@@ -5,8 +5,8 @@ const ChatInput = ({ handleSubmit, handleMessage, message }) => {
     const styles = {
         input: {
             width: '100%',
-            border: 'solid 2px rgb(97, 109, 226)',
-            borderRadius: '5px'
+            borderRadius: '5px',
+            border: 'solid 0.5px rgb(97, 109, 226)'
         }
     }
 
