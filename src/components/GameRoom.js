@@ -3,7 +3,8 @@ import SideBar from "./SideBar";
 import OpponentCam from "./OpponentCam";
 import { ThemeContext, themes } from './styles/ThemeContext';
 import axios from 'axios';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class GameRoom extends React.Component {
     state = {
@@ -86,12 +87,23 @@ class GameRoom extends React.Component {
         this.setState({ theme : 'dark' })
         this.setState({ activeJoke: { isActive: true } })
     }
-   
+
+    notify = () => toast("It's your turn !");
     
+    componentDidMount() {
+        console.log('I have just mounted')
+    }
+
+    componentDidUpdate() {
+        console.log('I have just updated')
+    }
+
     render() {
         const { theme, userIsActive, activeJoke } = this.state;
 
-//console.log(this.state.activeJoke)
+        if (this.state.userIsActive) {
+            this.notify()
+        }
 
         return (
             <ThemeContext.Provider value={themes[theme]}>
@@ -108,6 +120,7 @@ class GameRoom extends React.Component {
                         userIsActive={userIsActive}
                         activeJoke={activeJoke}
                     />
+                    <ToastContainer />
                 </div>
             </ThemeContext.Provider>
         )
