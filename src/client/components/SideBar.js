@@ -22,7 +22,7 @@ class SideBar extends React.Component {
         },
     };
 
-    socketEndpoint = `http://127.0.0.1:8080?name=${this.props.player}`;
+    socketEndpoint = `http://localhost:8080?name=${this.props.player}`;
     socket = socketIOClient(this.socketEndpoint);
 
     handleChatDisplay = () => {
