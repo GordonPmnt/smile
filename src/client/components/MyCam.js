@@ -40,5 +40,6 @@ class MyCam extends React.Component {
             </ThemeContext.Consumer>
         )
     };
+}
 
 export default MyCam;
