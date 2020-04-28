@@ -9,7 +9,7 @@ import { config } from '../../config';
 
 class GameRoom extends React.Component {
     state = {
-        userIsActive: false,
+        userIsActive: false, //initial must always be false
         activeJoke: {
             joke: '',
             answer: '',
