@@ -1,16 +1,16 @@
 import React from 'react';
 
-class CamButton extends React.Component {
+class MicroButton extends React.Component {
 
     constructor(props){
         super(props)
-        this.state={
-    
+        this.state= {
+
             button: {
                 backgroundColor : 'white',
                 boxShadow: '0px 10px 10px rgba(0, 0, 0, 0.50)',
                 position: 'absolute',
-                marginLeft: '16%',
+                marginLeft: '11%',
                 marginTop: '-4%',
                 cursor: 'pointer',
                 height: '3em',
@@ -24,17 +24,16 @@ class CamButton extends React.Component {
             }
         }
     }
-    
+
     render() {
+        
 
         return (
             <div style={this.state.button}>
-                <p style={this.state.text}>CAM</p>
+                <p style={this.state.text}>MICRO</p>
             </div>
-        )
+        );
     }
 }
 
-export default CamButton;
-
-
+export default MicroButton;
