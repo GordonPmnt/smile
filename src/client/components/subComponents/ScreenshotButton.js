@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const ScreenshotButton = ({ toggleActivity, theme }) => {
+const ScreenshotButton = ({ handleEndOfturn, theme }) => {
     const styles = {
         container: {
             display: 'flex',
@@ -23,7 +23,7 @@ const ScreenshotButton = ({ toggleActivity, theme }) => {
             <img 
                 src={require('../../img/cam-moustache.png')}
                 alt="Screenshot button"
-                onClick={() => toggleActivity()}
+                onClick={() => handleEndOfturn()}
                 style={{...styles.button, ...theme.borderColor}}
             />
         </div>

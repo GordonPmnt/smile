@@ -5,7 +5,7 @@ import { ThemeContext } from './styles/ThemeContext';
 import Webcam from "react-webcam";
 
 
-const OpponentCam = ({ toggleActivity, activeJoke }) => {
+const OpponentCam = ({ handleEndOfturn, activeJoke }) => {
     const styles = {
         container: {
             margin: '5vh 5vh 5vh 5vh',
@@ -39,12 +39,12 @@ const OpponentCam = ({ toggleActivity, activeJoke }) => {
                 <div style={styles.OpponentInterface}>
                     {activeJoke.isActive &&
                         <SelectedJoke 
-                            toggleActivity={toggleActivity}
+                            handleEndOfturn={handleEndOfturn}
                             activeJoke={activeJoke}
                         />
                     }
                         <ScreenshotButton 
-                            toggleActivity={toggleActivity}
+                            handleEndOfturn={handleEndOfturn}
                             theme={theme}
                         />
                 </div>

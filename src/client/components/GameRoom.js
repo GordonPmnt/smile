@@ -28,9 +28,20 @@ class GameRoom extends React.Component {
     toggleActivity = () => {
         this.setState( prevState => ({
             userIsActive : !prevState.userIsActive
-        }))
-        this.setState({ activeJoke: { isActive: false } })
-        this.setState({ theme: 'none' })
+        }));
+        this.setState({ activeJoke: { isActive: false } });
+        this.setState({ theme: 'none' });
+    };
+
+    handleEndOfturn = () => {
+        const { userIsActive } = this.state;
+        const { player } = this.props;
+
+        this.toggleActivity()
+        this.socket.emit(
+            'player status',
+            { player, status: userIsActive }
+        );
     };
 
     getRandomJoke = () => {
@@ -124,7 +135,7 @@ class GameRoom extends React.Component {
             <ThemeContext.Provider value={themes[theme]}>
                 <div style={this.styles.container} >
                     <OpponentCam 
-                        toggleActivity={this.toggleActivity}
+                        handleEndOfturn={this.handleEndOfturn}
                         activeJoke={activeJoke}
                     />
                     <SideBar 
