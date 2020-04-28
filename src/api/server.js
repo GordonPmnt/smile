@@ -5,13 +5,17 @@ const config = require('./config')
 
 const server = http.createServer(app);
 const io = socketIo(server)
+const gameroom = {}
 
 io.on('connection', (socket) => {
     
     let player = socket.request._query.name;
+    gameroom[player] = true;
+    console.log('GAMEROOM:', gameroom)
+    
+    io.emit('room', Object.keys(gameroom).length)
+    
     let id = 0;
-    console.log(`${player}'s client connected`);
-
     socket.on('chat message', (msg) => {
         msg.id = id;
         console.log(msg.id + '//' + msg.sender + '//' + msg.message);
@@ -19,8 +23,16 @@ io.on('connection', (socket) => {
         id +=1;
     });
 
+    socket.on('player status', playerStatus => {
+        const { player, status } = playerStatus
+        console.log(`${player} is active: ${status}`)
+        io.emit('player status', playerStatus)
+    });
+
     socket.on("disconnect", () => {
         console.log(`${player}'s client disconnected`);
+        delete gameroom[player];
+        console.log('GAMEROOM:', gameroom)
     });
 });
 
