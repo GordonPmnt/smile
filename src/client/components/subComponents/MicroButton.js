@@ -31,6 +31,7 @@ class MicroButton extends React.Component {
         return (
             <div style={this.state.button}
             audio={audio}
+            
             >
                 <p style={this.state.text}>MICRO</p>
             </div>
