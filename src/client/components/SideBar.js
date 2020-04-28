@@ -4,7 +4,6 @@ import DecksList from './DecksList';
 import Gallery from './Gallery';
 import LiveChat from "./LiveChat";
 import ChatButton from './subComponents/ChatButton';
-import socketIOClient from 'socket.io-client';
 
 
 class SideBar extends React.Component {
@@ -22,9 +21,6 @@ class SideBar extends React.Component {
         },
     };
 
-    socketEndpoint = `http://13.59.241.170:8080/?name=${this.props.player}`;
-    socket = socketIOClient(this.socketEndpoint);
-
     handleChatDisplay = () => {
         this.setState(prevState => ({
             chatEnabled: !prevState.chatEnabled
@@ -33,7 +29,8 @@ class SideBar extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        this.socket.emit(
+        const { socket } = this.props
+        socket.emit(
             'chat message',
             { 
                 sender: this.props.player,
@@ -52,7 +49,8 @@ class SideBar extends React.Component {
     }
 
     componentDidMount = () => {
-        this.socket.on(
+        const { socket } = this.props
+        socket.on(
             'chat message', 
             msg => {
                 this.setState({

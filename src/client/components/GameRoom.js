@@ -3,6 +3,8 @@ import SideBar from "./SideBar";
 import OpponentCam from "./OpponentCam";
 import { ThemeContext, themes } from './styles/ThemeContext';
 import axios from 'axios';
+import socketIOClient from 'socket.io-client';
+import { config } from '../../config';
 
 
 class GameRoom extends React.Component {
@@ -25,6 +27,8 @@ class GameRoom extends React.Component {
         },
     }
 
+    socketEndpoint = `${config.socket.local}?name=${this.props.player}`;
+    socket = socketIOClient(this.socketEndpoint);
     toggleActivity = () => {
         this.setState( prevState => ({
             userIsActive : !prevState.userIsActive
@@ -138,7 +142,8 @@ class GameRoom extends React.Component {
                         handleEndOfturn={this.handleEndOfturn}
                         activeJoke={activeJoke}
                     />
-                    <SideBar 
+                    <SideBar
+                        socket={this.socket} 
                         getChuckJoke={this.getChuckJoke}
                         getDarkJoke={this.getDarkJoke}
                         getRandomJoke={this.getRandomJoke}
