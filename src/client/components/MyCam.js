@@ -6,6 +6,7 @@ import { ThemeContext } from './styles/ThemeContext';
  
     
 class MyCam extends React.Component {
+    
     styles = {
         cam: {
             display: 'flex',
@@ -14,11 +15,16 @@ class MyCam extends React.Component {
             width: '80%',
             borderRadius: '10px',
             border: 'solid 3px',
+        },
+
+        switchMicro: {
+            border: 'solid 10px',
         }
     }
     
     render() {
         const { mirrored } = this.props;
+        const { audio } = this.props;
         
         return (
             <ThemeContext.Consumer>
@@ -29,11 +35,13 @@ class MyCam extends React.Component {
                     mirrored={mirrored}
                     />
                     <CamButton
-                        // onclick={this.switchCam}
-                    
+                        //onclick={this.switchCam}
+                        // audio={audio}
                     />
+                    
                     <MicroButton
-                        // onclick={this.}
+                        onclick={this.styles.switchMicro}
+                        audio={audio}
                     />
                 </div>
             }
