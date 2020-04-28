@@ -7,6 +7,7 @@ const ChatConversations = ({ chat }) => {
             height: '32vh',
             width: '100%',
             margin: '0px',
+            overflowY: 'scroll',
         },
         chat: {
             display: 'flex',
