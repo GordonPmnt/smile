@@ -9,7 +9,7 @@ import { config } from '../../config';
 
 class GameRoom extends React.Component {
     state = {
-        userIsActive: true,
+        userIsActive: false,
         activeJoke: {
             joke: '',
             answer: '',
@@ -29,6 +29,23 @@ class GameRoom extends React.Component {
 
     socketEndpoint = `${config.socket.local}?name=${this.props.player}`;
     socket = socketIOClient(this.socketEndpoint);
+
+    componentDidMount = () => {
+        const { player } = this.props;
+        this.socket.on(
+            'player status',
+            playerSatus => {
+                if(playerSatus.player !== player) {
+                    this.toggleActivity()
+                };
+            }
+        );
+        // on first connection:
+        this.socket.on(
+            'room', size => { if(size === 1) { this.toggleActivity()} }
+        );
+    };
+
     toggleActivity = () => {
         this.setState( prevState => ({
             userIsActive : !prevState.userIsActive
