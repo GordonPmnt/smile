@@ -27,7 +27,7 @@ class GameRoom extends React.Component {
         },
     }
 
-    socketEndpoint = `${config.socket.local}?name=${this.props.player}`;
+    socketEndpoint = `${config.socket.aws}?name=${this.props.player}`;
     socket = socketIOClient(this.socketEndpoint);
 
     componentDidMount = () => {

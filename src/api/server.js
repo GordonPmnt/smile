@@ -34,6 +34,7 @@ io.on('connection', (socket) => {
         delete gameroom[player];
         console.log('GAMEROOM:', gameroom)
     });
+    
 });
 
 server.listen(config.PORT, () => {
