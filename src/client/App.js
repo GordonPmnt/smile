@@ -4,7 +4,7 @@ import GameRoom from './components/GameRoom';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 
-function App() {
+const App = () => {
   const [ player, setPlayer ] = useState('')
 
   const handlePlayerInput = event => {
@@ -17,7 +17,12 @@ function App() {
       <Switch>
         <Route 
           exact path="/" 
-          render={props => <MainPage {...props} handlePlayerInput={handlePlayerInput} />} 
+          render={props => 
+            <MainPage 
+              {...props} 
+              handlePlayerInput={handlePlayerInput}
+            />
+          } 
         />
         <Route 
           path="/GameRoom" 
