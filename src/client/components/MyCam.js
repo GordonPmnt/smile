@@ -20,6 +20,21 @@ class MyCam extends React.Component {
             border: 'solid 10px',
         }
     }
+
+    componentDidMount = () => {
+        //const myCam = document.getElementById('my-cam');
+        //this.stream = myCam.captureStream();
+        this.handleUserMedia()
+    }
+
+    handleUserMedia = () => {
+        let stream = this.webcam.stream;
+        console.log(stream);
+        if(stream) {
+            let videoTracks = stream.getVideoTracks();
+            console.log(videoTracks)
+        };
+      };
     
     render() {
         const { mirrored } = this.props;
@@ -29,14 +44,14 @@ class MyCam extends React.Component {
             <ThemeContext.Consumer>
             {theme =>
                 <div>
-                    <Webcam 
-                    style={{...this.styles.cam, ...theme.borderColor}}
-                    mirrored={mirrored}
+                    <Webcam
+                        id="my-cam" 
+                        style={{...this.styles.cam, ...theme.borderColor}}
+                        ref={ref => this.webcam = ref}
+                        onUserMedia={this.handleUserMedia}
+                        mirrored={mirrored}
                     />
-                    <CamButton
-                        //onclick={this.switchCam}
-                        // audio={audio}
-                    />
+                    <CamButton />
                     <MicroButton
                         onclick={this.styles.switchMicro}
                         audio={audio}
