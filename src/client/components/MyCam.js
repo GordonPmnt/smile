@@ -6,7 +6,6 @@ import { ThemeContext } from './styles/ThemeContext';
  
     
 class MyCam extends React.Component {
-    
     styles = {
         cam: {
             display: 'flex',
@@ -38,7 +37,6 @@ class MyCam extends React.Component {
                         //onclick={this.switchCam}
                         // audio={audio}
                     />
-                    
                     <MicroButton
                         onclick={this.styles.switchMicro}
                         audio={audio}

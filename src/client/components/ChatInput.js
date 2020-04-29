@@ -19,7 +19,7 @@ const ChatInput = ({ handleSubmit, handleMessage, message }) => {
                 type="text-area" 
                 name="message"
                 value={message}
-                onChange={(event) => handleMessage(event)}
+                onChange={event => handleMessage(event)}
             />
         </form>
     );

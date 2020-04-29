@@ -147,7 +147,6 @@ class GameRoom extends React.Component {
         })
     }
    
-    
     render() {
         const { theme, userIsActive, activeJoke } = this.state;
         const { player } = this.props;
