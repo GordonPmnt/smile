@@ -181,6 +181,7 @@ class GameRoom extends React.Component {
                     <OpponentCam 
                         handleEndOfturn={this.handleEndOfturn}
                         activeJoke={activeJoke}
+                        userIsActive={userIsActive}
                         gameroom={gameroom}
                         socket={this.socket}
                         myPeerConnection={myPeerConnection}

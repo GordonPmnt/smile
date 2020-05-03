@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const ScreenshotButton = ({ handleEndOfturn, theme }) => {
+const ScreenshotButton = ({ handleEndOfturn, theme, userIsActive }) => {
     const styles = {
         container: {
             display: 'flex',
@@ -23,7 +23,7 @@ const ScreenshotButton = ({ handleEndOfturn, theme }) => {
             <img 
                 src={require('../../img/cam-moustache.png')}
                 alt="Screenshot button"
-                onClick={() => handleEndOfturn()}
+                onClick={userIsActive ? () => handleEndOfturn() : false} //here: should replace false by screenshot only 
                 style={{...styles.button, ...theme.borderColor}}
             />
         </div>

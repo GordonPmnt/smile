@@ -5,7 +5,8 @@ import { ThemeContext } from './styles/ThemeContext';
 import OnlineUser from "./OnlineUser";
 
 
-const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConnection, player }) => {
+const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConnection, player, userIsActive }) => {   
+    
     const styles = {
         container: {
             margin: '5vh 5vh 5vh 5vh',
@@ -95,7 +96,8 @@ const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConn
                                 activeJoke={activeJoke}
                             />
                         }
-                            <ScreenshotButton 
+                            <ScreenshotButton
+                                userIsActive={userIsActive}
                                 handleEndOfturn={handleEndOfturn}
                                 theme={theme}
                             />
