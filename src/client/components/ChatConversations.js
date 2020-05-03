@@ -23,7 +23,7 @@ const ChatConversations = ({ chat }) => {
         <div style={styles.container}>
             {chat.map(msg =>
                 <div 
-                    key={msg.id + msg.sender}
+                    key={msg.id + msg.socketId}
                     style={styles.chat}
                 >
                     <p style={styles.p}>{msg.sender}:</p>
