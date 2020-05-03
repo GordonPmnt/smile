@@ -5,7 +5,7 @@ import { ThemeContext } from './styles/ThemeContext';
 import OnlineUser from "./OnlineUser";
 
 
-const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConnection }) => {
+const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConnection, player }) => {
     const styles = {
         container: {
             margin: '5vh 5vh 5vh 5vh',
@@ -71,7 +71,7 @@ const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConn
         {theme => 
             <>
                 <ul style={styles.users}>
-                    {activePlayers.map(
+                    {activePlayers.filter(name => name !== player).map(
                         name => <OnlineUser 
                             key={gameroom[name]} 
                             socketId={gameroom[name]}
