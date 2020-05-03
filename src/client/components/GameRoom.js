@@ -71,8 +71,9 @@ class GameRoom extends React.Component {
 
     handleUserMedia = stream => {
         if(stream) {
-            stream.getTracks().forEach(track => this.props.myPeerConnection.addTrack(track, stream));
-            //this.setState({ videoTracks })
+            stream.getTracks().forEach(
+                track => this.props.myPeerConnection.addTrack(track, stream)
+            );
         };
       };
 

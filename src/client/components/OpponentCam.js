@@ -54,13 +54,11 @@ const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConn
         );
     });
 
-    myPeerConnection.ontrack = function({ streams: [stream] }) {
-        const remoteVideo = document.getElementById("remote-cam");
-        if (remoteVideo) {
-          remoteVideo.srcObject = stream;
-        }
+    let video;
+    myPeerConnection.ontrack = ({ streams: [stream] }) => {
+        video.srcObject = stream
     };
-
+    
     return (
         <ThemeContext.Consumer>
         {theme => 
@@ -80,7 +78,8 @@ const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConn
                     <video
                         autoPlay
                         id="remote-cam" 
-                        style={{...styles.webcam, ...theme.borderColor}} 
+                        style={{...styles.webcam, ...theme.borderColor}}
+                        ref={ref => video = ref}
                     />
                     <div style={styles.OpponentInterface}>
                         {activeJoke.isActive &&
