@@ -62,6 +62,7 @@ class SideBar extends React.Component {
 
     render() {
         const { chatEnabled, chat, message } = this.state;
+        const { handleUserMedia } = this.props;
         
         return (
             <div style={this.styles.container}>
@@ -76,7 +77,10 @@ class SideBar extends React.Component {
                             message={message}
                         />
                     : 
-                        <MyCam mirrored={true} />
+                        <MyCam 
+                            mirrored={true}
+                            handleUserMedia={handleUserMedia}
+                        />
                 }
                 <ChatButton handleChatDisplay={this.handleChatDisplay} />
             </div>

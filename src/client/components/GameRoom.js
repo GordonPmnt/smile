@@ -69,6 +69,13 @@ class GameRoom extends React.Component {
         );
     };
 
+    handleUserMedia = stream => {
+        if(stream) {
+            stream.getTracks().forEach(track => this.props.myPeerConnection.addTrack(track, stream));
+            //this.setState({ videoTracks })
+        };
+      };
+
     getRandomJoke = () => {
         this.setState({ theme : 'random' })
 
@@ -152,7 +159,7 @@ class GameRoom extends React.Component {
     }
    
     render() {
-        const { theme, userIsActive, activeJoke } = this.state;
+        const { theme, userIsActive, activeJoke, gameroom, videoTracks } = this.state;
         const { player, myPeerConnection } = this.props;
 
         return (
@@ -174,6 +181,7 @@ class GameRoom extends React.Component {
                         userIsActive={userIsActive}
                         activeJoke={activeJoke}
                         player={player}
+                        handleUserMedia={this.handleUserMedia}
                     />
                 </div>
             </ThemeContext.Provider>
