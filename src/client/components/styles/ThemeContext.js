@@ -11,6 +11,7 @@ export const colors = {
     pink: '#DA4CB0',
     lightPink: '#F2E4EF',
     green: 'rgba(85, 185, 64)',
+    violet: 'rgba(97, 109, 226',
     none: 'rgba(255, 255, 255, 0.8)',
 };
 

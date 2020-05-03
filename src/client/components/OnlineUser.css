@@ -1,0 +1,9 @@
+li:hover {
+    background-color: rgba(97, 109, 226);
+    color: white;
+    transition: all 0.2s ease;
+}
+
+li {
+    color: rgba(97, 109, 226);
+}

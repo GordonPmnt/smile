@@ -1,4 +1,7 @@
 import React from 'react';
+import { colors } from './styles/ThemeContext';
+import './OnlineUser.css'
+
 
 const OnlineUser = ({ name, socket, socketId, myPeerConnection }) => {
     const { RTCSessionDescription } = window;
@@ -14,8 +17,18 @@ const OnlineUser = ({ name, socket, socketId, myPeerConnection }) => {
        }
     
     return (
-        <li onClick={() => callUser(socketId)} >
-            {name} - {socketId}
+        <li 
+            onClick={() => callUser(socketId)} 
+            style={{
+                listStyleType: 'none',
+                padding: '2px 10px 2px 10px',
+                border: `2px solid ${colors.violet}`,
+                borderRadius: '10px',
+                cursor: 'pointer',
+                marginLeft: '5px',
+            }}
+        >
+            Appeler {name}
         </li>
     )
 }

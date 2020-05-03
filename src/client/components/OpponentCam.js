@@ -29,6 +29,13 @@ const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConn
             borderRadius: '15px',
             border: 'solid 5px',
         },
+        users: {
+            display: 'flex',
+            flexDirection: 'row',
+            position: 'absolute', 
+            top: '90vh',
+            right: '10vw',
+        }
     };
 
     const activePlayers = [...Object.keys(gameroom)]
@@ -63,7 +70,7 @@ const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConn
         <ThemeContext.Consumer>
         {theme => 
             <>
-                <ul style={{ position: 'absolute', top: '5vh', left: '5vw' }}>
+                <ul style={styles.users}>
                     {activePlayers.map(
                         name => <OnlineUser 
                             key={gameroom[name]} 
