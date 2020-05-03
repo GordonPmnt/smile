@@ -10,6 +10,7 @@ const gameroom = {}
 io.on('connection', (socket) => {
     
     let player = socket.request._query.name;
+    console.log(`${player}'s client connected`);
     gameroom[player] = socket.id;
     console.log(gameroom)
 
