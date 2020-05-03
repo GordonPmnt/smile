@@ -46,7 +46,12 @@ const MainPage = ({ history, handlePlayerInput }) => {
       <form onSubmit={handleSubmit} style={styles.form}>
         <label htmlFor="player">
           Joueur: 
-          <input type="text" name="player" onChange={handlePlayerInput} />
+          <input 
+            type="text" 
+            name="player" 
+            onChange={handlePlayerInput}
+            required
+          />
         </label>
         <input type="submit" value="Jouer"/>
       </form>
