@@ -35,7 +35,7 @@ const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConn
 
     const { RTCSessionDescription } = window;
     
-    socket.on("call-made", async data => {
+    socket && socket.on("call-made", async data => {
         await myPeerConnection.setRemoteDescription(
           new RTCSessionDescription(data.offer)
         );
@@ -48,7 +48,7 @@ const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConn
         });
     });
 
-    socket.on("answer-made", async data => {
+    socket && socket.on("answer-made", async data => {
         await myPeerConnection.setRemoteDescription(
           new RTCSessionDescription(data.answer)
         );
@@ -65,11 +65,11 @@ const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConn
             <>
                 <ul style={{ position: 'absolute', top: '5vh', left: '5vw' }}>
                     {activePlayers.map(
-                        player => <OnlineUser 
-                            key={gameroom[player]} 
-                            socketId={gameroom[player]}
+                        name => <OnlineUser 
+                            key={gameroom[name]} 
+                            socketId={gameroom[name]}
                             myPeerConnection={myPeerConnection}
-                            name={player}
+                            name={name}
                             socket={socket}
                         />
                     )}

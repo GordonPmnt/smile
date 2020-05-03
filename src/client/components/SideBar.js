@@ -9,7 +9,6 @@ import ChatButton from './subComponents/ChatButton';
 class SideBar extends React.Component {
     state = {
         chatEnabled: false,
-        chat: [],
         message: '',
     };
 
@@ -48,22 +47,10 @@ class SideBar extends React.Component {
         })
     }
 
-    componentDidMount = () => {
-        const { socket } = this.props
-        socket.on(
-            'chat message', 
-            msg => {
-                this.setState({
-                    chat: [...this.state.chat, msg]
-                })
-            }
-        )
-    }
-
     render() {
-        const { chatEnabled, chat, message } = this.state;
-        const { handleUserMedia } = this.props;
-        
+        const { chatEnabled, message } = this.state;
+        const { handleUserMedia, chat } = this.props;
+    
         return (
             <div style={this.styles.container}>
                 <DecksList {...this.props} />

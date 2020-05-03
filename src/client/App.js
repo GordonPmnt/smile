@@ -10,7 +10,8 @@ const App = () => {
   const [ myPeerConnection, setMyPeerConnection ] = useState(new RTCPeerConnection())
 
   const handlePlayerInput = event => {
-    setPlayer(event.target.value)
+    let { value } = event.target
+    setPlayer(value)
   }
 
   return (
@@ -27,8 +28,9 @@ const App = () => {
         />
         <Route 
           path="/GameRoom" 
-          render={() => 
+          render={props => 
             <GameRoom 
+              {...props}
               player={player} 
               myPeerConnection={myPeerConnection} 
             />

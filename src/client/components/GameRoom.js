@@ -15,6 +15,7 @@ class GameRoom extends React.Component {
             answer: '',
             isActive: false,
         },
+        chat: [],
         theme: 'none',
         gameroom: {},
     };
@@ -28,26 +29,35 @@ class GameRoom extends React.Component {
         },
     }
 
-    socketEndpoint = `${config.socket.aws}?name=${this.props.player}`;
-    socket = socketIOClient(this.socketEndpoint);
-
     componentDidMount = () => {
-        const { player } = this.props;
-        this.socket.on(
-            'player status',
-            playerSatus => {
-                if(playerSatus.player !== player) {
-                    this.toggleActivity()
-                };
-            }
-        );
-        // on first connection:
-        this.socket.on(
-            'room-size', size => { if(size === 1) { this.toggleActivity()} }
-        );
-        this.socket.on(
-            'update-user-list', gameroom => this.setState({ gameroom })
-        );
+        if(this.props.player) {
+            const { player } = this.props;
+            this.socketEndpoint = `${config.socket.local}?name=${this.props.player}`;
+            this.socket = socketIOClient(this.socketEndpoint);
+            this.socket.on(
+                'player status',
+                playerSatus => {
+                    if(playerSatus.player !== player) {
+                        this.toggleActivity()
+                    };
+                }
+            );
+            // on first connection:
+            this.socket.on(
+                'room-size', size => { if(size === 1) { this.toggleActivity()} }
+            );
+            this.socket.on(
+                'update-user-list', gameroom => this.setState({ gameroom })
+            );
+            this.socket.on(
+                'chat message', 
+                msg => {
+                    this.setState({
+                        chat: [...this.state.chat, msg]
+                    })
+                }
+            )
+        };
     };
 
     toggleActivity = () => {
@@ -75,7 +85,7 @@ class GameRoom extends React.Component {
                 track => this.props.myPeerConnection.addTrack(track, stream)
             );
         };
-      };
+    };
 
     getRandomJoke = () => {
         this.setState({ theme : 'random' })
@@ -160,8 +170,10 @@ class GameRoom extends React.Component {
     }
    
     render() {
-        const { theme, userIsActive, activeJoke, gameroom, videoTracks } = this.state;
-        const { player, myPeerConnection } = this.props;
+        const { theme, userIsActive, activeJoke, gameroom, chat } = this.state;
+        const { player, myPeerConnection, history } = this.props;
+
+        if(!player) { history.push('/') }        
 
         return (
             <ThemeContext.Provider value={themes[theme]}>
@@ -172,6 +184,7 @@ class GameRoom extends React.Component {
                         gameroom={gameroom}
                         socket={this.socket}
                         myPeerConnection={myPeerConnection}
+                        player={player}
                     />
                     <SideBar
                         socket={this.socket} 
@@ -183,6 +196,7 @@ class GameRoom extends React.Component {
                         activeJoke={activeJoke}
                         player={player}
                         handleUserMedia={this.handleUserMedia}
+                        chat={chat}
                     />
                 </div>
             </ThemeContext.Provider>
