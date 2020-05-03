@@ -1,7 +1,7 @@
 import React from "react";
 
 
-function ScreenShot() {
+const ScreenShot = () => {
     const styles = {
         container: {
             width: '30%',

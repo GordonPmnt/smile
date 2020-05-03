@@ -3,17 +3,21 @@ import SideBar from "./SideBar";
 import OpponentCam from "./OpponentCam";
 import { ThemeContext, themes } from './styles/ThemeContext';
 import axios from 'axios';
+import socketIOClient from 'socket.io-client';
+import { config } from '../../config';
 
 
 class GameRoom extends React.Component {
     state = {
-        userIsActive: true,
+        userIsActive: false, //initial must always be false
         activeJoke: {
             joke: '',
             answer: '',
             isActive: false,
         },
+        chat: [],
         theme: 'none',
+        gameroom: {},
     };
 
     styles = {
@@ -25,12 +29,62 @@ class GameRoom extends React.Component {
         },
     }
 
+    componentDidMount = () => {
+        if(this.props.player) {
+            const { player } = this.props;
+            this.socketEndpoint = `${config.socket.aws}?name=${this.props.player}`;
+            this.socket = socketIOClient(this.socketEndpoint);
+            this.socket.on(
+                'player status',
+                playerSatus => {
+                    if(playerSatus.player !== player) {
+                        this.toggleActivity()
+                    };
+                }
+            );
+            // on first connection:
+            this.socket.on(
+                'room-size', size => { if(size === 1) { this.toggleActivity()} }
+            );
+            this.socket.on(
+                'update-user-list', gameroom => this.setState({ gameroom })
+            );
+            this.socket.on(
+                'chat message', 
+                msg => {
+                    this.setState({
+                        chat: [...this.state.chat, msg]
+                    })
+                }
+            )
+        };
+    };
+
     toggleActivity = () => {
         this.setState( prevState => ({
             userIsActive : !prevState.userIsActive
-        }))
-        this.setState({ activeJoke: { isActive: false } })
-        this.setState({ theme: 'none' })
+        }));
+        this.setState({ activeJoke: { isActive: false } });
+        this.setState({ theme: 'none' });
+    };
+
+    handleEndOfturn = () => {
+        const { userIsActive } = this.state;
+        const { player } = this.props;
+
+        this.toggleActivity()
+        this.socket.emit(
+            'player status',
+            { player, status: userIsActive }
+        );
+    };
+
+    handleUserMedia = stream => {
+        if(stream) {
+            stream.getTracks().forEach(
+                track => this.props.myPeerConnection.addTrack(track, stream)
+            );
+        };
     };
 
     getRandomJoke = () => {
@@ -115,24 +169,35 @@ class GameRoom extends React.Component {
         })
     }
    
-    
     render() {
-        const { theme, userIsActive, activeJoke } = this.state;
+        const { theme, userIsActive, activeJoke, gameroom, chat } = this.state;
+        const { player, myPeerConnection, history } = this.props;
+
+        if(!player) { history.push('/') }        
 
         return (
             <ThemeContext.Provider value={themes[theme]}>
                 <div style={this.styles.container} >
                     <OpponentCam 
-                        toggleActivity={this.toggleActivity}
+                        handleEndOfturn={this.handleEndOfturn}
                         activeJoke={activeJoke}
+                        userIsActive={userIsActive}
+                        gameroom={gameroom}
+                        socket={this.socket}
+                        myPeerConnection={myPeerConnection}
+                        player={player}
                     />
-                    <SideBar 
+                    <SideBar
+                        socket={this.socket} 
                         getChuckJoke={this.getChuckJoke}
                         getDarkJoke={this.getDarkJoke}
                         getRandomJoke={this.getRandomJoke}
                         getSexJoke={this.getSexJoke}
                         userIsActive={userIsActive}
                         activeJoke={activeJoke}
+                        player={player}
+                        handleUserMedia={this.handleUserMedia}
+                        chat={chat}
                     />
                 </div>
             </ThemeContext.Provider>

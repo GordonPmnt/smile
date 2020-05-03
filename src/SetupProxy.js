@@ -11,25 +11,22 @@ module.exports = function(app) {
   app.use(
     '/sex',
     createProxyMiddleware({
-      target: 'http://localhost:8080/api',
+      target: 'http://13.59.241.170:8080/api',
       changeOrigin: true,
-      logLevel: 'debug',
     })
   );
   app.use(
     '/dark',
     createProxyMiddleware({
-      target: 'http://localhost:8080/api',
+      target: 'http://13.59.241.170:8080/api',
       changeOrigin: true,
-      logLevel: 'debug',
     })
   );
   app.use(
     '/chuck',
     createProxyMiddleware({
-      target: 'http://localhost:8080/api',
+      target: 'http://13.59.241.170:8080/api',
       changeOrigin: true,
-      logLevel: 'debug',
     })
   );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const NextButton = ({ toggleActivity, daddy }) => {
+const NextButton = ({ handleEndOfturn, daddy }) => {
     const styles = {
         button: {
             display: 'flex',
@@ -22,7 +22,7 @@ const NextButton = ({ toggleActivity, daddy }) => {
     }
 
     return (
-        <div style={styles.button} onClick={() => toggleActivity()}>
+        <div style={styles.button} onClick={() => handleEndOfturn()}>
             <img 
                 src={daddy} 
                 alt="Next Logo" 

@@ -2,21 +2,32 @@ import React from "react";
 import ChatConversations from "./ChatConversations";
 import ChatInput from "./ChatInput";
 
-const LiveChat = () => {
+
+const LiveChat = ({ handleSubmit, handleMessage, chat, message  }) => {
     const styles = {
         container: {
-            backgroundColor: '#59BBF3',
-            height: '30vh',
-            width: '100%',
-            margin: '0px',
+            display: 'flex',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            width: '80%',
+            border: 'solid 2px rgb(97, 109, 226)',
+            borderRadius: '5px',
+            flexDirection: 'column',
         },
     }
+
     return (
         <div style={styles.container}>
-            <ChatConversations />
-            <ChatInput />
+            <ChatConversations
+                chat={chat}
+            />
+            <ChatInput 
+                handleSubmit={handleSubmit}
+                handleMessage={handleMessage}
+                message={message}
+            />
         </div>
     );
-}
+};
 
 export default LiveChat;

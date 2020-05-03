@@ -1,17 +1,28 @@
 import React from "react";
 
-export default function ChatInput() {
+
+const ChatInput = ({ handleSubmit, handleMessage, message }) => {
     const styles = {
-        chatInputBox: {
-            backgroundColor: 'grey',
-            height: '20%',
+        input: {
             width: '100%',
-            margin: '0px',
-        },
+            borderRadius: '5px',
+            border: 'solid 0.5px rgb(97, 109, 226)'
+        }
     }
+
     return (
-        <div style={styles.chatInputBox}>
-            -> .... chat input
-        </div>
+        <form 
+            onSubmit={event => handleSubmit(event)}
+        >
+            <input 
+                style={styles.input}
+                type="text-area" 
+                name="message"
+                value={message}
+                onChange={event => handleMessage(event)}
+            />
+        </form>
     );
-}
+};
+
+export default ChatInput;
