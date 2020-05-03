@@ -32,7 +32,7 @@ class GameRoom extends React.Component {
     componentDidMount = () => {
         if(this.props.player) {
             const { player } = this.props;
-            this.socketEndpoint = `${config.socket.local}?name=${this.props.player}`;
+            this.socketEndpoint = `${config.socket.aws}?name=${this.props.player}`;
             this.socket = socketIOClient(this.socketEndpoint);
             this.socket.on(
                 'player status',
