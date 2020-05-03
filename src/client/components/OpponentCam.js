@@ -2,10 +2,10 @@ import React from "react";
 import SelectedJoke from "./SelectedJoke";
 import ScreenshotButton from './subComponents/ScreenshotButton';
 import { ThemeContext } from './styles/ThemeContext';
-import Webcam from "react-webcam";
+import OnlineUser from "./OnlineUser";
 
 
-const OpponentCam = ({ handleEndOfturn, activeJoke }) => {
+const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConnection }) => {
     const styles = {
         container: {
             margin: '5vh 5vh 5vh 5vh',
@@ -29,26 +29,73 @@ const OpponentCam = ({ handleEndOfturn, activeJoke }) => {
             borderRadius: '15px',
             border: 'solid 5px',
         },
-    };  
+    };
+
+    const activePlayers = [...Object.keys(gameroom)]
+
+    const { RTCSessionDescription } = window;
+    
+    socket.on("call-made", async data => {
+        await myPeerConnection.setRemoteDescription(
+          new RTCSessionDescription(data.offer)
+        );
+        const answer = await myPeerConnection.createAnswer();
+        await myPeerConnection.setLocalDescription(new RTCSessionDescription(answer));
+
+        socket.emit("make-answer", {
+          answer,
+          to: data.socket
+        });
+    });
+
+    socket.on("answer-made", async data => {
+        await myPeerConnection.setRemoteDescription(
+          new RTCSessionDescription(data.answer)
+        );
+    });
+
+    myPeerConnection.ontrack = function({ streams: [stream] }) {
+        const remoteVideo = document.getElementById("remote-cam");
+        if (remoteVideo) {
+          remoteVideo.srcObject = stream;
+        }
+    };
 
     return (
         <ThemeContext.Consumer>
         {theme => 
-            <div  style={{...styles.container}}>
-                <Webcam style={{...styles.webcam, ...theme.borderColor}} />
-                <div style={styles.OpponentInterface}>
-                    {activeJoke.isActive &&
-                        <SelectedJoke 
-                            handleEndOfturn={handleEndOfturn}
-                            activeJoke={activeJoke}
+            <>
+                <ul style={{ position: 'absolute', top: '5vh', left: '5vw' }}>
+                    {activePlayers.map(
+                        player => <OnlineUser 
+                            key={gameroom[player]} 
+                            socketId={gameroom[player]}
+                            myPeerConnection={myPeerConnection}
+                            name={player}
+                            socket={socket}
                         />
-                    }
-                        <ScreenshotButton 
-                            handleEndOfturn={handleEndOfturn}
-                            theme={theme}
-                        />
+                    )}
+                </ul>
+                <div  style={{...styles.container}}>
+                    <video
+                        autoPlay
+                        id="remote-cam" 
+                        style={{...styles.webcam, ...theme.borderColor}} 
+                    />
+                    <div style={styles.OpponentInterface}>
+                        {activeJoke.isActive &&
+                            <SelectedJoke 
+                                handleEndOfturn={handleEndOfturn}
+                                activeJoke={activeJoke}
+                            />
+                        }
+                            <ScreenshotButton 
+                                handleEndOfturn={handleEndOfturn}
+                                theme={theme}
+                            />
+                    </div>
                 </div>
-            </div>
+            </>
         }
         </ThemeContext.Consumer>
     );

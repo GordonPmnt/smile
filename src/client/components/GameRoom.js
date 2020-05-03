@@ -153,7 +153,7 @@ class GameRoom extends React.Component {
    
     render() {
         const { theme, userIsActive, activeJoke } = this.state;
-        const { player } = this.props;
+        const { player, myPeerConnection } = this.props;
 
         return (
             <ThemeContext.Provider value={themes[theme]}>
@@ -163,6 +163,7 @@ class GameRoom extends React.Component {
                         activeJoke={activeJoke}
                         gameroom={gameroom}
                         socket={this.socket}
+                        myPeerConnection={myPeerConnection}
                     />
                     <SideBar
                         socket={this.socket} 
