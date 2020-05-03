@@ -5,11 +5,12 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 
 const App = () => {
-  const [ player, setPlayer ] = useState('')
+  const { RTCPeerConnection } = window;
+  const [ player, setPlayer ] = useState('');
+  const [ myPeerConnection, setMyPeerConnection ] = useState(new RTCPeerConnection())
 
   const handlePlayerInput = event => {
-    let { value } = event.target
-    setPlayer(value)
+    setPlayer(event.target.value)
   }
 
   return (
@@ -26,7 +27,12 @@ const App = () => {
         />
         <Route 
           path="/GameRoom" 
-          render={() => <GameRoom player={player} />}
+          render={() => 
+            <GameRoom 
+              player={player} 
+              myPeerConnection={myPeerConnection} 
+            />
+          }
         />
       </Switch>
     </Router>

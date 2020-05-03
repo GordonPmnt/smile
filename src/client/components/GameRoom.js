@@ -16,6 +16,7 @@ class GameRoom extends React.Component {
             isActive: false,
         },
         theme: 'none',
+        gameroom: {},
     };
 
     styles = {
@@ -42,7 +43,10 @@ class GameRoom extends React.Component {
         );
         // on first connection:
         this.socket.on(
-            'room', size => { if(size === 1) { this.toggleActivity()} }
+            'room-size', size => { if(size === 1) { this.toggleActivity()} }
+        );
+        this.socket.on(
+            'update-user-list', gameroom => this.setState({ gameroom })
         );
     };
 
@@ -157,6 +161,8 @@ class GameRoom extends React.Component {
                     <OpponentCam 
                         handleEndOfturn={this.handleEndOfturn}
                         activeJoke={activeJoke}
+                        gameroom={gameroom}
+                        socket={this.socket}
                     />
                     <SideBar
                         socket={this.socket} 
