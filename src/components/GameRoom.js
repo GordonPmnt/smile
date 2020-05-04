@@ -92,18 +92,19 @@ class GameRoom extends React.Component {
     
     componentDidMount() {
         console.log('I have just mounted')
-    }
-
-    componentDidUpdate() {
-        console.log('I have just updated')
-    }
-
-    render() {
-        const { theme, userIsActive, activeJoke } = this.state;
-
         if (this.state.userIsActive) {
             this.notify()
-        }
+        } 
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.userIsActive !== this.state.userIsActive && this.state.userIsActive) {
+            this.notify()
+          }
+    } 
+
+    render() {
+        const { theme, userIsActive, activeJoke } = this.state;  
 
         return (
             <ThemeContext.Provider value={themes[theme]}>
