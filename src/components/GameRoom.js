@@ -121,7 +121,7 @@ class GameRoom extends React.Component {
                         userIsActive={userIsActive}
                         activeJoke={activeJoke}
                     />
-                    <ToastContainer style={this.toastStyles.customStyle} />
+                    <ToastContainer />
                 </div>
             </ThemeContext.Provider>
         )
