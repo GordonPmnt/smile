@@ -22,10 +22,11 @@ const ChatConversations = ({ chat }) => {
     
     return (
         <div style={styles.container}>
-            {chat.map(msg =>
+            {chat.map((msg, i) =>
                 <div 
                     key={msg.id + msg.sender}
                     style={styles.chat}
+                    className={ i === (chat.length - 1) && 'lastMessage'}
                 >
                     <p style={styles.p}>{msg.sender}:</p>
                     <p style={styles.p}>{msg.message}</p> 
