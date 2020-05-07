@@ -1,19 +1,33 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
 module.exports = function(app) {
   app.use(
-    '/api',
+    '/joke',
     createProxyMiddleware({
-      target: 'https://blague.xyz',
+      target: 'https://blague.xyz/api',
       changeOrigin: true,
       logLevel: 'debug',
     })
   );
   app.use(
-    '/chuckapi',
+    '/sex',
     createProxyMiddleware({
-      target: 'https://www.chucknorrisfacts.fr/api/get',
+      target: 'http://13.59.241.170:8080/api',
       changeOrigin: true,
-      logLevel: 'debug',
+    })
+  );
+  app.use(
+    '/dark',
+    createProxyMiddleware({
+      target: 'http://13.59.241.170:8080/api',
+      changeOrigin: true,
+    })
+  );
+  app.use(
+    '/chuck',
+    createProxyMiddleware({
+      target: 'http://13.59.241.170:8080/api',
+      changeOrigin: true,
     })
   );
 };
+
