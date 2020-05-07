@@ -6,6 +6,10 @@ import { ThemeContext } from './styles/ThemeContext';
  
     
 class MyCam extends React.Component {
+    state = {
+        microEnabled: false,
+    }
+    
     styles = {
         cam: {
             display: 'flex',
@@ -15,14 +19,17 @@ class MyCam extends React.Component {
             borderRadius: '10px',
             border: 'solid 3px',
         },
+    }
 
-        switchMicro: {
-            border: 'solid 10px',
-        }
+    toggleMicro = () => {
+        this.setState( prevState => ({
+            microEnabled : !prevState.microEnabled
+        }));
     }
     
     render() {
-        const { mirrored, handleUserMedia, audio } = this.props;
+        const { mirrored, handleUserMedia } = this.props;
+        const { microEnabled } = this.state
         
         return (
             <ThemeContext.Consumer>
@@ -34,11 +41,12 @@ class MyCam extends React.Component {
                         ref={ref => this.webcam = ref}
                         onUserMedia={() => handleUserMedia(this.webcam.stream)}
                         mirrored={mirrored}
+                        audio={microEnabled}
                     />
                     <CamButton />
                     <MicroButton
-                        onclick={this.styles.switchMicro}
-                        audio={audio}
+                        toggleMicro={this.toggleMicro}
+                        microEnabled={microEnabled}
                     />
                 </div>
             }
