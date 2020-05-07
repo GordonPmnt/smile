@@ -8,6 +8,7 @@ import { ThemeContext } from './styles/ThemeContext';
 class MyCam extends React.Component {
     state = {
         microEnabled: false,
+        videoEnabled: true,
     }
     
     styles = {
@@ -26,10 +27,16 @@ class MyCam extends React.Component {
             microEnabled : !prevState.microEnabled
         }));
     }
+
+    toggleVideo = () => {
+        this.setState( prevState => ({
+            videoEnabled : !prevState.videoEnabled
+        }));
+    }
     
     render() {
         const { mirrored, handleUserMedia } = this.props;
-        const { microEnabled } = this.state
+        const { microEnabled, videoEnabled } = this.state
         
         return (
             <ThemeContext.Consumer>
@@ -43,7 +50,10 @@ class MyCam extends React.Component {
                         mirrored={mirrored}
                         audio={microEnabled}
                     />
-                    <CamButton />
+                    <CamButton 
+                        toggleVideo={this.toggleVideo}
+                        videoEnabled={videoEnabled}
+                    />
                     <MicroButton
                         toggleMicro={this.toggleMicro}
                         microEnabled={microEnabled}
