@@ -63,7 +63,6 @@ class GameRoom extends React.Component {
                 }
             )
             const { RTCSessionDescription } = this.props.window;
-            console.log(RTCSessionDescription)
     
             this.socket.on("call-made", async data => {
                 await this.props.myPeerConnection.setRemoteDescription(

@@ -6,7 +6,7 @@ import OnlineUser from "./OnlineUser";
 
 
 const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConnection, player, userIsActive }) => {   
-    
+    const webcamOff = require('../img/webcam-off.png');
     const styles = {
         container: {
             margin: '5vh 5vh 5vh 5vh',
@@ -27,6 +27,7 @@ const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConn
         webcam: {
             width: '100%',
             margin: 'auto 0',
+            background: `url(${webcamOff}) no-repeat center center`,
             borderRadius: '15px',
             border: 'solid 5px',
         },
@@ -44,7 +45,6 @@ const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConn
     myPeerConnection.ontrack = ({ streams: [stream] }) => {
         video.srcObject = stream
     };
-    
     return (
         <ThemeContext.Consumer>
         {theme => 
