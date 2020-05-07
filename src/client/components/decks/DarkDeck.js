@@ -1,21 +1,30 @@
 import React from "react";
+import { makeStyles } from '@material-ui/core/styles';
 import { colors } from '../styles/ThemeContext';
 
 
+const useStyles = makeStyles({
+    card: {
+        borderRadius: '5px',
+        border: `${colors.pink} 10px solid`,
+        backgroundColor: colors.lightPink,
+        height: '8.5rem',
+        width: '5rem',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        cursor: 'pointer',
+        transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
+            "&:hover": {
+            transform: "scale(1.04)",
+            boxShadow: "0 4px 20px 0 rgba(0,0,0,0.12)",
+        },
+    },
+})
+
 const DarkDeck = ({ getDarkJoke }) => {
     const styles = {
-        card: {
-            borderRadius: '5px',
-            border: `${colors.red} 10px solid`,
-            backgroundColor: colors.lightRed,
-            height: '8.5rem',
-            width: '5rem',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            cursor: 'pointer',
-        },
         label: {
             fontSize: '0.8rem',
             textAlign: 'center',
@@ -27,9 +36,10 @@ const DarkDeck = ({ getDarkJoke }) => {
         }
     }
     const daddy = require('../../img/evil-transparent.png')
+    const classes = useStyles();
 
     return (
-        <div style={styles.card} onClick={() => getDarkJoke && getDarkJoke()}>
+        <div className={classes.card} onClick={() => getDarkJoke && getDarkJoke()}>
             <p style={styles.label}>HUMOUR NOIR...</p>
             <img 
                 src={daddy} 
