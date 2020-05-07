@@ -7,6 +7,7 @@ const ChatConversations = ({ chat }) => {
             height: '32vh',
             width: '100%',
             margin: '0px',
+            overflowY: 'scroll',
         },
         chat: {
             display: 'flex',
@@ -21,10 +22,11 @@ const ChatConversations = ({ chat }) => {
     
     return (
         <div style={styles.container}>
-            {chat.map(msg =>
+            {chat.map((msg, i) =>
                 <div 
                     key={msg.id + msg.socketId}
                     style={styles.chat}
+                    className={ i === (chat.length - 1) && 'lastMessage'}
                 >
                     <p style={styles.p}>{msg.sender}:</p>
                     <p style={styles.p}>{msg.message}</p> 
