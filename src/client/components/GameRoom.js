@@ -5,6 +5,8 @@ import { ThemeContext, themes } from './styles/ThemeContext';
 import axios from 'axios';
 import socketIOClient from 'socket.io-client';
 import { config } from '../../config';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 class GameRoom extends React.Component {
@@ -30,6 +32,9 @@ class GameRoom extends React.Component {
     }
 
     componentDidMount = () => {
+        if (this.state.userIsActive) {
+            this.notify()
+        };
         if(this.props.player) {
             const { player } = this.props;
             this.socketEndpoint = `${config.socket.aws}?name=${this.props.player}`;
@@ -86,6 +91,14 @@ class GameRoom extends React.Component {
             );
         };
     };
+
+    notify = () => toast("It's your turn !");
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.userIsActive !== this.state.userIsActive && this.state.userIsActive) {
+            this.notify()
+          }
+    } 
 
     getRandomJoke = () => {
         this.setState({ theme : 'random' })
@@ -199,6 +212,7 @@ class GameRoom extends React.Component {
                         handleUserMedia={this.handleUserMedia}
                         chat={chat}
                     />
+                    <ToastContainer />
                 </div>
             </ThemeContext.Provider>
         )
