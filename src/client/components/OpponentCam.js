@@ -40,28 +40,6 @@ const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConn
     };
 
     const activePlayers = [...Object.keys(gameroom)]
-
-    const { RTCSessionDescription } = window;
-    
-    socket && socket.on("call-made", async data => {
-        await myPeerConnection.setRemoteDescription(
-          new RTCSessionDescription(data.offer)
-        );
-        const answer = await myPeerConnection.createAnswer();
-        await myPeerConnection.setLocalDescription(new RTCSessionDescription(answer));
-
-        socket.emit("make-answer", {
-          answer,
-          to: data.socket
-        });
-    });
-
-    socket && socket.on("answer-made", async data => {
-        await myPeerConnection.setRemoteDescription(
-          new RTCSessionDescription(data.answer)
-        );
-    });
-
     let video;
     myPeerConnection.ontrack = ({ streams: [stream] }) => {
         video.srcObject = stream

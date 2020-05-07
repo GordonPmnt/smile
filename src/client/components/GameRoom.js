@@ -62,6 +62,27 @@ class GameRoom extends React.Component {
                     })
                 }
             )
+            const { RTCSessionDescription } = this.props.window;
+            console.log(RTCSessionDescription)
+    
+            this.socket.on("call-made", async data => {
+                await this.props.myPeerConnection.setRemoteDescription(
+                  new RTCSessionDescription(data.offer)
+                );
+                const answer = await this.props.myPeerConnection.createAnswer();
+                await this.props.myPeerConnection.setLocalDescription(new RTCSessionDescription(answer));
+        
+                this.socket.emit("make-answer", {
+                  answer,
+                  to: data.socket
+                });
+            });
+        
+            this.socket.on("answer-made", async data => {
+                await this.props.myPeerConnection.setRemoteDescription(
+                  new RTCSessionDescription(data.answer)
+                );
+            });
         };
     };
 
