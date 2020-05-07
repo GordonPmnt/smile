@@ -55,20 +55,18 @@ class SideBar extends React.Component {
             <div style={this.styles.container}>
                 <DecksList {...this.props} />
                 <Gallery />
-                {chatEnabled 
-                    ? 
-                        <LiveChat 
-                            handleSubmit={this.handleSubmit} 
-                            handleMessage={this.handleMessage}
-                            chat={chat} 
-                            message={message}
-                        />
-                    : 
-                        <MyCam 
-                            mirrored={true}
-                            handleUserMedia={handleUserMedia}
-                        />
-                }
+                    <LiveChat 
+                        handleSubmit={this.handleSubmit} 
+                        handleMessage={this.handleMessage}
+                        chatEnabled={chatEnabled}
+                        chat={chat} 
+                        message={message}
+                    /> 
+                    <MyCam 
+                        mirrored={true}
+                        handleUserMedia={handleUserMedia}
+                        chatEnabled={chatEnabled}
+                    />
                 <ChatButton handleChatDisplay={this.handleChatDisplay} />
             </div>
         )

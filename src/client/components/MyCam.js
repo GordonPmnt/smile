@@ -35,13 +35,13 @@ class MyCam extends React.Component {
     }
     
     render() {
-        const { mirrored, handleUserMedia } = this.props;
+        const { mirrored, handleUserMedia, chatEnabled } = this.props;
         const { microEnabled, videoEnabled } = this.state
         
         return (
             <ThemeContext.Consumer>
             {theme =>
-                <div>
+                <div style={chatEnabled ? { display: 'none' } : {}}>
                     <Webcam
                         id="my-cam" 
                         style={{...this.styles.cam, ...theme.borderColor}}
