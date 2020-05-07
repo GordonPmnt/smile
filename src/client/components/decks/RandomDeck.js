@@ -6,8 +6,8 @@ import { colors } from '../styles/ThemeContext';
 const useStyles = makeStyles({
     card: {
         borderRadius: '5px',
-        border: `${colors.pink} 10px solid`,
-        backgroundColor: colors.lightPink,
+        border: `${colors.yellow} 10px solid`,
+        backgroundColor: colors.lightYellow,
         height: '8.5rem',
         width: '5rem',
         display: 'flex',
