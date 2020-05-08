@@ -14,7 +14,9 @@ const OnlineUser = ({ name, socket, socketId, myPeerConnection }) => {
           offer,
           to: socketId
         });
-       }
+    }
+    // Executed when modifiying tracks: eg, mute/unmute
+    myPeerConnection.addEventListener("negotiationneeded", () => callUser(socketId))
     
     return (
         <li 

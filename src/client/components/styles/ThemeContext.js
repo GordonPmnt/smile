@@ -13,6 +13,7 @@ export const colors = {
     green: 'rgba(85, 185, 64)',
     violet: 'rgba(97, 109, 226',
     none: 'rgba(255, 255, 255, 0.8)',
+    transparent: 'rgba(255, 255, 255, 0.4)',
 };
 
 export const themes = {
