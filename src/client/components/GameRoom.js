@@ -112,10 +112,9 @@ class GameRoom extends React.Component {
         };
     };
 
-    notify = () => toast("It's your turn !", {
+    notify = () => toast("A ton tour de jouer!", {
         position: "top-center",
-        autoClose: 3000,
-        type: "dark",
+        type: "info"
     });
 
     componentDidUpdate(prevProps, prevState) {
