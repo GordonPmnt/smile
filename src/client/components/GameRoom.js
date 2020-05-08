@@ -104,7 +104,19 @@ class GameRoom extends React.Component {
         );
     };
 
-    notify = () => toast("It's your turn !");
+    handleUserMedia = stream => {
+        if(stream) {
+            stream.getTracks().forEach(
+                track => this.props.myPeerConnection.addTrack(track, stream)
+            );
+        };
+    };
+
+    notify = () => toast("It's your turn !", {
+        position: "top-center",
+        autoClose: 3000,
+        type: "dark",
+    });
 
     componentDidUpdate(prevProps, prevState) {
         if(prevState.userIsActive !== this.state.userIsActive && this.state.userIsActive) {
