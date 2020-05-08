@@ -41,10 +41,12 @@ const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConn
     };
 
     const activePlayers = [...Object.keys(gameroom)]
+
     let video;
     myPeerConnection.ontrack = ({ streams: [stream] }) => {
         video.srcObject = stream
     };
+    
     return (
         <ThemeContext.Consumer>
         {theme => 

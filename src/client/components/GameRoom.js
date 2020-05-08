@@ -20,6 +20,9 @@ class GameRoom extends React.Component {
         chat: [],
         theme: 'none',
         gameroom: {},
+        microEnabled: false,
+        videoEnabled: true,
+        stream: null,
     };
 
     styles = {
@@ -105,24 +108,61 @@ class GameRoom extends React.Component {
     };
 
     handleUserMedia = stream => {
+        this.setState({ stream })
+        this.getUserMediaTracks(stream)
+    }
+
+    getUserMediaTracks = stream => {
+        const { microEnabled, videoEnabled } = this.state;
+
         if(stream) {
-            stream.getTracks().forEach(
-                track => this.props.myPeerConnection.addTrack(track, stream)
-            );
+            const [ audioTrack, videoTrack ] = stream.getTracks()
+
+            if(microEnabled && videoEnabled) {
+                console.log('audio', 'video')
+                this.props.myPeerConnection.addTrack(audioTrack, stream)
+                this.props.myPeerConnection.addTrack(videoTrack, stream)
+            }
+            if(microEnabled && !videoEnabled) {
+                console.log('audio', '')
+                this.props.myPeerConnection.addTrack(audioTrack, stream)
+            }
+            if(!microEnabled && videoEnabled) {
+                console.log('', 'video')
+                this.props.myPeerConnection.addTrack(videoTrack, stream)
+            }
         };
     };
+
+    resetTracks = stream => {
+        this.props.myPeerConnection.getSenders().forEach(
+            sender => this.props.myPeerConnection.removeTrack(sender)
+        )
+        this.getUserMediaTracks(stream)
+    }
+
+    toggleMicro = () => {
+        this.setState(prevState => ({
+            microEnabled : !prevState.microEnabled
+        }), () => this.resetTracks(this.state.stream))    
+    }
+
+    toggleVideo = () => {
+        this.setState( prevState => ({
+            videoEnabled : !prevState.videoEnabled
+        }), () => this.resetTracks(this.state.stream))
+    }
 
     notify = () => toast("It's your turn !");
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevState.userIsActive !== this.state.userIsActive && this.state.userIsActive) {
+        if(prevState.userIsActive !== this.state.userIsActive && this.state.userIsActive) {
             this.notify()
-          }
+        }
     } 
 
     getRandomJoke = () => {
         this.setState({ theme : 'random' })
-
         axios
           .get('/joke/random', {
               method: 'get',
@@ -146,7 +186,6 @@ class GameRoom extends React.Component {
 
     getChuckJoke = () => {
         this.setState({ theme : 'chuck' })
-
         axios
         .get('/chuck/random')
         .then(response => {
@@ -165,7 +204,6 @@ class GameRoom extends React.Component {
 
     getSexJoke = () => {
         this.setState({ theme : 'sex' })
-
         axios
         .get('/sex/random')
         .then(response => {
@@ -184,7 +222,6 @@ class GameRoom extends React.Component {
 
     getDarkJoke = () => {
         this.setState({ theme : 'dark' })
-
         axios
         .get('/dark/random')
         .then(response => {
@@ -203,9 +240,20 @@ class GameRoom extends React.Component {
     }
    
     render() {
-        const { theme, userIsActive, activeJoke, gameroom, chat } = this.state;
+
+        const { 
+            theme, 
+            userIsActive, 
+            activeJoke, 
+            gameroom, 
+            chat, 
+            microEnabled, 
+            videoEnabled 
+        } = this.state;
+        
         const { player, myPeerConnection, history } = this.props;
 
+        // This forces player to exit room if not named
         if(!player) { history.push('/') }        
 
         return (
@@ -230,6 +278,10 @@ class GameRoom extends React.Component {
                         activeJoke={activeJoke}
                         player={player}
                         handleUserMedia={this.handleUserMedia}
+                        toggleMicro={this.toggleMicro}
+                        toggleVideo={this.toggleVideo}
+                        microEnabled={microEnabled}
+                        videoEnabled={videoEnabled}
                         chat={chat}
                     />
                     <ToastContainer />
