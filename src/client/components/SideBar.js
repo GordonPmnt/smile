@@ -49,14 +49,7 @@ class SideBar extends React.Component {
 
     render() {
         const { chatEnabled, message } = this.state;
-        const { 
-            handleUserMedia, 
-            chat, 
-            toggleMicro, 
-            toggleVideo, 
-            microEnabled, 
-            videoEnabled 
-        } = this.props;
+        const { chat, myPeerConnection } = this.props;
     
         return (
             <div style={this.styles.container}>
@@ -71,12 +64,7 @@ class SideBar extends React.Component {
                     /> 
                     <MyCam 
                         mirrored={true}
-                        handleUserMedia={handleUserMedia}
-                        chatEnabled={chatEnabled}
-                        toggleMicro={toggleMicro}
-                        toggleVideo={toggleVideo}
-                        microEnabled={microEnabled}
-                        videoEnabled={videoEnabled}
+                        myPeerConnection={myPeerConnection}
                     />
                 <ChatButton handleChatDisplay={this.handleChatDisplay} />
             </div>
