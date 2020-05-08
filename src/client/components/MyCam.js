@@ -18,6 +18,7 @@ class MyCam extends React.Component {
             marginLeft: 'auto',
             marginRight: 'auto',
             width: '80%',
+            minHeight: '260px',
             borderRadius: '10px',
             border: 'solid 3px',
         },
@@ -80,11 +81,23 @@ class MyCam extends React.Component {
                 <div style={chatEnabled ? { display: 'none' } : {}}>
                     <Webcam
                         id="my-cam" 
-                        style={{...this.styles.cam, ...theme.borderColor}}
+                        style={{
+                            ...this.styles.cam, 
+                            ...theme.borderColor,
+                            display: videoEnabled ? 'flex' : 'none',
+                        }}
                         ref={ref => this.webcam = ref}
                         onUserMedia={this.handleUserMedia}
                         mirrored={mirrored}
                         audio={true}
+                    />
+                    <div
+                        style={{
+                            ...this.styles.cam, 
+                            ...theme.borderColor,
+                            display: videoEnabled ? 'none' : 'flex',
+                            background: `url(${require('../img/webcam-off.png')}) no-repeat center center`
+                        }}
                     />
                     <CamButton 
                         toggleVideo={this.toggleVideo}

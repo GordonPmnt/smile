@@ -65,6 +65,7 @@ class SideBar extends React.Component {
                     <MyCam 
                         mirrored={true}
                         myPeerConnection={myPeerConnection}
+                        chatEnabled={chatEnabled}
                     />
                 <ChatButton handleChatDisplay={this.handleChatDisplay} />
             </div>
