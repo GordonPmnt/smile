@@ -59,8 +59,22 @@ class MyCam extends React.Component {
         this.getUserMediaTracks(stream)
     }
 
+    webcamRef = React.createRef();
+
+    capture = () => {
+        console.log("je suis dans capture");
+        const imageSrc = this.webcamRef.current.getScreenshot();
+        console.log(imageSrc);
+        }
+        
+    // componentDidUpdate() {
+    //     if (this.webcamRef.current.stream) {
+    //         this.webcamRef.current.stream.addEventListener()
+    //       }
+    // }
+
     toggleMicro = () => {
-        this.props.capture()
+        this.capture()
         this.setState(prevState => ({
             microEnabled : !prevState.microEnabled
         }), () => this.resetTracks(this.state.stream))    
@@ -107,7 +121,6 @@ class MyCam extends React.Component {
                     <MicroButton
                         toggleMicro={this.toggleMicro}
                         microEnabled={microEnabled}
-                        
                     />
                 </div>
             }

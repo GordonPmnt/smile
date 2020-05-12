@@ -1,7 +1,7 @@
 import React from "react";
 import ScreenShot from './subComponents/ScreenShot';
 
-function Gallery({myCaptureImg, opponentCaptureImg}) {
+function Gallery({winnerCaptureImg, looserCaptureImg}) {
     const styles = {
         container: {
             display: 'flex',
@@ -20,8 +20,8 @@ function Gallery({myCaptureImg, opponentCaptureImg}) {
         <div style={styles.container}>
             <h2 style={styles.label}></h2>
             <ScreenShot 
-                opponentCaptureImg={opponentCaptureImg}
-                myCaptureImg={myCaptureImg}
+                looserCaptureImg={looserCaptureImg}
+                winnerCaptureImg={winnerCaptureImg}
             />
         </div>
     );
