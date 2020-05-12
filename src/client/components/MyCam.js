@@ -26,6 +26,7 @@ const MyCam = ({ myPeerConnection, mirrored, chatEnabled, socket, player }) => {
 
     useEffect(
         () => {
+            socket &&
             socket.on("execute capture", screenshot => {
                 const { winner } = screenshot
                 if(player === winner) {
