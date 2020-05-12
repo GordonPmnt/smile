@@ -12,13 +12,13 @@ const ScreenShot = (props) => {
         },
     }
 
-    console.log(props.myCaptureImg);
-    console.log(props.opponentCaptureImg);
+    console.log(props.winnerCaptureImg);
+    console.log(props.looserCaptureImg);
 
     return (
         <div style={styles.container}>
-            <img src={`data:image/jpeg;base64,${props.myCaptureImg}`} />
-            <img src={props.opponentCaptureImg}/>
+            <img src={`data:image/jpeg;base64,${props.winnerCaptureImg}`} />
+            <img src={props.looserCaptureImg}/>
         </div>
         );
 }

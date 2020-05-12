@@ -53,7 +53,7 @@ const useStyles = makeStyles({
     }
 })
 
-const MicroButton = ({ toggleMicro, microEnabled }) => {
+const MicroButton = ({ toggleMicro, microEnabled}) => {
     const classes = useStyles();
 
     return (
