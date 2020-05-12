@@ -102,7 +102,10 @@ class GameRoom extends React.PureComponent {
         for(let player in gameroom) {
             gameroom[player].userIsActive = !gameroom[player].userIsActive 
         }
-        this.setState({ activeJoke: { isActive: false }})
+        this.setState({ 
+            activeJoke: { isActive: false },
+            theme: 'none',
+        })
         this.socket.emit("update-gameroom", gameroom)
     };
 
