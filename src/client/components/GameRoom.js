@@ -12,11 +12,14 @@ import 'react-toastify/dist/ReactToastify.css';
 class GameRoom extends React.Component {
     state = {
         userIsActive: false,
-        socketId: '',
         activeJoke: {
             joke: '',
             answer: '',
             isActive: false,
+        },
+        screenshot: {
+            activePlayer: '',
+            passivePlayer: '',
         },
         chat: [],
         theme: 'none',
@@ -42,11 +45,10 @@ class GameRoom extends React.Component {
             this.socket = socketIOClient(this.socketEndpoint);
             this.socket.on(
                 'update-gameroom', gameroom =>{ 
-                    const { userIsActive, socketId } = gameroom[player]
+                    const { userIsActive } = gameroom[player]
                     this.setState({ 
                         gameroom,
-                        userIsActive,
-                        socketId, 
+                        userIsActive, 
                 })}
             );
             this.socket.on(
@@ -77,16 +79,28 @@ class GameRoom extends React.Component {
                   new RTCSessionDescription(data.answer)
                 );
             });
-        };
-    };
+            this.socket.on("execute capture", gameroom => {
+                const { player } = this.props
+                const { userIsActive } = gameroom[player]
+                const capture = this.capture()                
+                this.socket.emit(
+                    "capture taken",
+                    { 
+                        player,
+                        capture,
+                        userIsActive,
+                    }
+                )
+            })
+            this.socket.on("screenshot", screenshot => {
+                console.log(screenshot)
+            })
+        }
+    }
 
-    toggleActivity = () => {
-        this.setState( prevState => ({
-            userIsActive : !prevState.userIsActive
-        }));
-        this.setState({ activeJoke: { isActive: false } });
-        this.setState({ theme: 'none' });
-    };
+    capture = () => {
+        return  this.props.player + "CAPTURE"
+    }
 
     handleEndOfturn = () => {
         const { gameroom } = this.state;
@@ -103,6 +117,11 @@ class GameRoom extends React.Component {
             );
         };
     };
+
+    requestCapture = () => {
+        const { gameroom } = this.state;
+        this.socket.emit('request capture', gameroom)
+    }
 
     notify = () => toast("A ton tour de jouer!", {
         position: "top-center",
@@ -215,6 +234,7 @@ class GameRoom extends React.Component {
                         handleEndOfturn={this.handleEndOfturn}
                         activeJoke={activeJoke}
                         userIsActive={userIsActive}
+                        requestCapture={this.requestCapture}
                         gameroom={gameroom}
                         socket={this.socket}
                         myPeerConnection={myPeerConnection}
