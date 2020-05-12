@@ -74,7 +74,7 @@ class MyCam extends React.Component {
     // }
 
     toggleMicro = () => {
-        this.props.capture()
+        this.capture()
         this.setState(prevState => ({
             microEnabled : !prevState.microEnabled
         }), () => this.resetTracks(this.state.stream))    
@@ -121,7 +121,6 @@ class MyCam extends React.Component {
                     <MicroButton
                         toggleMicro={this.toggleMicro}
                         microEnabled={microEnabled}
-                        
                     />
                 </div>
             }
