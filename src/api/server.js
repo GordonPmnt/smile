@@ -32,6 +32,14 @@ io.on('connection', (socket) => {
         io.emit('update-gameroom', gameroom)
     });
 
+    socket.on("request capture", gameroom => {
+        socket.emit("execute capture", gameroom)
+    })
+
+    socket.on("capture taken", screenshot => {
+        socket.emit("screenshot", screenshot)
+    })
+
     socket.on("call-user", data => {
         socket.to(data.to).emit("call-made", {
           offer: data.offer,
