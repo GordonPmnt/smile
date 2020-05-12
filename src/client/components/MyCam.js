@@ -23,6 +23,15 @@ const MyCam = ({ myPeerConnection, mirrored, chatEnabled }) => {
     }
     
     const webcamRef = React.useRef(null);
+
+    const capture = React.useCallback(
+        () => {
+          const imageSrc = webcamRef.current.getScreenshot();
+          console.log(imageSrc)
+        },
+        [webcamRef]
+      );
+
     const handleUserMedia = () => {
         const { stream } = webcamRef.current
         setStream(stream)
@@ -62,7 +71,7 @@ const MyCam = ({ myPeerConnection, mirrored, chatEnabled }) => {
     */
 
     const toggleMicro = () => {
-        //capture()
+        capture()
         setMicroEnabled(!microEnabled)
         resetTracks(stream)
     }
