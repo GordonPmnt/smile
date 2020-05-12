@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 class GameRoom extends React.PureComponent {
     state = {
         userIsActive: false,
+        socket: socketIOClient(`${config.socket.aws}?name=${this.props.player}`),
         activeJoke: {
             joke: '',
             answer: '',
@@ -34,15 +35,14 @@ class GameRoom extends React.PureComponent {
         },
     }
 
-    socketEndpoint = `${config.socket.aws}?name=${this.props.player}`;
-    socket = socketIOClient(this.socketEndpoint);
     componentDidMount = () => {
+        const { socket } = this.state;
         if (this.state.userIsActive) {
             this.notify()
         };
         if(this.props.player) {
             const { player } = this.props;
-            this.socket.on(
+            socket.on(
                 'update-gameroom', gameroom =>{ 
                     const { userIsActive } = gameroom[player]
                     this.setState({ 
@@ -50,7 +50,7 @@ class GameRoom extends React.PureComponent {
                         userIsActive, 
                 })}
             );
-            this.socket.on(
+            socket.on(
                 'chat message', 
                 msg => {
                     this.setState({
@@ -60,25 +60,25 @@ class GameRoom extends React.PureComponent {
             )
             const { RTCSessionDescription } = this.props.window;
     
-            this.socket.on("call-made", async data => {
+            socket.on("call-made", async data => {
                 await this.props.myPeerConnection.setRemoteDescription(
                   new RTCSessionDescription(data.offer)
                 );
                 const answer = await this.props.myPeerConnection.createAnswer();
                 await this.props.myPeerConnection.setLocalDescription(new RTCSessionDescription(answer));
         
-                this.socket.emit("make-answer", {
+                socket.emit("make-answer", {
                   answer,
                   to: data.socket
                 });
             });
         
-            this.socket.on("answer-made", async data => {
+            socket.on("answer-made", async data => {
                 await this.props.myPeerConnection.setRemoteDescription(
                   new RTCSessionDescription(data.answer)
                 );
             });
-            this.socket.on("screenshot", screenshot => {
+            socket.on("screenshot", screenshot => {
                 const { shotId, winnerCapture, looserCapture } = screenshot
                 if(winnerCapture) {
                     this.setState({ winnerCapture })
@@ -96,11 +96,11 @@ class GameRoom extends React.PureComponent {
     }
 
     handleEndOfturn = () => {
-        const { gameroom } = this.state;
+        const { gameroom, socket } = this.state;
         for(let player in gameroom) {
             gameroom[player].userIsActive = !gameroom[player].userIsActive 
         }
-        this.socket.emit("update-gameroom", gameroom)
+        socket.emit("update-gameroom", gameroom)
     };
 
     handleUserMedia = stream => {
@@ -112,8 +112,8 @@ class GameRoom extends React.PureComponent {
     };
 
     requestCapture = () => {
-        const { gameroom } = this.state;
-        this.socket.emit('request capture', { winner: this.props.player, gameroom })
+        const { gameroom, socket } = this.state;
+        socket.emit('request capture', { winner: this.props.player, gameroom })
     }
 
     notify = () => toast("A ton tour de jouer!", {
@@ -216,6 +216,7 @@ class GameRoom extends React.PureComponent {
             capture,
             looserCapture,
             winnerCapture,
+            socket,
         } = this.state;
         
         const { player, myPeerConnection, history } = this.props;
@@ -232,12 +233,12 @@ class GameRoom extends React.PureComponent {
                         userIsActive={userIsActive}
                         requestCapture={this.requestCapture}
                         gameroom={gameroom}
-                        socket={this.socket}
+                        socket={socket}
                         myPeerConnection={myPeerConnection}
                         player={player}
                     />
                     <SideBar
-                        socket={this.socket} 
+                        socket={socket} 
                         getChuckJoke={this.getChuckJoke}
                         getDarkJoke={this.getDarkJoke}
                         getRandomJoke={this.getRandomJoke}
