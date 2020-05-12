@@ -19,7 +19,7 @@ const useStyles = makeStyles({
     },
 })
 
-const ScreenshotButton = ({ handleEndOfturn, theme, userIsActive }) => {
+const ScreenshotButton = ({ handleEndOfturn, theme, userIsActive, requestCapture }) => {
     const styles = {
         container: {
             display: 'flex',
@@ -33,7 +33,12 @@ const ScreenshotButton = ({ handleEndOfturn, theme, userIsActive }) => {
             <img 
                 src={require('../../img/cam-moustache.png')}
                 alt="Screenshot button"
-                onClick={userIsActive ? () => handleEndOfturn() : false} //here: should replace false by screenshot only 
+                onClick={userIsActive 
+                    ? () => {
+                            requestCapture() //always requestCapture() first!
+                            handleEndOfturn()
+                        } 
+                    : () => requestCapture()}
                 style={{...theme.borderColor}}
                 className={classes.button}
             />

@@ -5,7 +5,7 @@ import { ThemeContext } from './styles/ThemeContext';
 import OnlineUser from "./OnlineUser";
 
 
-const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConnection, player, userIsActive }) => {   
+const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConnection, player, userIsActive, requestCapture }) => {   
     const webcamOff = require('../img/webcam-off.png');
     const styles = {
         container: {
@@ -79,6 +79,7 @@ const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConn
                             <ScreenshotButton
                                 userIsActive={userIsActive}
                                 handleEndOfturn={handleEndOfturn}
+                                requestCapture={requestCapture}
                                 theme={theme}
                             />
                     </div>
