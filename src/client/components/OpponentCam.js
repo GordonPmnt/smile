@@ -54,8 +54,8 @@ const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConn
                 <ul style={styles.users}>
                     {activePlayers.filter(name => name !== player).map(
                         name => <OnlineUser 
-                            key={gameroom[name]} 
-                            socketId={gameroom[name].id}
+                            key={gameroom[name].socketId} 
+                            socketId={gameroom[name].socketId}
                             myPeerConnection={myPeerConnection}
                             name={name}
                             socket={socket}
