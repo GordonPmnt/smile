@@ -1,7 +1,7 @@
 import React from "react";
 import ScreenShot from './subComponents/ScreenShot';
 
-function Gallery() {
+function Gallery({myCaptureImg, opponentCaptureImg}) {
     const styles = {
         container: {
             display: 'flex',
@@ -9,6 +9,7 @@ function Gallery() {
             width: 'auto',
             alignItems: 'center',
             flexDirection: 'column',
+            backgroundColor: 'green',
         },
         label: {
             fontWeight: 'normal'
@@ -18,7 +19,10 @@ function Gallery() {
     return (
         <div style={styles.container}>
             <h2 style={styles.label}></h2>
-            <ScreenShot/>
+            <ScreenShot 
+                opponentCaptureImg={opponentCaptureImg}
+                myCaptureImg={myCaptureImg}
+            />
         </div>
     );
 }

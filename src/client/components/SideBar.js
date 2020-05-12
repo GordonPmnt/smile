@@ -49,12 +49,15 @@ class SideBar extends React.Component {
 
     render() {
         const { chatEnabled, message } = this.state;
-        const { chat, myPeerConnection } = this.props;
+        const { chat, myPeerConnection, opponentCaptureImg, myCaptureImg, capture } = this.props;
     
         return (
             <div style={this.styles.container}>
                 <DecksList {...this.props} />
-                <Gallery />
+                <Gallery 
+                    myCaptureImg={myCaptureImg}
+                    opponentCaptureImg={opponentCaptureImg}
+                />
                     <LiveChat 
                         handleSubmit={this.handleSubmit} 
                         handleMessage={this.handleMessage}
@@ -66,6 +69,7 @@ class SideBar extends React.Component {
                         mirrored={true}
                         myPeerConnection={myPeerConnection}
                         chatEnabled={chatEnabled}
+                        capture={capture}
                     />
                 <ChatButton handleChatDisplay={this.handleChatDisplay} />
             </div>
