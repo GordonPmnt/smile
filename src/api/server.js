@@ -5,35 +5,39 @@ const config = require('./config')
 
 const server = http.createServer(app);
 const io = socketIo(server)
+
 let gameroom = {}
+let msgId = 0;
+let shotId = 0;
 
 io.on('connection', (socket) => {
     
     let player = socket.request._query.name;
     console.log(`${player}'s client connected`);
     gameroom[player] = { 
-        id: socket.id,
+        socketId: socket.id,
         userIsActive: Object.keys(gameroom).length === 0 ? true : false
     };
     console.log(gameroom)
 
     io.emit('update-gameroom', gameroom)
     
-    let id = 0;
     socket.on('chat message', (msg) => {
         msg.socketId = socket.id
-        msg.id = id;
+        msg.id = msgId;
         io.emit('chat message', msg);
-        id +=1;
+        msgId++
     });
 
     socket.on('update-gameroom', newRoom => {
-        gameroom = newRoom
+        gameroom = newRoom //update the gameroom on server
         io.emit('update-gameroom', gameroom)
     });
 
-    socket.on("request capture", gameroom => {
-        io.emit("execute capture", gameroom)
+    socket.on("request capture", screenshot => {
+        screenshot.shotId = shotId
+        shotId++
+        io.emit("execute capture", screenshot)
     })
 
     socket.on("capture taken", screenshot => {
