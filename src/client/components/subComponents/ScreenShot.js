@@ -1,7 +1,7 @@
 import React from "react";
 
 
-const ScreenShot = () => {
+const ScreenShot = ({ winnerCapture, looserCapture }) => {
     const styles = {
         container: {
             width: '30%',
@@ -12,7 +12,10 @@ const ScreenShot = () => {
     }
 
     return (
-        <div style={styles.container}></div>
+        <div style={styles.container}>
+            <img src={winnerCapture} alt="winner" />
+            <img src={looserCapture} alt="looser" />
+        </div>
         );
 }
 

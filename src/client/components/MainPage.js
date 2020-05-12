@@ -17,6 +17,12 @@ const MainPage = ({ history, handlePlayerInput }) => {
       textAlign: 'center',
       color: colors.pink,
     },
+    subTitle: {
+      fontSize: '2rem',
+      textAlign: 'center',
+      color: colors.pink,
+      fontStyle: 'italic',
+    },
     gentleman: {
       display: 'block',
       marginLeft: 'auto',
@@ -55,6 +61,7 @@ const MainPage = ({ history, handlePlayerInput }) => {
         </label>
         <input type="submit" value="Jouer"/>
       </form>
+      <h2 style={styles.subTitle}>Vous trouvez ça drôle ?</h2>
     </div>
   );
 }

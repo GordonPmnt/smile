@@ -16,7 +16,7 @@ io.on('connection', (socket) => {
     console.log(`${player}'s client connected`);
     gameroom[player] = { 
         socketId: socket.id,
-        userIsActive: Object.keys(gameroom).length === 0 ? true : false
+        userIsActive: Object.keys(gameroom).length === 1 ? true : false
     };
     console.log(gameroom)
 
