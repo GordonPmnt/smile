@@ -17,10 +17,9 @@ class GameRoom extends React.Component {
             answer: '',
             isActive: false,
         },
-        screenshot: {
-            activePlayer: '',
-            passivePlayer: '',
-        },
+        screenshots: [],
+        winnerCapture: '',
+        looserCapture: '',
         chat: [],
         theme: 'none',
         gameroom: {},
@@ -79,27 +78,35 @@ class GameRoom extends React.Component {
                   new RTCSessionDescription(data.answer)
                 );
             });
-            this.socket.on("execute capture", gameroom => {
+            this.socket.on("execute capture", screenshot => {
                 const { player } = this.props
-                const { userIsActive } = gameroom[player]
-                const capture = this.capture()                
+                const { winner } = screenshot
+                if(player === winner) {
+                    screenshot.winnerCapture = this.capture()
+                }
+                if(player !== winner) {
+                    screenshot.looserCapture = this.capture()
+                } 
                 this.socket.emit(
                     "capture taken",
-                    { 
-                        player,
-                        capture,
-                        userIsActive,
-                    }
+                    screenshot
                 )
             })
             this.socket.on("screenshot", screenshot => {
-                console.log(screenshot)
+                const { shotId, winnerCapture, looserCapture } = screenshot
+                if(winnerCapture) {
+                    this.setState({ winnerCapture })
+                }
+                if(looserCapture) {
+                    this.setState({ looserCapture })
+                }
+                //TBD here: this setState screenshots []
             })
         }
     }
 
     capture = () => {
-        return  this.props.player + "CAPTURE"
+        return  this.props.player + "CAPTURE" // must return a string
     }
 
     handleEndOfturn = () => {
@@ -120,7 +127,7 @@ class GameRoom extends React.Component {
 
     requestCapture = () => {
         const { gameroom } = this.state;
-        this.socket.emit('request capture', gameroom)
+        this.socket.emit('request capture', { winner: this.props.player, gameroom })
     }
 
     notify = () => toast("A ton tour de jouer!", {
@@ -223,6 +230,8 @@ class GameRoom extends React.Component {
         } = this.state;
         
         const { player, myPeerConnection, history } = this.props;
+        
+        console.log(this.state)
 
         // This forces player to exit room if not named
         if(!player) { history.push('/') }        
