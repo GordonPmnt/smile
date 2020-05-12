@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Webcam from "react-webcam";
 import CamButton from './subComponents/CamButton';
 import MicroButton from './subComponents/MicroButton';
@@ -39,13 +39,12 @@ const MyCam = ({ myPeerConnection, mirrored, chatEnabled, socket, player }) => {
                     screenshot
                 )
             })
-        },
-        [],
+        }, []
     );
 
-    const capture = () => {
+    const capture = useCallback(() => {
         return webcamRef.current.getScreenshot();
-    }
+    }, [])
 
     const handleUserMedia = () => {
         const { stream } = webcamRef.current
