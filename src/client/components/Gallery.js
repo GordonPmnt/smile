@@ -9,7 +9,6 @@ function Gallery({ winnerCapture, looserCapture }) {
             width: 'auto',
             alignItems: 'center',
             flexDirection: 'column',
-            backgroundColor: 'green',
         },
         label: {
             fontWeight: 'normal'
