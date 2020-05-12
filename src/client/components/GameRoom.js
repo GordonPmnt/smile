@@ -233,8 +233,6 @@ class GameRoom extends React.Component {
         } = this.state;
         
         const { player, myPeerConnection, history } = this.props;
-        
-        console.log(this.state)
 
         // This forces player to exit room if not named
         if(!player) { history.push('/') }        

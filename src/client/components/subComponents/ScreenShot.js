@@ -8,12 +8,8 @@ const ScreenShot = ({ winnerCapture, looserCapture }) => {
             paddingTop : '30px',
             display: 'inline-block',
             textAlign: 'center',
-            backgroundColor: 'red',
         },
     }
-
-    console.log(winnerCapture);
-    console.log(looserCapture);
 
     return (
         <div style={styles.container}>

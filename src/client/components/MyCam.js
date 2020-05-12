@@ -1,18 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Webcam from "react-webcam";
 import CamButton from './subComponents/CamButton';
 import MicroButton from './subComponents/MicroButton';
 import { ThemeContext } from './styles/ThemeContext';
  
     
-class MyCam extends React.Component {    
-    state = {
-        microEnabled: false,
-        videoEnabled: true,
-        stream: null,
-    }
+const MyCam = ({ myPeerConnection, mirrored, chatEnabled }) => {    
+    const [ microEnabled, setMicroEnabled ] = useState(false)
+    const [ videoEnabled, setVideoEnabled ] = useState(true)
+    const [ stream, setStream ] = useState(null)
     
-    styles = {
+    const styles = {
         cam: {
             display: 'flex',
             marginLeft: 'auto',
@@ -24,103 +22,93 @@ class MyCam extends React.Component {
         },
     }
     
-    handleUserMedia = () => {
-        const stream = this.webcam.stream
-        this.setState({ stream })
-        this.getUserMediaTracks(stream)
+    const webcamRef = React.useRef(null);
+    const handleUserMedia = () => {
+        const { stream } = webcamRef.current
+        setStream(stream)
+        getUserMediaTracks(stream)
     }
 
-    getUserMediaTracks = stream => {
-        const { microEnabled, videoEnabled } = this.state;
-
+    const getUserMediaTracks = stream => {
         if(stream) {
             const [ audioTrack, videoTrack ] = stream.getTracks()
 
             if(microEnabled && videoEnabled) {
-                console.log('audio', 'video')
-                this.props.myPeerConnection.addTrack(audioTrack, stream)
-                this.props.myPeerConnection.addTrack(videoTrack, stream)
+                myPeerConnection.addTrack(audioTrack, stream)
+                myPeerConnection.addTrack(videoTrack, stream)
             }
             if(microEnabled && !videoEnabled) {
-                console.log('audio', '')
-                this.props.myPeerConnection.addTrack(audioTrack, stream)
+                myPeerConnection.addTrack(audioTrack, stream)
             }
             if(!microEnabled && videoEnabled) {
-                console.log('', 'video')
-                this.props.myPeerConnection.addTrack(videoTrack, stream)
+                myPeerConnection.addTrack(videoTrack, stream)
             }
         };
     };
 
-    resetTracks = stream => {
-        this.props.myPeerConnection.getSenders().forEach(
-            sender => this.props.myPeerConnection.removeTrack(sender)
+    const resetTracks = stream => {
+        myPeerConnection.getSenders().forEach(
+            sender => myPeerConnection.removeTrack(sender)
         )
-        this.getUserMediaTracks(stream)
+        getUserMediaTracks(stream)
     }
 
-    webcamRef = React.createRef();
-
+    /*
     capture = () => {
         console.log("je suis dans capture");
         const imageSrc = this.webcamRef.current.getScreenshot();
         console.log(imageSrc);
     }
+    */
 
-    toggleMicro = () => {
-        this.capture()
-        this.setState(prevState => ({
-            microEnabled : !prevState.microEnabled
-        }), () => this.resetTracks(this.state.stream))    
+    const toggleMicro = () => {
+        //capture()
+        setMicroEnabled(!microEnabled)
+        resetTracks(stream)
     }
 
-    toggleVideo = () => {
-        this.setState( prevState => ({
-            videoEnabled : !prevState.videoEnabled
-        }), () => this.resetTracks(this.state.stream))
+    const toggleVideo = () => {
+        setVideoEnabled(!videoEnabled)
+        resetTracks(stream)
     }
-
-    render() {
-        const { mirrored, chatEnabled } = this.props;
-        const { microEnabled, videoEnabled } = this.state;
         
-        return (
-            <ThemeContext.Consumer>
-            {theme =>
-                <div style={chatEnabled ? { display: 'none' } : {}}>
-                    <Webcam
-                        id="my-cam" 
-                        style={{
-                            ...this.styles.cam, 
-                            ...theme.borderColor,
-                            display: videoEnabled ? 'flex' : 'none',
-                        }}
-                        ref={ref => this.webcam = ref}
-                        onUserMedia={this.handleUserMedia}
-                        mirrored={mirrored}
-                        audio={true}
-                    />
-                    <div
-                        style={{
-                            ...this.styles.cam, 
-                            ...theme.borderColor,
-                            display: videoEnabled ? 'none' : 'flex',
-                            background: `url(${require('../img/webcam-off.png')}) no-repeat center center`
-                        }}
-                    />
-                    <CamButton 
-                        toggleVideo={this.toggleVideo}
-                        videoEnabled={videoEnabled}
-                    />
-                    <MicroButton
-                        toggleMicro={this.toggleMicro}
-                        microEnabled={microEnabled}
-                    />
-                </div>
-            }
-            </ThemeContext.Consumer>
-        )
-    };
-}
+    return (
+        <ThemeContext.Consumer>
+        {theme =>
+            <div style={chatEnabled ? { display: 'none' } : {}}>
+                <Webcam
+                    id="my-cam" 
+                    style={{
+                        ...styles.cam, 
+                        ...theme.borderColor,
+                        display: videoEnabled ? 'flex' : 'none',
+                    }}
+                    ref={webcamRef}
+                    onUserMedia={handleUserMedia}
+                    mirrored={mirrored}
+                    audio={true}
+                />
+                <div
+                    style={{
+                        ...styles.cam, 
+                        ...theme.borderColor,
+                        display: videoEnabled ? 'none' : 'flex',
+                        background: `url(${require('../img/webcam-off.png')}) no-repeat center center`
+                    }}
+                />
+                <CamButton 
+                    toggleVideo={toggleVideo}
+                    videoEnabled={videoEnabled}
+                />
+                <MicroButton
+                    toggleMicro={toggleMicro}
+                    microEnabled={microEnabled}
+                />
+            </div>
+        }
+        </ThemeContext.Consumer>
+    )
+};
+
 
 export default MyCam;
