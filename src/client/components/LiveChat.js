@@ -3,7 +3,7 @@ import ChatConversations from "./ChatConversations";
 import ChatInput from "./ChatInput";
 
 
-const LiveChat = ({ handleSubmit, handleMessage, chat, message  }) => {
+const LiveChat = ({ handleSubmit, handleMessage, chat, message, chatEnabled  }) => {
     const styles = {
         container: {
             display: 'flex',
@@ -17,7 +17,7 @@ const LiveChat = ({ handleSubmit, handleMessage, chat, message  }) => {
     }
 
     return (
-        <div style={styles.container}>
+        <div style={ chatEnabled ? {...styles.container} : { display: 'none' } }>
             <ChatConversations
                 chat={chat}
             />

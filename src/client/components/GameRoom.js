@@ -5,16 +5,21 @@ import { ThemeContext, themes } from './styles/ThemeContext';
 import axios from 'axios';
 import socketIOClient from 'socket.io-client';
 import { config } from '../../config';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 class GameRoom extends React.Component {
     state = {
-        userIsActive: false, //initial must always be false
+        userIsActive: false,
         activeJoke: {
             joke: '',
             answer: '',
             isActive: false,
         },
+        screenshots: [],
+        winnerCapture: '',
+        looserCapture: '',
         chat: [],
         theme: 'none',
         gameroom: {},
@@ -30,24 +35,20 @@ class GameRoom extends React.Component {
     }
 
     componentDidMount = () => {
+        if (this.state.userIsActive) {
+            this.notify()
+        };
         if(this.props.player) {
             const { player } = this.props;
-            this.socketEndpoint = `${config.socket.aws}?name=${this.props.player}`;
+            this.socketEndpoint = `${config.socket.local}?name=${this.props.player}`;
             this.socket = socketIOClient(this.socketEndpoint);
             this.socket.on(
-                'player status',
-                playerSatus => {
-                    if(playerSatus.player !== player) {
-                        this.toggleActivity()
-                    };
-                }
-            );
-            // on first connection:
-            this.socket.on(
-                'room-size', size => { if(size === 1) { this.toggleActivity()} }
-            );
-            this.socket.on(
-                'update-user-list', gameroom => this.setState({ gameroom })
+                'update-gameroom', gameroom =>{ 
+                    const { userIsActive } = gameroom[player]
+                    this.setState({ 
+                        gameroom,
+                        userIsActive, 
+                })}
             );
             this.socket.on(
                 'chat message', 
@@ -57,26 +58,63 @@ class GameRoom extends React.Component {
                     })
                 }
             )
-        };
-    };
+            const { RTCSessionDescription } = this.props.window;
+    
+            this.socket.on("call-made", async data => {
+                await this.props.myPeerConnection.setRemoteDescription(
+                  new RTCSessionDescription(data.offer)
+                );
+                const answer = await this.props.myPeerConnection.createAnswer();
+                await this.props.myPeerConnection.setLocalDescription(new RTCSessionDescription(answer));
+        
+                this.socket.emit("make-answer", {
+                  answer,
+                  to: data.socket
+                });
+            });
+        
+            this.socket.on("answer-made", async data => {
+                await this.props.myPeerConnection.setRemoteDescription(
+                  new RTCSessionDescription(data.answer)
+                );
+            });
+            this.socket.on("execute capture", screenshot => {
+                const { player } = this.props
+                const { winner } = screenshot
+                if(player === winner) {
+                    screenshot.winnerCapture = this.capture()
+                }
+                if(player !== winner) {
+                    screenshot.looserCapture = this.capture()
+                } 
+                this.socket.emit(
+                    "capture taken",
+                    screenshot
+                )
+            })
+            this.socket.on("screenshot", screenshot => {
+                const { shotId, winnerCapture, looserCapture } = screenshot
+                if(winnerCapture) {
+                    this.setState({ winnerCapture })
+                }
+                if(looserCapture) {
+                    this.setState({ looserCapture })
+                }
+                //TBD here: this setState screenshots []
+            })
+        }
+    }
 
-    toggleActivity = () => {
-        this.setState( prevState => ({
-            userIsActive : !prevState.userIsActive
-        }));
-        this.setState({ activeJoke: { isActive: false } });
-        this.setState({ theme: 'none' });
-    };
+    capture = () => {
+        return  this.props.player + "CAPTURE" // must return a string
+    }
 
     handleEndOfturn = () => {
-        const { userIsActive } = this.state;
-        const { player } = this.props;
-
-        this.toggleActivity()
-        this.socket.emit(
-            'player status',
-            { player, status: userIsActive }
-        );
+        const { gameroom } = this.state;
+        for(let player in gameroom) {
+            gameroom[player].userIsActive = !gameroom[player].userIsActive 
+        }
+        this.socket.emit("update-gameroom", gameroom)
     };
 
     handleUserMedia = stream => {
@@ -87,9 +125,24 @@ class GameRoom extends React.Component {
         };
     };
 
+    requestCapture = () => {
+        const { gameroom } = this.state;
+        this.socket.emit('request capture', { winner: this.props.player, gameroom })
+    }
+
+    notify = () => toast("A ton tour de jouer!", {
+        position: "top-center",
+        type: "info"
+    });
+
+    componentDidUpdate(prevProps, prevState) {
+        if(prevState.userIsActive !== this.state.userIsActive && this.state.userIsActive) {
+            this.notify()
+        }
+    } 
+
     getRandomJoke = () => {
         this.setState({ theme : 'random' })
-
         axios
           .get('/joke/random', {
               method: 'get',
@@ -113,7 +166,6 @@ class GameRoom extends React.Component {
 
     getChuckJoke = () => {
         this.setState({ theme : 'chuck' })
-
         axios
         .get('/chuck/random')
         .then(response => {
@@ -132,7 +184,6 @@ class GameRoom extends React.Component {
 
     getSexJoke = () => {
         this.setState({ theme : 'sex' })
-
         axios
         .get('/sex/random')
         .then(response => {
@@ -151,7 +202,6 @@ class GameRoom extends React.Component {
 
     getDarkJoke = () => {
         this.setState({ theme : 'dark' })
-
         axios
         .get('/dark/random')
         .then(response => {
@@ -170,9 +220,20 @@ class GameRoom extends React.Component {
     }
    
     render() {
-        const { theme, userIsActive, activeJoke, gameroom, chat } = this.state;
-        const { player, myPeerConnection, history } = this.props;
 
+        const { 
+            theme, 
+            userIsActive, 
+            activeJoke, 
+            gameroom, 
+            chat, 
+        } = this.state;
+        
+        const { player, myPeerConnection, history } = this.props;
+        
+        console.log(this.state)
+
+        // This forces player to exit room if not named
         if(!player) { history.push('/') }        
 
         return (
@@ -182,6 +243,7 @@ class GameRoom extends React.Component {
                         handleEndOfturn={this.handleEndOfturn}
                         activeJoke={activeJoke}
                         userIsActive={userIsActive}
+                        requestCapture={this.requestCapture}
                         gameroom={gameroom}
                         socket={this.socket}
                         myPeerConnection={myPeerConnection}
@@ -193,12 +255,13 @@ class GameRoom extends React.Component {
                         getDarkJoke={this.getDarkJoke}
                         getRandomJoke={this.getRandomJoke}
                         getSexJoke={this.getSexJoke}
+                        myPeerConnection={myPeerConnection}
                         userIsActive={userIsActive}
                         activeJoke={activeJoke}
                         player={player}
-                        handleUserMedia={this.handleUserMedia}
                         chat={chat}
                     />
+                    <ToastContainer />
                 </div>
             </ThemeContext.Provider>
         )

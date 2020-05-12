@@ -5,8 +5,8 @@ import { ThemeContext } from './styles/ThemeContext';
 import OnlineUser from "./OnlineUser";
 
 
-const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConnection, player, userIsActive }) => {   
-    
+const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConnection, player, userIsActive, requestCapture }) => {   
+    const webcamOff = require('../img/webcam-off.png');
     const styles = {
         container: {
             margin: '5vh 5vh 5vh 5vh',
@@ -27,6 +27,7 @@ const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConn
         webcam: {
             width: '100%',
             margin: 'auto 0',
+            background: `url(${webcamOff}) no-repeat center center`,
             borderRadius: '15px',
             border: 'solid 5px',
         },
@@ -41,27 +42,6 @@ const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConn
 
     const activePlayers = [...Object.keys(gameroom)]
 
-    const { RTCSessionDescription } = window;
-    
-    socket && socket.on("call-made", async data => {
-        await myPeerConnection.setRemoteDescription(
-          new RTCSessionDescription(data.offer)
-        );
-        const answer = await myPeerConnection.createAnswer();
-        await myPeerConnection.setLocalDescription(new RTCSessionDescription(answer));
-
-        socket.emit("make-answer", {
-          answer,
-          to: data.socket
-        });
-    });
-
-    socket && socket.on("answer-made", async data => {
-        await myPeerConnection.setRemoteDescription(
-          new RTCSessionDescription(data.answer)
-        );
-    });
-
     let video;
     myPeerConnection.ontrack = ({ streams: [stream] }) => {
         video.srcObject = stream
@@ -75,7 +55,7 @@ const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConn
                     {activePlayers.filter(name => name !== player).map(
                         name => <OnlineUser 
                             key={gameroom[name]} 
-                            socketId={gameroom[name]}
+                            socketId={gameroom[name].id}
                             myPeerConnection={myPeerConnection}
                             name={name}
                             socket={socket}
@@ -99,6 +79,7 @@ const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConn
                             <ScreenshotButton
                                 userIsActive={userIsActive}
                                 handleEndOfturn={handleEndOfturn}
+                                requestCapture={requestCapture}
                                 theme={theme}
                             />
                     </div>

@@ -1,20 +1,30 @@
 import React from "react";
+import { makeStyles } from '@material-ui/core/styles';
 import { colors } from '../styles/ThemeContext';
+
+
+const useStyles = makeStyles({
+    card: {
+        borderRadius: '5px',
+        border: `${colors.blue} 10px solid`,
+        backgroundColor: colors.lightBlue,
+        height: '8.5rem',
+        width: '5rem',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        cursor: 'pointer',
+        transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
+            "&:hover": {
+            transform: "scale(1.04)",
+            boxShadow: "0 4px 20px 0 rgba(0,0,0,0.12)",
+        },
+    },
+})
 
 const ChuckDeck = ({ getChuckJoke }) => {
     const styles = {
-        card: {
-            borderRadius: '5px',
-            border: `${colors.blue} 10px solid`,
-            backgroundColor: colors.lightBlue,
-            height: '8.5rem',
-            width: '5rem',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            cursor: 'pointer',
-        },
         label: {
             fontSize: '0.8rem',
             textAlign: 'center',
@@ -26,9 +36,10 @@ const ChuckDeck = ({ getChuckJoke }) => {
         }
     }
     const daddy = require('../../img/cop-transparent.png')
+    const classes = useStyles();
 
     return (
-        <div style={styles.card} onClick={() => getChuckJoke && getChuckJoke()}>
+        <div className={classes.card} onClick={() => getChuckJoke && getChuckJoke()}>
             <p style={styles.label}>CHUCK NORRIS</p>
             <img 
                 src={daddy} 

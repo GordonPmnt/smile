@@ -49,26 +49,24 @@ class SideBar extends React.Component {
 
     render() {
         const { chatEnabled, message } = this.state;
-        const { handleUserMedia, chat } = this.props;
+        const { chat, myPeerConnection } = this.props;
     
         return (
             <div style={this.styles.container}>
                 <DecksList {...this.props} />
                 <Gallery />
-                {chatEnabled 
-                    ? 
-                        <LiveChat 
-                            handleSubmit={this.handleSubmit} 
-                            handleMessage={this.handleMessage}
-                            chat={chat} 
-                            message={message}
-                        />
-                    : 
-                        <MyCam 
-                            mirrored={true}
-                            handleUserMedia={handleUserMedia}
-                        />
-                }
+                    <LiveChat 
+                        handleSubmit={this.handleSubmit} 
+                        handleMessage={this.handleMessage}
+                        chatEnabled={chatEnabled}
+                        chat={chat} 
+                        message={message}
+                    /> 
+                    <MyCam 
+                        mirrored={true}
+                        myPeerConnection={myPeerConnection}
+                        chatEnabled={chatEnabled}
+                    />
                 <ChatButton handleChatDisplay={this.handleChatDisplay} />
             </div>
         )

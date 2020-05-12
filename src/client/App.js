@@ -32,7 +32,8 @@ const App = () => {
             <GameRoom 
               {...props}
               player={player} 
-              myPeerConnection={myPeerConnection} 
+              myPeerConnection={myPeerConnection}
+              window={window}
             />
           }
         />
