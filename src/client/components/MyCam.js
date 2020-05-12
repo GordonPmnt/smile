@@ -55,7 +55,6 @@ const MyCam = ({ myPeerConnection, mirrored, chatEnabled, socket, player }) => {
     const getUserMediaTracks = stream => {
         if(stream) {
             const [ audioTrack, videoTrack ] = stream.getTracks()
-
             if(microEnabled && videoEnabled) {
                 myPeerConnection.addTrack(audioTrack, stream)
                 myPeerConnection.addTrack(videoTrack, stream)
@@ -78,13 +77,13 @@ const MyCam = ({ myPeerConnection, mirrored, chatEnabled, socket, player }) => {
 
     const toggleMicro = () => {
         setMicroEnabled(!microEnabled)
-        resetTracks(stream)
-    }
-
+    };
     const toggleVideo = () => {
         setVideoEnabled(!videoEnabled)
+    };
+    useEffect(() => {
         resetTracks(stream)
-    }
+    }, [microEnabled, videoEnabled])
         
     return (
         <ThemeContext.Consumer>

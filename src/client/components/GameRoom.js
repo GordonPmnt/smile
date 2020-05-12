@@ -9,7 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-class GameRoom extends React.Component {
+class GameRoom extends React.PureComponent {
     state = {
         userIsActive: false,
         activeJoke: {
