@@ -49,7 +49,7 @@ class SideBar extends React.Component {
 
     render() {
         const { chatEnabled, message } = this.state
-        const { chat, myPeerConnection, looserCapture, winnerCapture, capture, socket, player } = this.props;
+        const { chat, myPeerConnection, captureRequest, looserCapture, winnerCapture, socket, player } = this.props;
     
         return (
             <div style={this.styles.container}>
@@ -69,7 +69,7 @@ class SideBar extends React.Component {
                         mirrored={true}
                         myPeerConnection={myPeerConnection}
                         chatEnabled={chatEnabled}
-                        capture={capture}
+                        captureRequest={captureRequest}
                         player={player}
                         socket={socket}
 

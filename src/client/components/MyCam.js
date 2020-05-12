@@ -5,7 +5,7 @@ import MicroButton from './subComponents/MicroButton';
 import { ThemeContext } from './styles/ThemeContext';
  
     
-const MyCam = ({ myPeerConnection, mirrored, chatEnabled, socket, player }) => {    
+const MyCam = ({ myPeerConnection, mirrored, chatEnabled, socket, player, captureRequest }) => {    
     const [ microEnabled, setMicroEnabled ] = useState(false)
     const [ videoEnabled, setVideoEnabled ] = useState(true)
     const [ stream, setStream ] = useState(null)
@@ -23,24 +23,23 @@ const MyCam = ({ myPeerConnection, mirrored, chatEnabled, socket, player }) => {
     }
     
     const webcamRef = React.useRef(null);
-
+    
     useEffect(
         () => {
-            socket &&
-            socket.on("execute capture", screenshot => {
-                const { winner } = screenshot
+            const { winner } = captureRequest;
+            if(socket) {
                 if(player === winner) {
-                    screenshot.winnerCapture = capture()
+                    captureRequest.winnerCapture = capture()
                 }
                 if(player !== winner) {
-                    screenshot.looserCapture = capture()
-                } 
+                    captureRequest.looserCapture = capture()
+                }
                 socket.emit(
                     "capture taken",
-                    screenshot
+                    captureRequest
                 )
-            })
-        }, []
+            }
+        }, [captureRequest]
     );
 
     const capture = useCallback(() => {

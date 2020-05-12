@@ -12,15 +12,15 @@ import 'react-toastify/dist/ReactToastify.css';
 class GameRoom extends React.PureComponent {
     state = {
         userIsActive: false,
-        socket: '',
         activeJoke: {
             joke: '',
             answer: '',
             isActive: false,
         },
-        screenshots: [],
+        captureRequest: {},
         winnerCapture: '',
         looserCapture: '',
+        screenshots: [],
         chat: [],
         theme: 'none',
         gameroom: {},
@@ -38,7 +38,6 @@ class GameRoom extends React.PureComponent {
     componentDidMount = () => {
         this.socketEndpoint = `${config.socket.aws}?name=${this.props.player}`;
         this.socket = socketIOClient(this.socketEndpoint);
-        this.setState({ socket: this.socket })
         if (this.state.userIsActive) {
             this.notify()
         };
@@ -52,6 +51,7 @@ class GameRoom extends React.PureComponent {
                         userIsActive, 
                 })}
             );
+
             this.socket.on(
                 'chat message', 
                 msg => {
@@ -60,8 +60,8 @@ class GameRoom extends React.PureComponent {
                     })
                 }
             )
+
             const { RTCSessionDescription } = this.props.window;
-    
             this.socket.on("call-made", async data => {
                 await this.props.myPeerConnection.setRemoteDescription(
                   new RTCSessionDescription(data.offer)
@@ -74,14 +74,18 @@ class GameRoom extends React.PureComponent {
                   to: data.socket
                 });
             });
-        
+
             this.socket.on("answer-made", async data => {
                 await this.props.myPeerConnection.setRemoteDescription(
                   new RTCSessionDescription(data.answer)
                 );
             });
+
+            this.socket.on("execute capture", captureRequest => {
+                this.setState({ captureRequest })
+            })
             this.socket.on("screenshot", screenshot => {
-                const { shotId, winnerCapture, looserCapture } = screenshot
+                const { reqId, winnerCapture, looserCapture } = screenshot
                 if(winnerCapture) {
                     this.setState({ winnerCapture })
                 }
@@ -93,15 +97,12 @@ class GameRoom extends React.PureComponent {
         }
     }
 
-    capture = () => {
-        return  this.props.player + "CAPTURE" // must return a string
-    }
-
     handleEndOfturn = () => {
         const { gameroom } = this.state;
         for(let player in gameroom) {
             gameroom[player].userIsActive = !gameroom[player].userIsActive 
         }
+        this.setState({ activeJoke: { isActive: false }})
         this.socket.emit("update-gameroom", gameroom)
     };
 
@@ -215,10 +216,9 @@ class GameRoom extends React.PureComponent {
             activeJoke, 
             gameroom, 
             chat,
-            capture,
+            captureRequest,
             looserCapture,
             winnerCapture,
-            socket,
         } = this.state;
         
         const { player, myPeerConnection, history } = this.props;
@@ -235,12 +235,12 @@ class GameRoom extends React.PureComponent {
                         userIsActive={userIsActive}
                         requestCapture={this.requestCapture}
                         gameroom={gameroom}
-                        socket={socket}
+                        socket={this.socket}
                         myPeerConnection={myPeerConnection}
                         player={player}
                     />
                     <SideBar
-                        socket={socket} 
+                        socket={this.socket} 
                         getChuckJoke={this.getChuckJoke}
                         getDarkJoke={this.getDarkJoke}
                         getRandomJoke={this.getRandomJoke}
@@ -250,9 +250,9 @@ class GameRoom extends React.PureComponent {
                         activeJoke={activeJoke}
                         player={player}
                         chat={chat}
+                        captureRequest={captureRequest}
                         looserCapture={looserCapture}
                         winnerCapture={winnerCapture}
-                        capture={this.capture}
                     />
                     <ToastContainer />
                 </div>
