@@ -33,11 +33,11 @@ io.on('connection', (socket) => {
     });
 
     socket.on("request capture", gameroom => {
-        socket.emit("execute capture", gameroom)
+        io.emit("execute capture", gameroom)
     })
 
     socket.on("capture taken", screenshot => {
-        socket.emit("screenshot", screenshot)
+        io.emit("screenshot", screenshot)
     })
 
     socket.on("call-user", data => {
