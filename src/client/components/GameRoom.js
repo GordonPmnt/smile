@@ -11,7 +11,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 class GameRoom extends React.Component {
     state = {
-        userIsActive: false, //initial must always be false
+        userIsActive: false,
+        socketId: '',
         activeJoke: {
             joke: '',
             answer: '',
@@ -37,22 +38,16 @@ class GameRoom extends React.Component {
         };
         if(this.props.player) {
             const { player } = this.props;
-            this.socketEndpoint = `${config.socket.aws}?name=${this.props.player}`;
+            this.socketEndpoint = `${config.socket.local}?name=${this.props.player}`;
             this.socket = socketIOClient(this.socketEndpoint);
             this.socket.on(
-                'player status',
-                playerSatus => {
-                    if(playerSatus.player !== player) {
-                        this.toggleActivity()
-                    };
-                }
-            );
-            // on first connection:
-            this.socket.on(
-                'room-size', size => { if(size === 1) { this.toggleActivity()} }
-            );
-            this.socket.on(
-                'update-user-list', gameroom => this.setState({ gameroom })
+                'update-gameroom', gameroom =>{ 
+                    const { userIsActive, socketId } = gameroom[player]
+                    this.setState({ 
+                        gameroom,
+                        userIsActive,
+                        socketId, 
+                })}
             );
             this.socket.on(
                 'chat message', 
@@ -94,14 +89,11 @@ class GameRoom extends React.Component {
     };
 
     handleEndOfturn = () => {
-        const { userIsActive } = this.state;
-        const { player } = this.props;
-
-        this.toggleActivity()
-        this.socket.emit(
-            'player status',
-            { player, status: userIsActive }
-        );
+        const { gameroom } = this.state;
+        for(let player in gameroom) {
+            gameroom[player].userIsActive = !gameroom[player].userIsActive 
+        }
+        this.socket.emit("update-gameroom", gameroom)
     };
 
     handleUserMedia = stream => {
