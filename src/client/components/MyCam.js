@@ -65,13 +65,7 @@ class MyCam extends React.Component {
         console.log("je suis dans capture");
         const imageSrc = this.webcamRef.current.getScreenshot();
         console.log(imageSrc);
-        }
-        
-    // componentDidUpdate() {
-    //     if (this.webcamRef.current.stream) {
-    //         this.webcamRef.current.stream.addEventListener()
-    //       }
-    // }
+    }
 
     toggleMicro = () => {
         this.capture()

@@ -1,7 +1,7 @@
 import React from "react";
 
 
-const ScreenShot = (props) => {
+const ScreenShot = ({ winnerCapture, looserCapture }) => {
     const styles = {
         container: {
             width: '30%',
@@ -12,13 +12,13 @@ const ScreenShot = (props) => {
         },
     }
 
-    console.log(props.winnerCaptureImg);
-    console.log(props.looserCaptureImg);
+    console.log(winnerCapture);
+    console.log(looserCapture);
 
     return (
         <div style={styles.container}>
-            <img src={`data:image/jpeg;base64,${props.winnerCaptureImg}`} />
-            <img src={props.looserCaptureImg}/>
+            <img src={`data:image/jpeg;base64,${winnerCapture}`} alt="winner" />
+            <img src={looserCapture} alt="looser" />
         </div>
         );
 }

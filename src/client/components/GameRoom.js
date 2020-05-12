@@ -228,8 +228,8 @@ class GameRoom extends React.Component {
             gameroom, 
             chat,
             capture,
-            looserCaptureImg,
-            winnerCaptureImg,
+            looserCapture,
+            winnerCapture,
         } = this.state;
         
         const { player, myPeerConnection, history } = this.props;
@@ -263,8 +263,8 @@ class GameRoom extends React.Component {
                         activeJoke={activeJoke}
                         player={player}
                         chat={chat}
-                        looserCaptureImg={looserCaptureImg}
-                        winnerCaptureImg={winnerCaptureImg}
+                        looserCapture={looserCapture}
+                        winnerCapture={winnerCapture}
                         capture={this.capture}
                         ref={this.webcamRef}
                     />

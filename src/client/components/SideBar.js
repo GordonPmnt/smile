@@ -48,33 +48,15 @@ class SideBar extends React.Component {
     }
 
     render() {
-        const { chatEnabled, message } = this.state;
-<<<<<<< HEAD
-<<<<<<< HEAD
-        const { chat, myPeerConnection, looserCaptureImg, winnerCaptureImg, capture } = this.props;
-=======
-        const { chat, myPeerConnection, opponentCaptureImg, myCaptureImg, capture } = this.props;
->>>>>>> Function capture
-=======
-        const { chat, myPeerConnection, looserCaptureImg, winnerCaptureImg, capture } = this.props;
->>>>>>> function capture => myCam
+        const { chatEnabled, message } = this.state
+        const { chat, myPeerConnection, looserCapture, winnerCapture, capture } = this.props;
     
         return (
             <div style={this.styles.container}>
                 <DecksList {...this.props} />
                 <Gallery 
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    winnerCaptureImg={winnerCaptureImg}
-                    looserCaptureImg={looserCaptureImg}
-=======
-                    myCaptureImg={myCaptureImg}
-                    opponentCaptureImg={opponentCaptureImg}
->>>>>>> Function capture
-=======
-                    winnerCaptureImg={winnerCaptureImg}
-                    looserCaptureImg={looserCaptureImg}
->>>>>>> function capture => myCam
+                    winnerCapture={winnerCapture}
+                    looserCapture={looserCapture}
                 />
                     <LiveChat 
                         handleSubmit={this.handleSubmit} 
