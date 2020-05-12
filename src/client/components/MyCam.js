@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Webcam from "react-webcam";
 import CamButton from './subComponents/CamButton';
 import MicroButton from './subComponents/MicroButton';
 import { ThemeContext } from './styles/ThemeContext';
  
     
-const MyCam = ({ myPeerConnection, mirrored, chatEnabled }) => {    
+const MyCam = ({ myPeerConnection, mirrored, chatEnabled, socket, player }) => {    
     const [ microEnabled, setMicroEnabled ] = useState(false)
     const [ videoEnabled, setVideoEnabled ] = useState(true)
     const [ stream, setStream ] = useState(null)
@@ -24,13 +24,28 @@ const MyCam = ({ myPeerConnection, mirrored, chatEnabled }) => {
     
     const webcamRef = React.useRef(null);
 
-    const capture = React.useCallback(
+    useEffect(
         () => {
-          const imageSrc = webcamRef.current.getScreenshot();
-          console.log(imageSrc)
+            socket.on("execute capture", screenshot => {
+                const { winner } = screenshot
+                if(player === winner) {
+                    screenshot.winnerCapture = capture()
+                }
+                if(player !== winner) {
+                    screenshot.looserCapture = capture()
+                } 
+                socket.emit(
+                    "capture taken",
+                    screenshot
+                )
+            })
         },
-        [webcamRef]
-      );
+        [],
+    );
+
+    const capture = () => {
+        return webcamRef.current.getScreenshot();
+    }
 
     const handleUserMedia = () => {
         const { stream } = webcamRef.current
@@ -62,16 +77,7 @@ const MyCam = ({ myPeerConnection, mirrored, chatEnabled }) => {
         getUserMediaTracks(stream)
     }
 
-    /*
-    capture = () => {
-        console.log("je suis dans capture");
-        const imageSrc = this.webcamRef.current.getScreenshot();
-        console.log(imageSrc);
-    }
-    */
-
     const toggleMicro = () => {
-        capture()
         setMicroEnabled(!microEnabled)
         resetTracks(stream)
     }

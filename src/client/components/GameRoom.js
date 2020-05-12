@@ -34,14 +34,14 @@ class GameRoom extends React.Component {
         },
     }
 
+    socketEndpoint = `${config.socket.aws}?name=${this.props.player}`;
+    socket = socketIOClient(this.socketEndpoint);
     componentDidMount = () => {
         if (this.state.userIsActive) {
             this.notify()
         };
         if(this.props.player) {
             const { player } = this.props;
-            this.socketEndpoint = `${config.socket.aws}?name=${this.props.player}`;
-            this.socket = socketIOClient(this.socketEndpoint);
             this.socket.on(
                 'update-gameroom', gameroom =>{ 
                     const { userIsActive } = gameroom[player]
@@ -78,20 +78,6 @@ class GameRoom extends React.Component {
                   new RTCSessionDescription(data.answer)
                 );
             });
-            this.socket.on("execute capture", screenshot => {
-                const { player } = this.props
-                const { winner } = screenshot
-                if(player === winner) {
-                    screenshot.winnerCapture = this.capture()
-                }
-                if(player !== winner) {
-                    screenshot.looserCapture = this.capture()
-                } 
-                this.socket.emit(
-                    "capture taken",
-                    screenshot
-                )
-            })
             this.socket.on("screenshot", screenshot => {
                 const { shotId, winnerCapture, looserCapture } = screenshot
                 if(winnerCapture) {
