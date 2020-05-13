@@ -1,30 +1,32 @@
 import React from "react";
-import littleScreenshots from './littleScreenshot';
+//import littleScreenshots from './littleScreenshot';
 
 
 const ScreenShot = ({ winnerCapture, looserCapture }) => {
     const styles = {
         container: {
-            position: 'absolute',
-            height: '15vh',
-            paddingTop : '2vh',
-            paddingBottom: '2vh',
-            textAlign: 'center',
-            flexDirection: 'row-reverse',
+            height: '25vh',
+            width: '9vw',
+            paddingTop : '6vh',
+            paddingBottom: '8vh',
+            paddingRight: '2vh',
+            textAlign: 'right',  
         },
     }
 
     const looserStyles = {
         container: {
-            height: '10vh',
-            zIndex: 1,
+            height: 'auto',
+            maxWidth: '9vw',
+            zIndex: 1, 
+            border: 'solid green 2px',     
         }
     }
 
     return (
         <div id="screenshot" style={styles.container}>
-            <img src={looserCapture} alt="looser" sytle={looserStyles} />
-            <littleScreenshots winnerCapture={winnerCapture} style={{zIndex: 2}} />
+            {/*<LittleScreenshots winnerCapture={winnerCapture} style={{zIndex: 2}} />*/}
+            <img src={looserCapture} alt="looser" style={looserStyles.container} />
         </div>
         );
 }
