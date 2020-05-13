@@ -18,8 +18,6 @@ class GameRoom extends React.PureComponent {
             isActive: false,
         },
         captureRequest: {},
-        winnerCapture: '',
-        looserCapture: '',
         screenshots: [],
         chat: [],
         theme: 'none',
@@ -226,8 +224,6 @@ class GameRoom extends React.PureComponent {
             gameroom, 
             chat,
             captureRequest,
-            looserCapture,
-            winnerCapture,
             screenshots,
         } = this.state;
         
@@ -261,8 +257,6 @@ class GameRoom extends React.PureComponent {
                         player={player}
                         chat={chat}
                         captureRequest={captureRequest}
-                        looserCapture={looserCapture}
-                        winnerCapture={winnerCapture}
                         screenshots={screenshots}
                     />
                     <ToastContainer />

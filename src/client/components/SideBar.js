@@ -53,8 +53,6 @@ class SideBar extends React.Component {
             chat, 
             myPeerConnection, 
             captureRequest, 
-            looserCapture, 
-            winnerCapture, 
             socket, 
             player, 
             screenshots,
@@ -64,8 +62,6 @@ class SideBar extends React.Component {
             <div style={this.styles.container}>
                 <DecksList {...this.props} />
                 <Gallery 
-                    winnerCapture={winnerCapture}
-                    looserCapture={looserCapture}
                     screenshots={screenshots}
                 />
                     <LiveChat 
