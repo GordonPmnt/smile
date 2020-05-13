@@ -7,6 +7,7 @@ import socketIOClient from 'socket.io-client';
 import { config } from '../../config';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './GameRoom.css';
 
 
 class GameRoom extends React.PureComponent {
@@ -232,13 +233,17 @@ class GameRoom extends React.PureComponent {
         } = this.state;
         
         const { player, myPeerConnection, history } = this.props;
+        const music = require('../music/saloon.mp3')
 
         // This forces player to exit room if not named
         if(!player) { history.push('/') }        
 
         return (
             <ThemeContext.Provider value={themes[theme]}>
-                <div style={this.styles.container} >
+                <audio style={{ position: 'absolute', top: 11 }} controls autoPlay="true" loop="infinite">
+                    <source src={music} type="audio/mp3" />
+                </audio>
+                <div style={this.styles.container} className={"rainbow-box"}>
                     <OpponentCam 
                         handleEndOfturn={this.handleEndOfturn}
                         activeJoke={activeJoke}
