@@ -6,9 +6,15 @@ const LastScreen = ({ winnerCapture, looserCapture }) => {
     const styles = {
         winnerCapture: {
             border : '5px solid green',
+            height : '30vw',
+            width : 'auto',
         },
         looserCapture: {
             border : '5px solid red',
+            width : '100px',
+            height : '100px',
+            marginBottom : '400px',
+            marginLeft : '-100px',
         }
     }
     return (

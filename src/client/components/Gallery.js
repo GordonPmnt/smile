@@ -7,15 +7,15 @@ function Gallery({ winnerCapture, looserCapture, screenshots }) {
     const styles = {
         container: {
             display: 'flex',
-            height: '25%',
+            height: '25vw',
             width: 'auto',
             alignItems: 'center',
             flexDirection: 'column',
         },
         lastScreen: {
             position: 'absolute',
-            top: '20%',
-            left: '25%',
+            top: '10vh',
+            left: '20vw',
         },
         label: {
             fontWeight: 'normal'
