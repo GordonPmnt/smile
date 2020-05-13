@@ -14,8 +14,8 @@ function Gallery({ winnerCapture, looserCapture, screenshots }) {
         },
         lastScreen: {
             position: 'absolute',
-            top: '10vh',
-            left: '20vw',
+            top: '15vh',
+            left: '10vw',
         },
         label: {
             fontWeight: 'normal'
