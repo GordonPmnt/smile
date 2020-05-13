@@ -1,33 +1,39 @@
 import React from "react";
-import { StylesProvider } from "@material-ui/core";
 
 
-const LastScreen = ({ winnerCapture, looserCapture }) => {
+const LastScreen = ({ winnerCapture, looserCapture, displayLastscreen }) => {
     const styles = {
         winnerCapture: {
             border : '5px solid green',
-            height : '30vw',
+            height : '35vw',
             width : 'auto',
         },
         looserCapture: {
             border : '5px solid red',
-            width : '100px',
-            height : '100px',
-            marginBottom : '400px',
-            marginLeft : '-100px',
+            height : '5vw',
+            width : 'auto',
+            marginBottom : '29.5vw',
+            marginLeft : '-12vh',
         }
     }
+
+    console.log(displayLastscreen)
+
     return (
-        <div>
-            <img
-                style={styles.winnerCapture}
-                src={winnerCapture} alt="winner"
-             />
-            <img 
-                style={styles.looserCapture}
-                src={looserCapture} alt="looser" 
-            />
-        </div>
+        <>
+            {displayLastscreen &&
+                <div>
+                    <img
+                        style={styles.winnerCapture}
+                        src={winnerCapture} alt="winner"
+                    />
+                    <img 
+                        style={styles.looserCapture}
+                        src={looserCapture} alt="looser" 
+                    />
+                </div>
+            }
+        </>
         );
 }
 

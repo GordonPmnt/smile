@@ -14,8 +14,8 @@ function Gallery({ winnerCapture, looserCapture, screenshots }) {
         },
         lastScreen: {
             position: 'absolute',
-            top: '10vh',
-            left: '20vw',
+            top: '15vh',
+            left: '10vw',
         },
         label: {
             fontWeight: 'normal'
@@ -27,20 +27,19 @@ function Gallery({ winnerCapture, looserCapture, screenshots }) {
     const [ displayLastscreen, setDisplayLastscreen ] = useState(false)
 
     useEffect(() => {
-        const pictures = {}
-        const ids = new Set(screenshots.map(capture => capture.reqId))
-        screenshots.forEach(
-            capture => pictures[capture.reqId] = pictures[capture.reqId] 
-                ? {...pictures[capture.reqId], ...capture} 
-                : capture
-        )
-        const collection = Array.from(ids).map(id => pictures[id])
-        setGallery(collection)
-        setLastscreen(collection[collection.length - 1])
-
-        // flash
-
-        setDisplayLastscreen(true)
+        if(screenshots.length > 0) {
+            const pictures = {}
+            const ids = new Set(screenshots.map(capture => capture.reqId))
+            screenshots.forEach(
+                capture => pictures[capture.reqId] = pictures[capture.reqId] 
+                    ? {...pictures[capture.reqId], ...capture} 
+                    : capture
+            )
+            const collection = Array.from(ids).map(id => pictures[id])
+            setGallery(collection)
+            setLastscreen(collection[collection.length - 1])
+            setDisplayLastscreen(true)
+        }
     }, [screenshots])
 
     console.log(screenshots)
@@ -64,6 +63,7 @@ function Gallery({ winnerCapture, looserCapture, screenshots }) {
                     <LastScreen
                         looserCapture={lastScreen && lastScreen.looserCapture}
                         winnerCapture={lastScreen && lastScreen.winnerCapture}
+                        displayLastscreen={displayLastscreen}
                     />
                 </div>
             }
