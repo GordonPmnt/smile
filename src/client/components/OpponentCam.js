@@ -8,6 +8,7 @@ import { useState } from "react";
 
 const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConnection, player, userIsActive, requestCapture }) => {   
     const webcamOff = require('../img/webcam-off.png');
+    const daddy = require('../img/gentleman-transparent.png');
     const styles = {
         container: {
             margin: '5vh 5vh 5vh 5vh',
@@ -41,6 +42,7 @@ const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConn
             marginLeft: '-20px',
             top: '50vh',
             marginTop: '-20px',
+            textAlign: 'center',
         }
     };
 
@@ -59,9 +61,13 @@ const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConn
                 <div  style={{...styles.container}}>
                     {callMade 
                     ?
-                        <p style={styles.users}>...veuillez patienter</p>
+                        <h1 style={styles.users}>...veuillez patienter</h1>
                     :
                         <ul style={styles.users}>
+                            <div>
+                                <img src={daddy} alt="daddy" style={{ height: '100px' }}/>
+                                <h1>Choisis un 2ème joueur</h1>
+                            </div>
                             {activePlayers.filter(name => name !== player).map(
                                 name => <OnlineUser 
                                     key={gameroom[name].socketId} 
