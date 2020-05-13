@@ -10,7 +10,8 @@ const ScreenShot = ({ winnerCapture, looserCapture }) => {
             paddingTop : '6vh',
             paddingBottom: '8vh',
             paddingRight: '2vh',
-            textAlign: 'right',  
+            textAlign: 'right',
+            marginRight: '-4vw'
         },
     }
 
