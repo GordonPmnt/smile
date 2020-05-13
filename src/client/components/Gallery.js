@@ -29,6 +29,8 @@ function Gallery({ winnerCapture, looserCapture, screenshots }) {
         setGallery(collection)
     }, [screenshots])
 
+    console.log(screenshots)
+
     return (
         <div style={styles.container}>
             {
