@@ -12,7 +12,8 @@ const useStyles = makeStyles({
             "&:hover": {
             transform: "scale(1.6)",
             boxShadow: "0 4px 20px 0 rgba(0,0,0,0.12)",
-            zIndex: 10000,
+            position: 'relative',
+            zIndex: 100000,
         }
 }})
 
