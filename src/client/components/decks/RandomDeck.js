@@ -2,7 +2,6 @@ import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import { colors } from '../styles/ThemeContext';
 
-
 const useStyles = makeStyles({
     card: {
         borderRadius: '5px',
@@ -51,10 +50,3 @@ const RandomDeck = ({ getRandomJoke }) => {
 }
 
 export default RandomDeck;
-
-
-
-
-
-
-

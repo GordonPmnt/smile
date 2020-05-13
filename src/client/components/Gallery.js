@@ -18,6 +18,7 @@ function Gallery({ winnerCapture, looserCapture, screenshots }) {
             position: 'absolute',
             top: '15vh',
             left: '10vw',
+            zIndex: 11,
         },
         label: {
             fontWeight: 'normal'
