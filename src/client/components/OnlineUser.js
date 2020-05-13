@@ -7,7 +7,7 @@ const OnlineUser = ({ name, socket, socketId, myPeerConnection, setCallMade }) =
     const { RTCSessionDescription } = window;
 
     async function callUser(socketId) {
-        setCallMade(true)
+        setCallMade()
         const offer = await myPeerConnection.createOffer();
         await myPeerConnection.setLocalDescription(new RTCSessionDescription(offer));
         socket.emit("call-user", {

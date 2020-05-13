@@ -25,6 +25,7 @@ class GameRoom extends React.PureComponent {
         chat: [],
         theme: 'none',
         gameroom: {},
+        callMade: false,
     };
 
     styles = {
@@ -34,6 +35,12 @@ class GameRoom extends React.PureComponent {
             width: '100%',
             margin: '0px',
         },
+    }
+
+    setCallMade = () => {
+        this.setState(prevState => ({
+            callMade: !prevState.callMade
+        }))
     }
 
     componentDidMount = () => {
@@ -230,6 +237,7 @@ class GameRoom extends React.PureComponent {
             looserCapture,
             winnerCapture,
             screenshots,
+            callMade,
         } = this.state;
         
         const { player, myPeerConnection, history } = this.props;
@@ -253,6 +261,8 @@ class GameRoom extends React.PureComponent {
                         socket={this.socket}
                         myPeerConnection={myPeerConnection}
                         player={player}
+                        setCallMade={this.setCallMade}
+                        callMade={callMade}
                     />
                     <SideBar
                         socket={this.socket} 
@@ -269,6 +279,7 @@ class GameRoom extends React.PureComponent {
                         looserCapture={looserCapture}
                         winnerCapture={winnerCapture}
                         screenshots={screenshots}
+                        callMade={callMade}
                     />
                     <ToastContainer />
                 </div>

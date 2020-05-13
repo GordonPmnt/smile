@@ -6,7 +6,7 @@ import SexDeck from './decks/SexDeck';
 import './DeckList.css'
 
 
- const DecksList = ({ getRandomJoke, getDarkJoke, getChuckJoke, getSexJoke, activeJoke, userIsActive,}) => {
+ const DecksList = ({ getRandomJoke, getDarkJoke, getChuckJoke, getSexJoke, activeJoke, userIsActive, callMade}) => {
     const styles = {
         container: {
             width: '100%',
@@ -26,18 +26,18 @@ import './DeckList.css'
     
     return (
         <div style={styles.container}>
-            <h2 style={styles.label} className={(userIsActive && !activeJoke.isActive) && "shake"}>
+            <h2 style={styles.label} className={(userIsActive && !activeJoke.isActive && callMade) && "shake"}>
                 {
                     !userIsActive 
                         ? "NE RIS PAS!" 
                         : activeJoke.isActive 
                             ? "LIS LA JOKE A L'AUTRE JOUEUR..." 
-                            : "CHOISIS UNE JOKE DE PAPA"
+                            : callMade ? "CHOISIS UNE JOKE DE PAPA" : "ATTENTE D'UN AUTRE JOUEUR"
                 }
             </h2>
             <div 
                 style={userIsActive 
-                    ? styles.decks 
+                    ? callMade ? styles.decks : {...styles.decks, filter: 'grayscale(100%)'}
                     : {...styles.decks, filter: 'grayscale(100%)'}
                 }
             >
