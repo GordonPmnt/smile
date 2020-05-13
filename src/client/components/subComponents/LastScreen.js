@@ -1,7 +1,7 @@
 import React from "react";
 
 
-const LastScreen = ({ winnerCapture, looserCapture, displayLastscreen, selectedjoke }) => {
+const LastScreen = ({ winnerCapture, looserCapture, displayLastscreen, displaySelectedScreen, selectedjoke }) => {
     const styles = {
         winnerCapture: {
             border : '75px solid white',
@@ -18,11 +18,9 @@ const LastScreen = ({ winnerCapture, looserCapture, displayLastscreen, selectedj
         }
     }
 
-    console.log(displayLastscreen)
-
     return (
         <>
-            {displayLastscreen &&
+            {(displayLastscreen || displaySelectedScreen) &&
                 <div>
                     <p>{selectedjoke}</p>
                     <img
