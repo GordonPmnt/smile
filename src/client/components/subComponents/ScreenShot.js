@@ -5,7 +5,7 @@ const ScreenShot = ({ winnerCapture, looserCapture }) => {
     const styles = {
         container: {
             position: 'absolute',
-            height: '80%',
+            height: '23vh',
             paddingTop : '2vh',
             textAlign: 'center',
             flexDirection: 'row-reverse',
