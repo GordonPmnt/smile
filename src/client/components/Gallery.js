@@ -6,10 +6,11 @@ function Gallery({ winnerCapture, looserCapture, screenshots }) {
     const styles = {
         container: {
             display: 'flex',
-            height: '25%',
-            width: 'auto',
+            height: '25vh',
+            width: '30vw',
             alignItems: 'center',
             flexDirection: 'column',
+            position: 'absolut',
         },
         label: {
             fontWeight: 'normal'
