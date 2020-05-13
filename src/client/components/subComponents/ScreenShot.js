@@ -12,7 +12,7 @@ const ScreenShot = ({ winnerCapture, looserCapture }) => {
     }
 
     return (
-        <div style={styles.container}>
+        <div id="screenshot" style={styles.container}>
             <img src={winnerCapture} alt="winner" />
             <img src={looserCapture} alt="looser" />
         </div>

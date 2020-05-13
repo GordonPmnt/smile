@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ScreenShot from './subComponents/ScreenShot';
 
-function Gallery({ winnerCapture, looserCapture }) {
+
+function Gallery({ winnerCapture, looserCapture, screenshots }) {
     const styles = {
         container: {
             display: 'flex',
@@ -15,13 +16,28 @@ function Gallery({ winnerCapture, looserCapture }) {
         }
     }
 
+    const [ gallery, setGallery ] = useState([])
+    useEffect(() => {
+        const pictures = {}
+        const ids = new Set(screenshots.map(capture => capture.reqId))
+        screenshots.forEach(
+            capture => pictures[capture.reqId] = pictures[capture.reqId] 
+                ? {...pictures[capture.reqId], ...capture} 
+                : capture
+        )
+        const collection = Array.from(ids).map(id => pictures[id])
+        setGallery(collection)
+    }, [screenshots])
+
     return (
         <div style={styles.container}>
-            <h2 style={styles.label}>Gallery</h2>
-            <ScreenShot 
-                looserCapture={looserCapture}
-                winnerCapture={winnerCapture}
-            />
+            {
+                gallery.map(picture => <ScreenShot 
+                    winnerCapture={picture.winnerCapture} 
+                    looserCapture={picture.looserCapture}
+                    />
+                )
+            }
         </div>
     );
 }

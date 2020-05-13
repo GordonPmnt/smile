@@ -82,17 +82,23 @@ class GameRoom extends React.PureComponent {
             });
 
             this.socket.on("execute capture", captureRequest => {
+                const { activeJoke } = this.state
+                if(activeJoke.isActive) {
+                    captureRequest.selectedjoke = `${activeJoke.joke} ${activeJoke.answer}`
+                }
                 this.setState({ captureRequest })
             })
             this.socket.on("screenshot", screenshot => {
-                const { reqId, winnerCapture, looserCapture } = screenshot
+                const { winnerCapture, looserCapture } = screenshot
                 if(winnerCapture) {
                     this.setState({ winnerCapture })
                 }
                 if(looserCapture) {
                     this.setState({ looserCapture })
                 }
-                //TBD here: this setState screenshots []
+                this.setState(prevState => ({ 
+                    screenshots: [...prevState.screenshots, screenshot] 
+                }))
             })
         }
     }
@@ -222,6 +228,7 @@ class GameRoom extends React.PureComponent {
             captureRequest,
             looserCapture,
             winnerCapture,
+            screenshots,
         } = this.state;
         
         const { player, myPeerConnection, history } = this.props;
@@ -256,6 +263,7 @@ class GameRoom extends React.PureComponent {
                         captureRequest={captureRequest}
                         looserCapture={looserCapture}
                         winnerCapture={winnerCapture}
+                        screenshots={screenshots}
                     />
                     <ToastContainer />
                 </div>

@@ -49,7 +49,16 @@ class SideBar extends React.Component {
 
     render() {
         const { chatEnabled, message } = this.state
-        const { chat, myPeerConnection, captureRequest, looserCapture, winnerCapture, socket, player } = this.props;
+        const { 
+            chat, 
+            myPeerConnection, 
+            captureRequest, 
+            looserCapture, 
+            winnerCapture, 
+            socket, 
+            player, 
+            screenshots,
+        } = this.props;
     
         return (
             <div style={this.styles.container}>
@@ -57,6 +66,7 @@ class SideBar extends React.Component {
                 <Gallery 
                     winnerCapture={winnerCapture}
                     looserCapture={looserCapture}
+                    screenshots={screenshots}
                 />
                     <LiveChat 
                         handleSubmit={this.handleSubmit} 
