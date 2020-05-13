@@ -21,7 +21,8 @@ const App = () => {
           exact path="/" 
           render={props => 
             <MainPage 
-              {...props} 
+              {...props}
+              player={player}
               handlePlayerInput={handlePlayerInput}
             />
           } 

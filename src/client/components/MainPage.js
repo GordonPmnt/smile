@@ -2,7 +2,7 @@ import React from 'react';
 import { colors } from './styles/ThemeContext';
 
 
-const MainPage = ({ history, handlePlayerInput }) => {
+const MainPage = ({ history, handlePlayerInput, player }) => {
   const styles = {
     container: {
       display: 'flex',

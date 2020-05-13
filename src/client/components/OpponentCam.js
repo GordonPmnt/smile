@@ -3,6 +3,7 @@ import SelectedJoke from "./SelectedJoke";
 import ScreenshotButton from './subComponents/ScreenshotButton';
 import { ThemeContext } from './styles/ThemeContext';
 import OnlineUser from "./OnlineUser";
+import { useState } from "react";
 
 
 const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConnection, player, userIsActive, requestCapture }) => {   
@@ -27,20 +28,22 @@ const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConn
         webcam: {
             width: '100%',
             margin: 'auto 0',
-            background: `url(${webcamOff}) no-repeat center center`,
             borderRadius: '15px',
             border: 'solid 5px',
         },
         users: {
             display: 'flex',
-            flexDirection: 'row',
+            flexDirection: 'column',
             position: 'absolute', 
-            top: '90vh',
-            right: '10vw',
+            left: '30vw',
+            marginLeft: '-20px',
+            top: '50vh',
+            marginTop: '-20px',
         }
     };
 
     const activePlayers = [...Object.keys(gameroom)]
+    const [ callMade, setCallMade ] = useState(false)
 
     let video;
     myPeerConnection.ontrack = ({ streams: [stream] }) => {
@@ -51,18 +54,24 @@ const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConn
         <ThemeContext.Consumer>
         {theme => 
             <>
-                <ul style={styles.users}>
-                    {activePlayers.filter(name => name !== player).map(
-                        name => <OnlineUser 
-                            key={gameroom[name].socketId} 
-                            socketId={gameroom[name].socketId}
-                            myPeerConnection={myPeerConnection}
-                            name={name}
-                            socket={socket}
-                        />
-                    )}
-                </ul>
                 <div  style={{...styles.container}}>
+                    {callMade 
+                    ?
+                        <p style={styles.users}>...veuillez patienter</p>
+                    :
+                        <ul style={styles.users}>
+                            {activePlayers.filter(name => name !== player).map(
+                                name => <OnlineUser 
+                                    key={gameroom[name].socketId} 
+                                    socketId={gameroom[name].socketId}
+                                    myPeerConnection={myPeerConnection}
+                                    name={name}
+                                    socket={socket}
+                                    setCallMade={setCallMade}
+                                />
+                            )}
+                        </ul>
+                    }
                     <video
                         autoPlay
                         id="remote-cam" 
