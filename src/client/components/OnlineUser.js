@@ -29,9 +29,10 @@ const OnlineUser = ({ name, socket, socketId, myPeerConnection, setCallMade }) =
                 cursor: 'pointer',
                 margin: '10px',
                 zIndex: 3,
+                fontSize: '2em',
             }}
         >
-            Commencer à jouer avec: {name}
+            AFFRONTER: {name}
         </li>
     )
 }
