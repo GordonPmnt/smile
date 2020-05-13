@@ -1,20 +1,21 @@
 import React from "react";
 
 
-const littleScreenShot = ({winnerCapture}) => {
+const LittleScreenShot = ({winnerCapture}) => {
     const styles = {
         container: {
             position: 'absolute',
-            height: '5vh',
+            height: '2vh',
             textAlign: 'right',
-            flexDirection: 'row-reverse',
         },
     }
 
     const winnerStyles = {
         container: {
-            height: '3vh',
+            height: '2vh',
             position: 'absolute',
+            borderColor: 'green',
+            borderWidth: '2px',
         }
     }
 
