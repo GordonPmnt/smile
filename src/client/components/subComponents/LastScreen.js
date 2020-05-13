@@ -1,7 +1,7 @@
 import React from "react";
 
 
-const LastScreen = ({ winnerCapture, looserCapture, displayLastscreen }) => {
+const LastScreen = ({ winnerCapture, looserCapture, displayLastscreen, selectedjoke }) => {
     const styles = {
         winnerCapture: {
             border : '75px solid white',
@@ -24,6 +24,7 @@ const LastScreen = ({ winnerCapture, looserCapture, displayLastscreen }) => {
         <>
             {displayLastscreen &&
                 <div>
+                    <p>{selectedjoke}</p>
                     <img
                         style={styles.winnerCapture}
                         src={winnerCapture} alt="winner"

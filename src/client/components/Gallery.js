@@ -3,7 +3,7 @@ import ScreenShot from './subComponents/ScreenShot';
 import LastScreen from "./subComponents/LastScreen";
 
 
-function Gallery({ winnerCapture, looserCapture, screenshots }) {
+function Gallery({ screenshots }) {
     const styles = {
         container: {
             display: 'flex',
@@ -67,6 +67,7 @@ function Gallery({ winnerCapture, looserCapture, screenshots }) {
                         looserCapture={lastScreen && lastScreen.looserCapture}
                         winnerCapture={lastScreen && lastScreen.winnerCapture}
                         displayLastscreen={displayLastscreen}
+                        selectedjoke={lastScreen && lastScreen.selectedjoke}
                     />
                 </div>
             }
