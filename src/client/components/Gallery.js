@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ScreenShot from './subComponents/ScreenShot';
 
 
-function Gallery({ screenshots }) {
+function Gallery({ winnerCapture, looserCapture, screenshots }) {
     const styles = {
         container: {
             display: 'flex',
