@@ -169,7 +169,7 @@ class GameRoom extends React.PureComponent {
                     answer: response.data.joke.answer,
                     isActive: true,
                 }
-            }, () => this.socket.emit("joke" , response.data));
+            }, () => this.socket.emit("joke" , response.data.joke));
           })
           .catch(err => {
               console.log(err.message)
