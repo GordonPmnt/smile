@@ -9,9 +9,10 @@ function Gallery({ winnerCapture, looserCapture, screenshots }) {
             display: 'flex',
             height: '25vh',
             width: '30vw',
-            marginRight: '4vw',
+            paddingRight: '4vw',
             alignItems: 'right',
             flexDirection: 'row-reverse',
+            paddingTop: '3.6vh',
         },
         lastScreen: {
             position: 'absolute',

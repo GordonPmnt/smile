@@ -20,8 +20,9 @@ const ScreenShot = ({ winnerCapture, looserCapture }) => {
             height: 'auto',
             maxWidth: '9vw',
             zIndex: 1, 
-            border: 'solid green 2px',     
-        }
+            border: 'solid green 2px',   
+            transform: 'rotate(-0.05turn)',  
+        },
     }
 
     return (
