@@ -9,6 +9,7 @@ function Gallery({ winnerCapture, looserCapture, screenshots }) {
             display: 'flex',
             height: '25vh',
             width: '30vw',
+            marginRight: '4vw',
             alignItems: 'right',
             flexDirection: 'row-reverse',
         },
@@ -42,7 +43,7 @@ function Gallery({ winnerCapture, looserCapture, screenshots }) {
         }
     }, [screenshots])
 
-    console.log(screenshots)
+    console.log(gallery)
 
     return (
         <>
