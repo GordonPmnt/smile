@@ -84,7 +84,7 @@ function Gallery({ screenshots }) {
             {displaySelectedScreen &&
                 <div 
                     style={styles.lastScreen}
-                    onClick={() => setSelectedScreen(false)}
+                    onClick={() => setDisplaySelectedScreen(false)}
                 >
                     <LastScreen
                         looserCapture={selectedScreen && selectedScreen.looserCapture}
