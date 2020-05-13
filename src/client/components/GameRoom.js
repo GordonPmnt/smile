@@ -232,12 +232,16 @@ class GameRoom extends React.PureComponent {
         } = this.state;
         
         const { player, myPeerConnection, history } = this.props;
+        const music = require('../music/saloon.mp3')
 
         // This forces player to exit room if not named
         if(!player) { history.push('/') }        
 
         return (
             <ThemeContext.Provider value={themes[theme]}>
+                <audio controls autoPlay="true" loop="infinite">
+                    <source src={music} type="audio/mp3" />
+                </audio>
                 <div style={this.styles.container} >
                     <OpponentCam 
                         handleEndOfturn={this.handleEndOfturn}
