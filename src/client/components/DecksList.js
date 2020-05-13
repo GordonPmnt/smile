@@ -39,6 +39,7 @@ import SexDeck from './decks/SexDeck';
                     ? styles.decks 
                     : {...styles.decks, filter: 'grayscale(100%)'}
                 }
+                className={"shake"}
             >
                 <RandomDeck 
                     getRandomJoke={!activeJoke.isActive && userIsActive 
