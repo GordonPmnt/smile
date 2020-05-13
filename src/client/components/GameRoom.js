@@ -240,7 +240,7 @@ class GameRoom extends React.PureComponent {
 
         return (
             <ThemeContext.Provider value={themes[theme]}>
-                <audio style={{ position: 'absolute', top: 11 }} controls autoPlay="true" loop="infinite">
+                <audio style={{ position: 'absolute', top: 11 }} controls autoPlay={true} loop="infinite">
                     <source src={music} type="audio/mp3" />
                 </audio>
                 <div style={this.styles.container} className={"rainbow-box"}>
