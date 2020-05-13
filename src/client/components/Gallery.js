@@ -9,8 +9,10 @@ function Gallery({ winnerCapture, looserCapture, screenshots }) {
             display: 'flex',
             height: '25vh',
             width: '30vw',
+            paddingRight: '6vw',
             alignItems: 'right',
             flexDirection: 'row-reverse',
+            paddingTop: '3.6vh',
         },
         lastScreen: {
             position: 'absolute',
@@ -42,7 +44,7 @@ function Gallery({ winnerCapture, looserCapture, screenshots }) {
         }
     }, [screenshots])
 
-    console.log(screenshots)
+    console.log(gallery)
 
     return (
         <>

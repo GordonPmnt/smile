@@ -10,17 +10,19 @@ const ScreenShot = ({ winnerCapture, looserCapture }) => {
             paddingTop : '6vh',
             paddingBottom: '8vh',
             paddingRight: '2vh',
-            textAlign: 'right',  
+            textAlign: 'right',
+            marginRight: '-6vw'
         },
     }
 
     const looserStyles = {
         container: {
             height: 'auto',
-            maxWidth: '9vw',
+            maxWidth: '8vw',
             zIndex: 1, 
-            border: 'solid green 2px',     
-        }
+            border: 'solid green 2px',   
+            transform: 'rotate(-0.05turn)',  
+        },
     }
 
     return (
