@@ -7,10 +7,11 @@ function Gallery({ winnerCapture, looserCapture, screenshots }) {
     const styles = {
         container: {
             display: 'flex',
-            height: '25vw',
-            width: 'auto',
+            height: '25vh',
+            width: '30vw',
             alignItems: 'center',
             flexDirection: 'column',
+            position: 'absolut',
         },
         lastScreen: {
             position: 'absolute',
@@ -42,6 +43,8 @@ function Gallery({ winnerCapture, looserCapture, screenshots }) {
 
         setDisplayLastscreen(true)
     }, [screenshots])
+
+    console.log(screenshots)
 
     return (
         <>
