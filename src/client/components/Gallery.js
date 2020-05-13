@@ -7,15 +7,15 @@ function Gallery({ winnerCapture, looserCapture, screenshots }) {
     const styles = {
         container: {
             display: 'flex',
-            height: '25%',
+            height: '25vw',
             width: 'auto',
             alignItems: 'center',
             flexDirection: 'column',
         },
         lastScreen: {
             position: 'absolute',
-            top: 20,
-            left: -150,
+            top: '10vh',
+            left: '20vw',
         },
         label: {
             fontWeight: 'normal'
@@ -37,6 +37,9 @@ function Gallery({ winnerCapture, looserCapture, screenshots }) {
         const collection = Array.from(ids).map(id => pictures[id])
         setGallery(collection)
         setLastscreen(collection[collection.length - 1])
+
+        // flash
+
         setDisplayLastscreen(true)
     }, [screenshots])
 
