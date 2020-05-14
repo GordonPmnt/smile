@@ -44,7 +44,7 @@ class GameRoom extends React.PureComponent {
     }
 
     componentDidMount = () => {
-        this.socketEndpoint = `${config.socket.local}?name=${this.props.player}`;
+        this.socketEndpoint = `${config.socket.aws}?name=${this.props.player}`;
         this.socket = socketIOClient(this.socketEndpoint);
         if (this.state.userIsActive) {
             this.notify()
