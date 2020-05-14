@@ -17,7 +17,7 @@ function Gallery({ screenshots }) {
         lastScreen: {
             position: 'absolute',
             top: '15vh',
-            left: '10vw',
+            left: '30vw',
             zIndex: 11,
         },
         label: {
@@ -78,6 +78,7 @@ function Gallery({ screenshots }) {
                         winnerCapture={lastScreen && lastScreen.winnerCapture}
                         displayLastscreen={displayLastscreen}
                         selectedjoke={lastScreen && lastScreen.selectedjoke}
+                        winner={lastScreen && lastScreen.winner}
                     />
                 </div>
             }
@@ -90,6 +91,7 @@ function Gallery({ screenshots }) {
                         looserCapture={selectedScreen && selectedScreen.looserCapture}
                         winnerCapture={selectedScreen && selectedScreen.winnerCapture}
                         selectedjoke={selectedScreen && selectedScreen.selectedjoke}
+                        winner={selectedScreen && selectedScreen.winner}
                         displaySelectedScreen={displaySelectedScreen}
                     />
                 </div>

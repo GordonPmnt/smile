@@ -30,6 +30,9 @@ io.on('connection', (socket) => {
     });
 
     socket.on("joke", joke => {
+        if(joke.question) {
+            joke.joke = joke.question
+        }
         io.emit("joke", joke)
     })
 
