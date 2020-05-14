@@ -18,6 +18,7 @@ class GameRoom extends React.PureComponent {
             answer: '',
             isActive: false,
         },
+        currentJoke: '',
         captureRequest: {},
         winnerCapture: '',
         looserCapture: '',
@@ -90,10 +91,14 @@ class GameRoom extends React.PureComponent {
                 );
             });
 
+            this.socket.on("joke", currentJoke => {
+                this.setState({ currentJoke })
+            })
+
             this.socket.on("execute capture", captureRequest => {
-                const { activeJoke } = this.state
-                if(activeJoke.isActive) {
-                    captureRequest.selectedjoke = `${activeJoke.joke} ${activeJoke.answer}`
+                const { currentJoke } = this.state
+                if(currentJoke) {
+                    captureRequest.selectedjoke = `${currentJoke.joke} ${currentJoke.answer}`
                 }
                 this.setState({ captureRequest })
             })
@@ -120,6 +125,7 @@ class GameRoom extends React.PureComponent {
         this.setState({ 
             activeJoke: { isActive: false },
             theme: 'none',
+            currentJoke: '',
         })
         this.socket.emit("update-gameroom", gameroom)
     };
@@ -163,8 +169,8 @@ class GameRoom extends React.PureComponent {
                     joke : response.data.joke.question,
                     answer: response.data.joke.answer,
                     isActive: true,
-                } 
-            });
+                }
+            }, () => this.socket.emit("joke" , response.data.joke));
           })
           .catch(err => {
               console.log(err.message)
@@ -176,13 +182,12 @@ class GameRoom extends React.PureComponent {
         axios
         .get('/chuck/random')
         .then(response => {
-            console.log(response)
             this.setState({
                 activeJoke: {
                     joke: response.data.joke,
                     isActive: true,
                 } 
-            })
+            }, () => this.socket.emit("joke" , response.data));
         })
         .catch(err => {
             console.log(err.message)
@@ -194,13 +199,12 @@ class GameRoom extends React.PureComponent {
         axios
         .get('/sex/random')
         .then(response => {
-            console.log(response)
             this.setState({
                 activeJoke: {
                     joke: response.data.joke,
                     isActive: true,
                 } 
-            })
+            }, () => this.socket.emit("joke" , response.data));
         })
         .catch(err => {
             console.log(err.message)
@@ -212,14 +216,13 @@ class GameRoom extends React.PureComponent {
         axios
         .get('/dark/random')
         .then(response => {
-            console.log(response)
             this.setState({
                 activeJoke: {
                     joke: response.data.joke,
                     answer: response.data.answer,
                     isActive: true,
                 } 
-            })
+            }, () => this.socket.emit("joke" , response.data));
         })
         .catch(err => {
             console.log(err.message)

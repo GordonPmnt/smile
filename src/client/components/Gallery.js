@@ -3,7 +3,7 @@ import ScreenShot from './subComponents/ScreenShot';
 import LastScreen from "./subComponents/LastScreen";
 
 
-function Gallery({ winnerCapture, looserCapture, screenshots }) {
+function Gallery({ screenshots }) {
     const styles = {
         container: {
             display: 'flex',
@@ -28,6 +28,8 @@ function Gallery({ winnerCapture, looserCapture, screenshots }) {
     const [ gallery, setGallery ] = useState([])
     const [ lastScreen, setLastscreen ] = useState({})
     const [ displayLastscreen, setDisplayLastscreen ] = useState(false)
+    const [ displaySelectedScreen, setDisplaySelectedScreen ] = useState(false)
+    const [ selectedScreen, setSelectedScreen ] = useState({})
 
     useEffect(() => {
         if(screenshots.length > 0) {
@@ -45,15 +47,23 @@ function Gallery({ winnerCapture, looserCapture, screenshots }) {
         }
     }, [screenshots])
 
-    console.log(gallery)
+    const showScreenshot = picture => {
+        console.log(picture)
+        setDisplaySelectedScreen(true)
+        setSelectedScreen(picture)
+    }
+
 
     return (
         <>
             <div style={styles.container}>
                 {
-                    gallery.map(picture => <ScreenShot 
+                    gallery.map(picture => <ScreenShot
+                            key={picture.reqId}
                             winnerCapture={picture.winnerCapture} 
                             looserCapture={picture.looserCapture}
+                            showScreenshot={showScreenshot}
+                            picture={picture}
                         />
                     )
                 }
@@ -67,6 +77,20 @@ function Gallery({ winnerCapture, looserCapture, screenshots }) {
                         looserCapture={lastScreen && lastScreen.looserCapture}
                         winnerCapture={lastScreen && lastScreen.winnerCapture}
                         displayLastscreen={displayLastscreen}
+                        selectedjoke={lastScreen && lastScreen.selectedjoke}
+                    />
+                </div>
+            }
+            {displaySelectedScreen &&
+                <div 
+                    style={styles.lastScreen}
+                    onClick={() => setDisplaySelectedScreen(false)}
+                >
+                    <LastScreen
+                        looserCapture={selectedScreen && selectedScreen.looserCapture}
+                        winnerCapture={selectedScreen && selectedScreen.winnerCapture}
+                        selectedjoke={selectedScreen && selectedScreen.selectedjoke}
+                        displaySelectedScreen={displaySelectedScreen}
                     />
                 </div>
             }
