@@ -57,6 +57,7 @@ const MainPage = ({ history, handlePlayerInput, player }) => {
             name="player" 
             onChange={handlePlayerInput}
             required
+            style={{ marginLeft: 5 }}
           />
         </label>
         <input type="submit" value="Jouer"/>

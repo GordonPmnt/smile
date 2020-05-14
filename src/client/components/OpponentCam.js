@@ -27,7 +27,7 @@ const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConn
             zIndex: 10,
         },
         webcam: {
-            width: '98%',
+            width: '100%',
             margin: 'auto 0',
             borderRadius: '15px',
             border: 'solid 8px',
