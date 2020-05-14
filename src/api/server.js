@@ -29,6 +29,13 @@ io.on('connection', (socket) => {
         msgId++
     });
 
+    socket.on("joke", joke => {
+        if(joke.question) {
+            joke.joke = joke.question
+        }
+        io.emit("joke", joke)
+    })
+
     socket.on('update-gameroom', newRoom => {
         gameroom = newRoom //update the gameroom on server
         io.emit('update-gameroom', gameroom)

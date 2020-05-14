@@ -3,10 +3,9 @@ import SelectedJoke from "./SelectedJoke";
 import ScreenshotButton from './subComponents/ScreenshotButton';
 import { ThemeContext } from './styles/ThemeContext';
 import OnlineUser from "./OnlineUser";
-import { useState } from "react";
 
 
-const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConnection, player, userIsActive, requestCapture }) => {   
+const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConnection, player, userIsActive, requestCapture, callMade, setCallMade }) => {   
     const webcamOff = require('../img/webcam-off.png');
     const daddy = require('../img/gentleman-transparent.png');
     const styles = {
@@ -31,7 +30,7 @@ const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConn
             width: '100%',
             margin: 'auto 0',
             borderRadius: '15px',
-            border: 'solid 5px',
+            border: 'solid 8px',
             zIndex: 1,
         },
         users: {
@@ -41,13 +40,12 @@ const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConn
             left: '30vw',
             marginLeft: '-20px',
             top: '50vh',
-            marginTop: '-20px',
+            marginTop: '-80px',
             textAlign: 'center',
         }
     };
 
     const activePlayers = [...Object.keys(gameroom)]
-    const [ callMade, setCallMade ] = useState(false)
 
     let video;
     myPeerConnection.ontrack = ({ streams: [stream] }) => {
@@ -86,6 +84,7 @@ const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConn
                         style={{...styles.webcam, ...theme.borderColor}}
                         ref={ref => video = ref}
                     />
+                    {callMade &&
                     <div style={styles.OpponentInterface}>
                         {activeJoke.isActive &&
                             <SelectedJoke 
@@ -100,6 +99,7 @@ const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConn
                                 theme={theme}
                             />
                     </div>
+                    }
                 </div>
             </>
         }

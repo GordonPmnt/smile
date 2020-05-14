@@ -11,14 +11,16 @@ const useStyles = makeStyles({
             borderColor: '#42B1EF',
             transition: "0.5s cubic-bezier(.47,1.64,.41,.8)",
             "&:hover": {
-            transform: "scale(1.6)",
-            boxShadow: "0 4px 20px 0 rgba(0,0,0,0.12)",
-            position: 'relative',
-            zIndex: 100000,
+                transform: "scale(1.6)",
+                boxShadow: "0 4px 20px 0 rgba(0,0,0,0.12)",
+                position: 'relative',
+                zIndex: 100000,
+            }
         }
-}})
+    }
+)
 
-const ScreenShot = ({ looserCapture }) => {
+const ScreenShot = ({ looserCapture, showScreenshot, picture }) => {
     const styles = {
         container: {
             height: '25vh',
@@ -34,8 +36,14 @@ const ScreenShot = ({ looserCapture }) => {
     const classes = useStyles();
 
     return (
-        <div id="screenshot" style={styles.container} >
-                <img src={looserCapture} alt="looser" className={classes.imgStyles} />
+        <div id="screenshot" style={styles.container}>
+            {/*<LittleScreenshots winnerCapture={winnerCapture} style={{zIndex: 2}} />*/}
+            <img 
+                src={looserCapture} 
+                alt="looser" 
+                className={classes.imgStyles} 
+                onClick={() => showScreenshot(picture)} 
+            />
         </div>
     );
 }
