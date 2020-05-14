@@ -52,12 +52,13 @@ class GameRoom extends React.PureComponent {
         if(this.props.player) {
             const { player } = this.props;
             this.socket.on(
-                'update-gameroom', gameroom =>{ 
+                'update-gameroom', gameroom => { 
                     const { userIsActive } = gameroom[player]
                     this.setState({ 
                         gameroom,
                         userIsActive, 
-                })}
+                    })
+                }
             );
 
             this.socket.on(
