@@ -6,8 +6,9 @@ const useStyles = makeStyles({
     imgStyles: {
             height: 'auto',
             maxWidth: '8vw', 
-            border: 'solid green 2px',   
             transform: 'rotate(-0.05turn)', 
+            border: 'solid 3px',
+            borderColor: '#42B1EF',
             transition: "0.5s cubic-bezier(.47,1.64,.41,.8)",
             "&:hover": {
                 transform: "scale(1.6)",
@@ -29,9 +30,11 @@ const ScreenShot = ({ looserCapture, showScreenshot, picture }) => {
             paddingRight: '2vh',
             textAlign: 'right',
             marginRight: '-6vw',
-        }
+        },
     }
+
     const classes = useStyles();
+
     return (
         <div id="screenshot" style={styles.container}>
             {/*<LittleScreenshots winnerCapture={winnerCapture} style={{zIndex: 2}} />*/}
@@ -42,7 +45,7 @@ const ScreenShot = ({ looserCapture, showScreenshot, picture }) => {
                 onClick={() => showScreenshot(picture)} 
             />
         </div>
-        );
+    );
 }
 
 export default ScreenShot;
