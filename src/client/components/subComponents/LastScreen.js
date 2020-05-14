@@ -51,7 +51,7 @@ const LastScreen = ({ winnerCapture, looserCapture, displayLastscreen, displaySe
             position: 'relative',
             top: '25px',
             left: '115px',
-            margin: '0 0 -35px -70px',
+            margin: '0 0 -0 -70px',
             zIndex: 15,
             color: '#DA4CB0',
         },
