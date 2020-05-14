@@ -42,24 +42,38 @@ const LastScreen = ({ winnerCapture, looserCapture, displayLastscreen, displaySe
             transform: 'rotate(0.05turn)',
         },
         winner: {
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
             textAlign: 'center',
             width: 400,
             fontSize: '1.2em',
             position: 'relative',
             top: '25px',
             left: '115px',
-            margin: '0 0 0 -70px',
+            margin: '0 0 -35px -70px',
             zIndex: 15,
             color: '#DA4CB0',
+        },
+        media: {
+            width: '30px',
+            margin: '10px',
         }
     }
+
+    const facebook = require('../../img/fb_icon_325x325.png')
+    const instagram = require('../../img/langfr-220px-Instagram_logo_2016.svg.webp')
 
     return (
         <>
             {(displayLastscreen || displaySelectedScreen) &&
                 <div style={styles.screenshot}>
                     <div>
-                        <p style={styles.winner}>{winner} a gagné !</p>
+                        <div style={styles.winner}>
+                            <p style={{ margin: '0' }}>{winner} a gagné !</p>
+                            <img style={styles.media} src={facebook} alt="fb" />
+                            <img style={styles.media} src={instagram} alt="fb" />
+                        </div>
                         <p style={styles.joke}>{selectedjoke}</p>
                         <img 
                             style={styles.looserCapture}
