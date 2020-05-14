@@ -57,7 +57,7 @@ const LastScreen = ({ winnerCapture, looserCapture, displayLastscreen, displaySe
         },
         media: {
             width: '30px',
-            margin: '10px',
+            margin: '5px',
         }
     }
 
