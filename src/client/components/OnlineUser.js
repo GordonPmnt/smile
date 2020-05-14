@@ -3,13 +3,13 @@ import { colors } from './styles/ThemeContext';
 import './OnlineUser.css'
 
 
-const OnlineUser = ({ name, socket, socketId, myPeerConnection }) => {
+const OnlineUser = ({ name, socket, socketId, myPeerConnection, setCallMade }) => {
     const { RTCSessionDescription } = window;
 
     async function callUser(socketId) {
+        setCallMade()
         const offer = await myPeerConnection.createOffer();
         await myPeerConnection.setLocalDescription(new RTCSessionDescription(offer));
-
         socket.emit("call-user", {
           offer,
           to: socketId
@@ -27,10 +27,12 @@ const OnlineUser = ({ name, socket, socketId, myPeerConnection }) => {
                 border: `2px solid ${colors.violet}`,
                 borderRadius: '10px',
                 cursor: 'pointer',
-                marginLeft: '5px',
+                margin: '10px',
+                zIndex: 3,
+                fontSize: '2em',
             }}
         >
-            Appeler {name}
+            AFFRONTER: {name}
         </li>
     )
 }

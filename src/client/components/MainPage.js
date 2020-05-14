@@ -2,7 +2,7 @@ import React from 'react';
 import { colors } from './styles/ThemeContext';
 
 
-const MainPage = ({ history, handlePlayerInput }) => {
+const MainPage = ({ history, handlePlayerInput, player }) => {
   const styles = {
     container: {
       display: 'flex',
@@ -16,6 +16,12 @@ const MainPage = ({ history, handlePlayerInput }) => {
       fontSize: '4rem',
       textAlign: 'center',
       color: colors.pink,
+    },
+    subTitle: {
+      fontSize: '2rem',
+      textAlign: 'center',
+      color: colors.pink,
+      fontStyle: 'italic',
     },
     gentleman: {
       display: 'block',
@@ -55,6 +61,7 @@ const MainPage = ({ history, handlePlayerInput }) => {
         </label>
         <input type="submit" value="Jouer"/>
       </form>
+      <h2 style={styles.subTitle}>Vous trouvez ça drôle ?</h2>
     </div>
   );
 }

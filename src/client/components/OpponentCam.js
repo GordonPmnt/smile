@@ -5,8 +5,9 @@ import { ThemeContext } from './styles/ThemeContext';
 import OnlineUser from "./OnlineUser";
 
 
-const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConnection, player, userIsActive, requestCapture }) => {   
+const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConnection, player, userIsActive, requestCapture, callMade, setCallMade }) => {   
     const webcamOff = require('../img/webcam-off.png');
+    const daddy = require('../img/gentleman-transparent.png');
     const styles = {
         container: {
             margin: '5vh 5vh 5vh 5vh',
@@ -23,20 +24,24 @@ const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConn
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            zIndex: 10,
         },
         webcam: {
-            width: '100%',
+            width: '98%',
             margin: 'auto 0',
-            background: `url(${webcamOff}) no-repeat center center`,
             borderRadius: '15px',
-            border: 'solid 5px',
+            border: 'solid 8px',
+            zIndex: 1,
         },
         users: {
             display: 'flex',
-            flexDirection: 'row',
+            flexDirection: 'column',
             position: 'absolute', 
-            top: '90vh',
-            right: '10vw',
+            left: '30vw',
+            marginLeft: '-20px',
+            top: '50vh',
+            marginTop: '-80px',
+            textAlign: 'center',
         }
     };
 
@@ -51,24 +56,35 @@ const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConn
         <ThemeContext.Consumer>
         {theme => 
             <>
-                <ul style={styles.users}>
-                    {activePlayers.filter(name => name !== player).map(
-                        name => <OnlineUser 
-                            key={gameroom[name]} 
-                            socketId={gameroom[name].id}
-                            myPeerConnection={myPeerConnection}
-                            name={name}
-                            socket={socket}
-                        />
-                    )}
-                </ul>
                 <div  style={{...styles.container}}>
+                    {callMade 
+                    ?
+                        <h1 style={styles.users}>...veuillez patienter</h1>
+                    :
+                        <ul style={styles.users}>
+                            <div>
+                                <img src={daddy} alt="daddy" style={{ height: '100px' }}/>
+                                <h1>Choisis un 2ème joueur</h1>
+                            </div>
+                            {activePlayers.filter(name => name !== player).map(
+                                name => <OnlineUser 
+                                    key={gameroom[name].socketId} 
+                                    socketId={gameroom[name].socketId}
+                                    myPeerConnection={myPeerConnection}
+                                    name={name}
+                                    socket={socket}
+                                    setCallMade={setCallMade}
+                                />
+                            )}
+                        </ul>
+                    }
                     <video
                         autoPlay
                         id="remote-cam" 
                         style={{...styles.webcam, ...theme.borderColor}}
                         ref={ref => video = ref}
                     />
+                    {callMade &&
                     <div style={styles.OpponentInterface}>
                         {activeJoke.isActive &&
                             <SelectedJoke 
@@ -83,6 +99,7 @@ const OpponentCam = ({ handleEndOfturn, activeJoke, gameroom, socket, myPeerConn
                                 theme={theme}
                             />
                     </div>
+                    }
                 </div>
             </>
         }

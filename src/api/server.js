@@ -8,7 +8,7 @@ const io = socketIo(server)
 
 let gameroom = {}
 let msgId = 0;
-let shotId = 0;
+let reqId = 0;
 
 io.on('connection', (socket) => {
     
@@ -29,15 +29,22 @@ io.on('connection', (socket) => {
         msgId++
     });
 
+    socket.on("joke", joke => {
+        if(joke.question) {
+            joke.joke = joke.question
+        }
+        io.emit("joke", joke)
+    })
+
     socket.on('update-gameroom', newRoom => {
         gameroom = newRoom //update the gameroom on server
         io.emit('update-gameroom', gameroom)
     });
 
-    socket.on("request capture", screenshot => {
-        screenshot.shotId = shotId
-        shotId++
-        io.emit("execute capture", screenshot)
+    socket.on("request capture", captureRequest => {
+        captureRequest.reqId = reqId
+        reqId++
+        io.emit("execute capture", captureRequest)
     })
 
     socket.on("capture taken", screenshot => {
